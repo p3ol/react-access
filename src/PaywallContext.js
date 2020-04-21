@@ -16,8 +16,7 @@ export default ({
     appId,
     styles,
     texts,
-    setContent: ({ container, mode, percent } = {}) =>
-      dispatch({ container, mode, percent }),
+    setContent: container => dispatch({ container }),
   });
 
   return (

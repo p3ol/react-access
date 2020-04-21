@@ -8,6 +8,7 @@ export default ({
   id = generateId(),
   pageType = 'premium',
   events = {},
+  scriptUrl = 'https://assets.poool.fr/poool.min.js',
   beforeInit = () => {},
 }) => {
   const paywallWrapperRef = useRef();
@@ -28,12 +29,12 @@ export default ({
   }, [container, paywallWrapperRef.current]);
 
   const loadScript = () => new Promise((resolve, reject) => {
-    /* eslint-disable */
-    !function(w,d,s,u,p,y,z,t,o){
-        w[p]=w[p]||function(){(w[p]._q=w[p]._q||[]).push(arguments)},
-        t=d.createElement(s),o=d.getElementsByTagName(s)[0],
-        t.async=1,t.src=u,t.onload=y,t.onerror=z,o.parentNode.insertBefore(t,o)
-    }(window, document, "script", 'https://front.poool-staging.fr/poool.js', "poool", resolve, reject);
+    /* eslint-disable comma-spacing, space-infix-ops, no-sequences, semi */
+    !function(w,d,s,u,p,y,z,t,o) {
+      w[p]=w[p]||function() {(w[p]._q=w[p]._q||[]).push(arguments)},
+      t=d.createElement(s),o=d.getElementsByTagName(s)[0],
+      t.async=1,t.src=u,t.onload=y,t.onerror=z,o.parentNode.insertBefore(t,o);
+    }(window, document, 'script', scriptUrl, 'poool', resolve, reject);
     /* eslint-enable */
   });
 
@@ -49,9 +50,10 @@ export default ({
     window.poool('styles', styles);
     window.poool('texts', texts);
     Object.entries(events).map(([k, v]) => window.poool('event', k, v));
-    window.poool('config', 'post_container', `[id='${container}']`);
-    window.poool('config', 'widget_container',
-      `[id='${paywallWrapperRef.current.id}']`);
+    window.poool('config', {
+      post_container:`[id='${container}']`,
+      widget_container: `[id='${paywallWrapperRef.current.id}']`,
+    });
     beforeInit(window.poool);
     await window.poool('send', 'page-view', pageType);
   };
