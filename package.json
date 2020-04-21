@@ -43,6 +43,11 @@
   "scripts": {
     "clean": "rm -rf ./dist || true",
     "build": "yarn clean && ./node_modules/.bin/rollup -c",
-    "serve": "yarn clean && ./node_modules/.bin/webpack-dev-server --config ./webpack.config.js"
+    "serve": "BABEL_ENV='serve' yarn clean && ./node_modules/.bin/webpack-dev-server --config ./webpack.config.js"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs3": "^7.9.2",
+    "core-js": "^3.6.5",
+    "uuid": "^7.0.3"
   }
 }

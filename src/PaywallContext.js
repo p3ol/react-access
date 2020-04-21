@@ -6,17 +6,19 @@ import { DefaultContext } from './contexts';
 export default ({
   appId,
   config = {},
+  styles = {},
+  texts = {},
   children,
 }) => {
   const [state, dispatch] = useReducer(mockState, {
     container: null,
     config,
-    setContent,
+    appId,
+    styles,
+    texts,
+    setContent: ({ container, mode, percent } = {}) =>
+      dispatch({ container, mode, percent }),
   });
-
-  const setContent = ({ container, mode, percent } = {}) => {
-    dispatch({ container, mode, percent });
-  };
 
   return (
     <DefaultContext.Provider

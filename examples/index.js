@@ -11,7 +11,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <PaywallContext appId="ZRGA3EYZ4GRBTSHREG345HGGZRTHZEGEH">
+      <PaywallContext appId="ZRGA3EYZ4GRBTSHREG345HGGZRTHZEGEH" config={{ cookies_enabled: true }}>
         <RestrictedContent>
           <div className="articleBody">
             { /* eslint-disable max-len */ }

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef } from 'react';
 
 import { DefaultContext } from './contexts';
+import { generateId } from './utils';
 
 export default ({ mode = 'excerpt', percent = '80', children }) => {
   const { setContent } = useContext(DefaultContext);
@@ -8,12 +9,12 @@ export default ({ mode = 'excerpt', percent = '80', children }) => {
 
   useEffect(() => {
     if (contentRef.current) {
-      setContent({ container: contentRef.current, mode, percent });
+      contentRef.current.id = contentRef.current.id || generateId();
+      setContent({ container: contentRef.current.id, mode, percent });
     }
   }, [contentRef.current, mode, percent]);
 
-  return React.Children.only(children, child => ({
-    ...child.props,
+  return React.cloneElement(React.Children.only(children), {
     ref: contentRef,
-  }));
+  });
 };

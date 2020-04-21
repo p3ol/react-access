@@ -11,6 +11,7 @@ const defaultPlugins = [
   babel({
     exclude: 'node_modules/**',
     externalHelpers: true,
+    runtimeHelpers: true,
   }),
 ];
 
@@ -55,12 +56,7 @@ export default [
   },
   // esm
   {
-    input: {
-      index: 'src/index.js',
-      Paywall: 'src/Paywall.js',
-      PaywallContext: 'src/PaywallContext.js',
-      RestrictedContent: 'src/RestrictedContent.js',
-    },
+    input: 'src/index.js',
     plugins: [
       ...defaultPlugins,
       resolve(),

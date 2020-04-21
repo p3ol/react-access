@@ -26,3 +26,19 @@ export const classNames = (...args) => {
 };
 
 export const mockState = (state, action) => ({ ...state, ...action });
+
+export const randomString = () =>
+  Math.random().toString(36).substr(2, 5);
+
+export const generateId = () => {
+  let id;
+
+  while (!id) {
+    const temp = `poool-${randomString()}`;
+    if (!document.getElementById(temp)) {
+      id = temp;
+    }
+  }
+
+  return id;
+};

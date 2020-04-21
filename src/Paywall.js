@@ -1,10 +1,11 @@
 import React, { useEffect, useContext, useRef } from 'react';
 
-import { classNames } from './utils';
+import { classNames, generateId } from './utils';
 import { DefaultContext } from './contexts';
 
 export default ({
   className,
+  id = generateId(),
   pageType = 'premium',
   events = {},
   beforeInit = () => {},
@@ -19,12 +20,12 @@ export default ({
   } = useContext(DefaultContext);
 
   useEffect(() => {
-    if (container) {
+    if (container && paywallWrapperRef.current) {
       init();
     }
 
     return () => deinit();
-  }, [container]);
+  }, [container, paywallWrapperRef.current]);
 
   const loadScript = () => new Promise((resolve, reject) => {
     /* eslint-disable */
@@ -48,8 +49,9 @@ export default ({
     window.poool('styles', styles);
     window.poool('texts', texts);
     Object.entries(events).map(([k, v]) => window.poool('event', k, v));
-    window.poool('config', 'post_container', container);
-    window.poool('config', 'widget_container', paywallWrapperRef.current);
+    window.poool('config', 'post_container', `[id='${container}']`);
+    window.poool('config', 'widget_container',
+      `[id='${paywallWrapperRef.current.id}']`);
     beforeInit(window.poool);
     await window.poool('send', 'page-view', pageType);
   };
@@ -61,12 +63,13 @@ export default ({
 
     Object.entries(events).map(([k, v]) => window.poool('unevent', k, v));
 
-    await window.poool.flush();
+    await window.poool.flush?.();
   };
 
   return (
     <div
       ref={paywallWrapperRef}
+      id={id}
       className={classNames('poool-widget', className)}
     />
   );
