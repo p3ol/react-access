@@ -12,7 +12,7 @@ module.exports = {
     open: true,
     hot: true,
     contentBase: './dist',
-    port: 65000,
+    port: 63000,
     host: 'localhost',
     historyApiFallback: true,
   },
