@@ -15,7 +15,7 @@ import React from 'react';
 import { PaywallContext, RestrictedContent, Paywall } from '@poool/react-access';
 
 export default () => (
-{ /* Wrap everything with our PaywallContext component */ }
+  { /* Wrap everything with our PaywallContext component */ }
   <PaywallContext appId="insert_your_app_id" config={{ cookies_enabled: true }}>
 
     { /* Wrap your content with our RestrictedContent component */ }
