@@ -1,7 +1,7 @@
 export const classNames = (...args) => {
   const classes = [];
 
-  args.map((arg) => {
+  args.map(arg => {
     if (!arg) {
       return;
     }
@@ -14,8 +14,8 @@ export const classNames = (...args) => {
         classes.push(inner);
       }
     } else if (typeof arg === 'object') {
-      Object.entries(arg).map(([k, v]) => {
-        if (v) {
+      Object.keys(arg).map(k => {
+        if (arg[k]) {
           classes.push(k);
         }
       });
@@ -34,7 +34,7 @@ export const generateId = () => {
   let id;
 
   while (!id) {
-    const temp = `poool-${randomString()}`;
+    const temp = `poool-${randomString()}-${randomString()}`;
     if (!document.getElementById(temp)) {
       id = temp;
     }

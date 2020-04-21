@@ -4,15 +4,12 @@ import commonjs from 'rollup-plugin-commonjs';
 import { eslint } from 'rollup-plugin-eslint';
 import { terser } from 'rollup-plugin-terser';
 
-const isExternal = id => /^react/.test(id);
-
 const defaultPlugins = [
   eslint(),
-  babel({
-    exclude: 'node_modules/**',
-    externalHelpers: true,
-    runtimeHelpers: true,
-  }),
+];
+
+const defaultExternals = [
+  'react',
 ];
 
 const defaultGlobals = {
@@ -20,52 +17,64 @@ const defaultGlobals = {
 };
 
 export default [
-  // poool-react-access.min.js
+  // umd
   {
-    input: 'src/index.js',
+    input: './src/index.js',
     plugins: [
       ...defaultPlugins,
+      babel({
+        exclude: 'node_modules/**',
+      }),
       resolve(),
       commonjs(),
       terser(),
     ],
-    external: isExternal,
+    external: defaultExternals,
     output: {
       file: 'dist/poool-react-access.min.js',
       format: 'umd',
-      name: 'poool-react-access',
-      esModule: false,
-      globals: defaultGlobals,
+      name: 'PooolReactAccess',
       sourcemap: true,
+      globals: defaultGlobals,
     },
   },
-  // poool-react-access.cjs.js
+
+  // cjs
   {
-    input: 'src/index.js',
+    input: './src/index.js',
     plugins: [
       ...defaultPlugins,
+      babel({
+        exclude: 'node_modules/**',
+      }),
+      resolve(),
+      commonjs(),
+      terser(),
     ],
-    external: isExternal,
+    external: defaultExternals,
     output: {
       file: 'dist/poool-react-access.cjs.js',
       format: 'cjs',
-      name: 'poool-react-access',
-      globals: defaultGlobals,
       sourcemap: true,
     },
   },
+
   // esm
   {
-    input: 'src/index.js',
+    input: './src/index.js',
     plugins: [
       ...defaultPlugins,
+      babel({
+        exclude: 'node_modules/**',
+        externalHelpers: false,
+        runtimeHelpers: false,
+      }),
       resolve(),
     ],
-    external: isExternal,
+    external: defaultExternals,
     output: {
-      dir: 'dist/esm',
+      file: 'dist/poool-react-access.esm.js',
       format: 'esm',
-      globals: defaultGlobals,
       sourcemap: true,
     },
   },
