@@ -57,6 +57,7 @@
     "test": "./node_modules/.bin/jest"
   },
   "dependencies": {
-    "core-js": "^3.6.5"
+    "core-js": "^3.6.5",
+    "jsdom-global": "^3.0.2"
   }
 }

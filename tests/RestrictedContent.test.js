@@ -1,3 +1,4 @@
+import 'jsdom-global/register';
 import React, { useContext, forwardRef } from 'react';
 import { shallow, mount } from 'enzyme';
 
