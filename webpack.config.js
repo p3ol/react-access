@@ -9,7 +9,7 @@ module.exports = {
   devtool: 'inline-source-map',
   mode: 'development',
   devServer: {
-    open: true,
+    open: process.env.NODE_ENV !== 'test',
     hot: true,
     contentBase: './dist',
     port: 63000,

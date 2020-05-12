@@ -1,19 +1,24 @@
-import 'jsdom-global/register';
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import sinon from 'sinon';
+import { shallow } from 'enzyme';
+import puppeteer from 'puppeteer';
+import devServer from 'jest-dev-server';
 
 import Paywall from '../src/Paywall';
-import PaywallContext from '../src/PaywallContext';
-import RestrictedContent from '../src/RestrictedContent';
 
 describe('<PaywallContext />', () => {
+  let browser, page;
 
   beforeAll(async () => {
-    const script = document.createElement('script');
-    document.head.appendChild(script);
-    await page.goto('http://localhost:63000/');
     jest.setTimeout(30000);
+    await devServer.setup({
+      command: 'NODE_ENV="test" yarn serve',
+      port: 63000,
+      launchTimeout: 30000,
+    });
+
+    browser = await puppeteer.launch();
+    page = await browser.newPage();
+    await page.goto('http://localhost:63000/');
   });
 
   it('should render', () => {
@@ -21,41 +26,52 @@ describe('<PaywallContext />', () => {
     expect(component.find('#test').length).toBe(1);
   });
 
+  it('should render without an id set', () => {
+    const component = shallow(<Paywall />);
+    expect(component.find('.poool-widget').length).toBe(1);
+  });
+
   it('should render a full paywall when used with all necessary' +
     'siblings', async () => {
-
     await page.waitForSelector('iframe#p3-paywall');
     const src = await page.evaluate(() =>
       document.querySelector('iframe#p3-paywall').src
     );
 
-
-    const onIdentityAvailable = sinon.spy();
-    const onReadyAvailable = sinon.spy();
-
-    const component = mount(
-      <PaywallContext
-        appId="ZRGA3EYZ4GRBTSHREG345HGGZRTHZEGEH"
-        config={{ cookies_enabled: true, debug: true }}
-      >
-        <RestrictedContent><p>Test</p></RestrictedContent>
-        <Paywall
-          id="test"
-          events={{
-            onIdentityAvailable: () => {
-              expect(onIdentityAvailable.called).toBe(true);
-            },
-            onready: () => {
-              expect(onReadyAvailable.called).toBe(true);
-            },
-          }}
-        />
-      </PaywallContext>
-    );
-    component.update();
-
     expect(src).toBe('https://assets.poool.fr/paywall.html');
+  });
 
+  it('should fire beforeInit handler', async () => {
+    await page.waitForSelector('#before-init');
+    const beforeInit = await page.evaluate(() =>
+      JSON.parse(document.querySelector('#before-init').innerText)
+    );
+
+    expect(beforeInit).toBe(true);
+  });
+
+  it('should fire onIdentityAvailable event handler', async () => {
+    await page.waitForSelector('#on-identity-available');
+    const identity = await page.evaluate(() =>
+      JSON.parse(document.querySelector('#on-identity-available').innerText)
+    );
+
+    expect(identity).toBeDefined();
+    expect(identity.user_id).toBeDefined();
+  });
+
+  it('should fire onReady event handler', async () => {
+    await page.waitForSelector('#on-ready');
+    const ready = await page.evaluate(() =>
+      JSON.parse(document.querySelector('#on-ready').innerText)
+    );
+
+    expect(ready).toBe(true);
+  });
+
+  afterAll(async () => {
+    await devServer.teardown();
+    await browser.close();
   });
 
 });

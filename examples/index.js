@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import {
@@ -8,10 +8,16 @@ import {
 } from '@poool/react-access';
 
 const App = () => {
+  const [beforeInit, setBeforeInit] = useState(null);
+  const [identity, setIdentity] = useState(null);
+  const [ready, setReady] = useState(null);
 
   return (
     <div className="app">
-      <PaywallContext appId="ZRGA3EYZ4GRBTSHREG345HGGZRTHZEGEH" config={{ cookies_enabled: true }}>
+      <PaywallContext
+        appId="ZRGA3EYZ4GRBTSHREG345HGGZRTHZEGEH"
+        config={{ cookies_enabled: true, debug: true }}
+      >
         <RestrictedContent>
           <div className="articleBody">
             { /* eslint-disable max-len */ }
@@ -64,8 +70,26 @@ const App = () => {
           </div>
         </RestrictedContent>
 
-        <Paywall />
+        <Paywall
+          beforeInit={() => setBeforeInit(true) }
+          events={{
+            onReady: () => setReady(true),
+            onIdentityAvailable: e => setIdentity(e),
+          }}
+        />
       </PaywallContext>
+
+      { /* FOR TESTING PURPOSES, DO NOT REMOVE */ }
+      { beforeInit && (
+        <div id="before-init">{ JSON.stringify(beforeInit) }</div>
+      ) }
+      { identity && (
+        <div id="on-identity-available">{ JSON.stringify(identity) }</div>
+      ) }
+      { ready && (
+        <div id="on-ready">{ JSON.stringify(ready) }</div>
+      ) }
+      { /* END TESTING */ }
     </div>
   );
 };

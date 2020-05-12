@@ -8,8 +8,11 @@ export default ({ children }) => {
   const contentRef = useRef();
 
   useEffect(() => {
+    /* istanbul ignore else: if content is not there yet, we do nothing */
     if (contentRef.current) {
-      contentRef.current.id = contentRef.current.id || generateId();
+      contentRef.current.id =
+        contentRef.current.id ||
+        /* istanbul ignore next: just in case */ generateId();
       setContent(contentRef.current.id);
     }
   }, [contentRef.current]);

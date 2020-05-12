@@ -1,5 +1,4 @@
 module.exports = {
-  'preset': 'jest-puppeteer',
   clearMocks: true,
   collectCoverage: true,
   coverageDirectory: 'coverage',
@@ -11,7 +10,5 @@ module.exports = {
   },
   'setupFilesAfterEnv': [
     '<rootDir>/tests/config/enzyme.js',
-    //'<rootDir>/tests/config/crypto.js',
-    //'<rootDir>/tests/config/script.js',
   ],
 };

@@ -6,10 +6,13 @@ export const classNames = (...args) => {
       return;
     }
 
+    /* istanbul ignore else: not needed */
     if (typeof arg === 'string' || typeof arg === 'number') {
       classes.push(arg);
     } else if (Array.isArray(arg) && arg.length) {
       const inner = classNames(...arg);
+
+      /* istanbul ignore else: not needed */
       if (inner) {
         classes.push(inner);
       }
@@ -35,6 +38,8 @@ export const generateId = () => {
 
   while (!id) {
     const temp = `poool-${randomString()}-${randomString()}`;
+
+    /* istanbul ignore else: virtually impossible to happen */
     if (!document.getElementById(temp)) {
       id = temp;
     }

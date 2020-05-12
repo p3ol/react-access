@@ -5,14 +5,17 @@ import { DefaultContext } from './contexts';
 
 export default ({
   className,
-  id = generateId(),
+  id,
   pageType = 'premium',
   events = {},
   scriptUrl = 'https://assets.poool.fr/poool.min.js',
-  doc = typeof document !== 'undefined' ? document : global,
-  win = typeof window !== 'undefined' ? window : global,
-  beforeInit = () => {},
+  doc = typeof document !== 'undefined'
+    ? document : /* istanbul ignore next: ssr edge case */global,
+  win = typeof window !== 'undefined'
+    ? window : /* istanbul ignore next: ssr edge case */ global,
+  beforeInit,
 }) => {
+  const paywallIdRef = useRef(id || generateId());
   const paywallWrapperRef = useRef();
   const {
     appId,
@@ -22,14 +25,16 @@ export default ({
     container,
   } = useContext(DefaultContext);
 
+  /* istanbul ignore next: tested within puppeteer */
   useEffect(() => {
     if (container && paywallWrapperRef.current) {
       init();
     }
 
     return () => deinit();
-  }, [container, paywallWrapperRef.current]);
+  }, [paywallWrapperRef.current]);
 
+  /* istanbul ignore next: tested within puppeteer */
   const loadScript = () => new Promise((resolve, reject) => {
     /* eslint-disable comma-spacing, space-infix-ops, no-sequences, semi */
     !function(w,d,s,u,p,y,z,t,o) {
@@ -40,6 +45,7 @@ export default ({
     /* eslint-enable */
   });
 
+  /* istanbul ignore next: tested within puppeteer */
   const init = async () => {
     await loadScript();
 
@@ -48,24 +54,25 @@ export default ({
     }
 
     win.poool('init', appId);
-    win.poool('config', config);
     win.poool('styles', styles);
     win.poool('texts', texts);
-    Object.entries(events).map(([k, v]) => win.poool('event', k, v));
     win.poool('config', {
+      ...config,
       post_container:`[id='${container}']`,
       widget_container: `[id='${paywallWrapperRef.current.id}']`,
     });
-    beforeInit(win.poool);
+    Object.keys(events).map(k => win.poool('event', k, events[k]));
+    beforeInit?.(win.poool);
     win.poool('send', 'page-view', pageType);
   };
 
+  /* istanbul ignore next: tested within puppeteer */
   const deinit = async () => {
     if (typeof win.poool === 'undefined') {
       return;
     }
 
-    Object.entries(events).map(([k, v]) => win.poool('unevent', k, v));
+    Object.keys(events).map(k => win.poool('unevent', k, events[k]));
 
     await win.poool.flush?.();
   };
@@ -73,7 +80,7 @@ export default ({
   return (
     <div
       ref={paywallWrapperRef}
-      id={id}
+      id={paywallIdRef.current}
       className={classNames('poool-widget', className)}
     />
   );
