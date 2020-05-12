@@ -16,6 +16,7 @@
     "@babel/core": "7.9.6",
     "@babel/preset-env": "7.9.6",
     "@babel/preset-react": "7.9.4",
+    "auto-changelog": "^2.0.0",
     "babel-eslint": "10.1.0",
     "babel-loader": "8.1.0",
     "codecov": "3.6.5",
@@ -54,9 +55,17 @@
     "serve": "yarn clean && ./node_modules/.bin/webpack-dev-server --config ./webpack.config.js",
     "prepack": "yarn build && yarn lint && yarn test",
     "test": "./node_modules/.bin/jest",
-    "lint": "./node_modules/.bin/eslint --max-warnings=0 ."
+    "lint": "./node_modules/.bin/eslint --max-warnings=0 .",
+    "changelog": "./node_modules/.bin/auto-changelog"
   },
   "dependencies": {
     "core-js": "3.6.5"
+  },
+  "auto-changelog": {
+    "output": "CHANGELOG.md",
+    "template": "compact",
+    "unreleased": false,
+    "commitLimit": 10,
+    "backfillLimit": 10
   }
 }
