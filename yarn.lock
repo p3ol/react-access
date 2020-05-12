@@ -2634,15 +2634,15 @@ core-js-pure@^3.0.0:
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.6.5.tgz#c79e75f5e38dbc85a662d91eea52b8256d53b813"
   integrity sha512-lacdXOimsiD0QyNf9BC/mxivNJ/ybBGJXQFKzRekp1WTHoVUWsUHEn+2T8GJAzzIhyOuXA+gOxCVN3l+5PLPUA==
 
+core-js@3.6.5:
+  version "3.6.5"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.5.tgz#7395dc273af37fb2e50e9bd3d9fe841285231d1a"
+  integrity sha512-vZVEEwZoIsI+vPEuoF9Iqf5H7/M3eeQqWlQnYa8FSKKePuYTf5MWnxb5SDAzCa60b3JBRS5g9b+Dq7b1y/RCrA==
+
 core-js@^2.6.5:
   version "2.6.11"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.11.tgz#38831469f9922bded8ee21c9dc46985e0399308c"
   integrity sha512-5wjnpaT/3dV+XB4borEsnAYQchn00XSgTAWKDkEqv+K8KevjbzmofK6hfJ9TZIlpj2N0xQpazy7PiRQiWHqzWg==
-
-core-js@^3.6.5:
-  version "3.6.5"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.5.tgz#7395dc273af37fb2e50e9bd3d9fe841285231d1a"
-  integrity sha512-vZVEEwZoIsI+vPEuoF9Iqf5H7/M3eeQqWlQnYa8FSKKePuYTf5MWnxb5SDAzCa60b3JBRS5g9b+Dq7b1y/RCrA==
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -4977,7 +4977,7 @@ jest-config@^26.0.1:
     micromatch "^4.0.2"
     pretty-format "^26.0.1"
 
-jest-dev-server@^4.4.0:
+jest-dev-server@4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/jest-dev-server/-/jest-dev-server-4.4.0.tgz#557113faae2877452162696aa94c1e44491ab011"
   integrity sha512-STEHJ3iPSC8HbrQ3TME0ozGX2KT28lbT4XopPxUm2WimsX3fcB3YOptRh12YphQisMhfqNSNTZUmWyT3HEXS2A==
@@ -5323,11 +5323,6 @@ jsbn@~0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"
   integrity sha1-peZUwuWi3rXyAdls77yoDA7y9RM=
-
-jsdom-global@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/jsdom-global/-/jsdom-global-3.0.2.tgz#6bd299c13b0c4626b2da2c0393cd4385d606acb9"
-  integrity sha1-a9KZwTsMRiay2iwDk81DhdYGrLk=
 
 jsdom@^16.2.2:
   version "16.2.2"
@@ -6703,7 +6698,7 @@ punycode@^2.1.0, punycode@^2.1.1:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
-puppeteer@^3.0.4:
+puppeteer@3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/puppeteer/-/puppeteer-3.0.4.tgz#f445aae0a6732c65bbb90e963dcd6fd8fde0d780"
   integrity sha512-1QEb4tJXXbNId7WSHlcDkS3B4GklTIebKn8Y9D6B7tAdUjQncb+8QlTjbQsAgGX5dhRG32Qycuk5XKzJgLs0sg==
