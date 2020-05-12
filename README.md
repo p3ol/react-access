@@ -78,7 +78,7 @@ Install dependencies:
 yarn install
 ```
 
-Run examples at http://localhost:64000/ with webpack dev server:
+Run examples at http://localhost:63000/ with webpack dev server:
 
 ```bash
 yarn serve
@@ -100,6 +100,6 @@ This software is licensed under [MIT](https://github.com/p3ol/react-access/blob/
 Ugo_Stephant dackmin https://ugostephant.io code doc tools
 Contributors END -->
 <!-- Contributors table START -->
-| <img src="https://avatars.githubusercontent.com/dackmin?s=100" width="100" alt="Ugo Stephant" /><br />[<sub>Ugo Stephant</sub>](https://github.com/dackmin)<br />[💻](https://github.com/p3ol/react-access/commits?author=dackmin) [📖](https://github.com/p3ol/react-access/commits?author=dackmin) 🔧 |
-| :---: |
+| <img src="https://avatars.githubusercontent.com/dackmin?s=100" width="100" alt="Ugo Stephant" /><br />[<sub>Ugo Stephant</sub>](https://github.com/dackmin)<br />[💻](https://github.com/p3ol/react-access/commits?author=dackmin) [📖](https://github.com/p3ol/react-access/commits?author=dackmin) 🔧 | <img src="https://avatars.githubusercontent.com/defless?s=100" width="100" alt="Simon Deflesschouwer" /><br />[<sub>Simon Deflesschouwer</sub>](https://github.com/defless)<br />[🔧](https://github.com/p3ol/react-access/commits?author=defless) |
+| :---: | :---: |
 <!-- Contributors table END -->
