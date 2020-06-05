@@ -66,7 +66,7 @@
     "test": "./node_modules/.bin/jest",
     "lint": "./node_modules/.bin/eslint --max-warnings=0 .",
     "changelog": "./node_modules/.bin/standard-changelog",
-    "version": "./node_modules/.bin/standard-version"
+    "release": "./node_modules/.bin/standard-version && git push --follow-tags"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.10.2",
