@@ -1,9 +1,0 @@
-{
-  "extends": "fbjs",
-  "plugins": [
-    "react"
-  ],
-  "rules": {
-    "max-len": ["warn", { "code": 80, "tabWidth": 2 }],
-  }
-}
