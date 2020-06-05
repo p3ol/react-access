@@ -8,7 +8,7 @@ module.exports = {
   transform: {
     '^.+\\.js$': 'babel-jest',
   },
-  'setupFilesAfterEnv': [
+  setupFilesAfterEnv: [
     '<rootDir>/tests/config/enzyme.js',
   ],
 };

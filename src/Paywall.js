@@ -36,12 +36,12 @@ export default ({
 
   /* istanbul ignore next: tested within puppeteer */
   const loadScript = () => new Promise((resolve, reject) => {
-    /* eslint-disable comma-spacing, space-infix-ops, no-sequences, semi */
-    !function(w,d,s,u,p,y,z,t,o) {
-      w[p]=w[p]||function() {(w[p]._q=w[p]._q||[]).push(arguments)},
+    /* eslint-disable */
+    !(function (w,d,s,u,p,y,z,t,o) {
+      w[p]=w[p]||function () { (w[p]._q=w[p]._q||[]).push(arguments) },
       t=d.createElement(s),o=d.getElementsByTagName(s)[0],
       t.async=1,t.onload=y,t.src=u,t.onerror=z,o.parentNode.insertBefore(t,o);
-    }(win, doc, 'script', scriptUrl, 'poool', resolve, reject);
+    }(win, doc, 'script', scriptUrl, 'poool', resolve, reject));
     /* eslint-enable */
   });
 
@@ -58,7 +58,7 @@ export default ({
     win.poool('texts', texts);
     win.poool('config', {
       ...config,
-      post_container:`[id='${container}']`,
+      post_container: `[id='${container}']`,
       widget_container: `[id='${paywallWrapperRef.current.id}']`,
     });
     Object.keys(events).map(k => win.poool('event', k, events[k]));

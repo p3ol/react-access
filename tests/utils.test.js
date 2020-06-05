@@ -71,7 +71,7 @@ describe('utils.js', () => {
 
   describe('generateId()', () => {
     it('should generate an id if it doesn\'t already exist in the doc', () => {
-      expect(/poool\-.{5}\-.{5}/.test(generateId())).toBe(true);
+      expect(/poool-.{5}-.{5}/.test(generateId())).toBe(true);
     });
   });
 });
