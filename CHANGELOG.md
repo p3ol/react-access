@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/p3ol/react-access/compare/v0.1.0...v0.1.1) (2020-06-05)
+
+
+### Bug Fixes
+
+* update outdated lockfile ([858c24a](https://github.com/p3ol/react-access/commit/858c24a0e80de23293b92529dddaa16ff00ec9a3))
+
 ## [0.1.0](https://github.com/p3ol/react-access/compare/v0.0.1-alpha.2...v0.1.0) (2020-06-05)
 
 
