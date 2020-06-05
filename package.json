@@ -46,12 +46,14 @@
     "rollup": "2.13.1",
     "rollup-plugin-terser": "6.1.0",
     "sinon": "9.0.2",
+    "standard-changelog": "2.0.24",
+    "standard-version": "8.0.0",
     "webpack": "4.43.0",
     "webpack-cli": "3.3.11",
     "webpack-dev-server": "3.11.0"
   },
   "peerDependencies": {
-    "react": "^16.13.1"
+    "react": "^16.8.0"
   },
   "scripts": {
     "prebuild": "rm -rf ./dist || true",
@@ -62,7 +64,8 @@
     "prepack": "yarn build && yarn lint && yarn test",
     "test": "./node_modules/.bin/jest",
     "lint": "./node_modules/.bin/eslint --max-warnings=0 .",
-    "changelog": "./node_modules/.bin/auto-changelog"
+    "changelog": "./node_modules/.bin/standard-changelog",
+    "version": "./node_modules/.bin/standard-version"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.10.2",
