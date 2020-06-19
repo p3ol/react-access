@@ -1409,7 +1409,7 @@
   resolved "https://registry.yarnpkg.com/@poool/eslint-config/-/eslint-config-1.2.2.tgz#dd15d1059c073748af02b98c30a195016171235b"
   integrity sha512-AEQ8Z+Tec6SN1LlKJ1d84w/hT5JMmIhDxy6HJ/KZPYlgt3CW6iIIivS9TX/Obqimbu2TWBz8ostVRVU5UpQuzA==
 
-"@poool/eslint-plugin@^1.2.2":
+"@poool/eslint-plugin@1.2.2":
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/@poool/eslint-plugin/-/eslint-plugin-1.2.2.tgz#87c4c7ee1b871c4a8760f7191417957959f04dbd"
   integrity sha512-avBFyddG/8kNnYi2fkNvjdu06L5PSE24KcCQq13Jgmd6vcZnSRb3Xwzlo+gkUDfFDbPGVoOowwDmoGyvkeowag==
@@ -3951,11 +3951,6 @@ escodegen@^1.14.1:
     optionator "^0.8.1"
   optionalDependencies:
     source-map "~0.6.1"
-
-eslint-config-fbjs@3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/eslint-config-fbjs/-/eslint-config-fbjs-3.1.1.tgz#f5b4c1df888693672116f000527a8df25d61b888"
-  integrity sha512-Vpyqz+ZcyLyiUGUdUfiQmZnxiQ4Nj/KDRKed/Y5qSm+xHbQJ5zcZUQwLUMWHQicpDHewsdXwlpUAblvy1DtGvg==
 
 eslint-config-standard@14.1.1:
   version "14.1.1"

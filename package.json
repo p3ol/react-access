@@ -30,7 +30,6 @@
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.2",
     "eslint": "7.2.0",
-    "eslint-config-fbjs": "3.1.1",
     "eslint-config-standard": "14.1.1",
     "eslint-plugin-babel": "5.3.0",
     "eslint-plugin-import": "2.21.2",
