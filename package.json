@@ -71,12 +71,5 @@
   "dependencies": {
     "@babel/runtime-corejs3": "7.10.2",
     "core-js": "3.6.5"
-  },
-  "auto-changelog": {
-    "output": "CHANGELOG.md",
-    "template": "compact",
-    "unreleased": false,
-    "commitLimit": 10,
-    "backfillLimit": 10
   }
 }
