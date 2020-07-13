@@ -1388,10 +1388,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@poool/eslint-config-react@1.2.2":
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@poool/eslint-config-react/-/eslint-config-react-1.2.2.tgz#184e38783852d18fdceaa89b9139c3c2889a0a71"
-  integrity sha512-8dt+F5Xa6gyG+S7VqrM8mCf4juTo8HyyrQOY/g8+63zqZZ+tH9RMaixgahBpfUt0cEkhheeiwJ82l8TRBXLZiA==
+"@poool/eslint-config-react@1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@poool/eslint-config-react/-/eslint-config-react-1.2.3.tgz#289b38bc2828d9bff6bd11d031d5b6b32ed8123f"
+  integrity sha512-K6MiL7mjlQ2+diDiMYYd281veag/N62BAKNvEPRaHoz0XNgfqmlIGGKU/Zv3jq8kPTxSr8eC+a7gEKqqJInmnw==
 
 "@poool/eslint-config@1.2.3":
   version "1.2.3"
