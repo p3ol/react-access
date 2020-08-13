@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://github.com/p3ol/react-access/compare/v0.1.3...v0.1.4) (2020-08-13)
+
+
+### Bug Fixes
+
+* fix npm package missing dist folder ([9f8434d](https://github.com/p3ol/react-access/commit/9f8434d133c2cd725021c7d001b1651dfa3aa779))
+
 ### [0.1.3](https://github.com/p3ol/react-access/compare/v0.1.2...v0.1.3) (2020-08-13)
 
 ### [0.1.2](https://github.com/p3ol/react-access/compare/v0.1.1...v0.1.2) (2020-07-13)
