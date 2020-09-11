@@ -40,7 +40,7 @@
     "html-webpack-plugin": "4.4.1",
     "jest": "26.4.2",
     "jest-dev-server": "4.4.0",
-    "puppeteer": "5.2.1",
+    "puppeteer": "5.3.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "rollup": "2.26.11",
