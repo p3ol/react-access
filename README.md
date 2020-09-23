@@ -1,3 +1,5 @@
+![CI](https://github.com/p3ol/react-access/workflows/CI/badge.svg)
+
 # Poool Access - React SDK
 
 > The easiest way to add Poool Access to your React app ✨
