@@ -26,7 +26,7 @@
     "auto-changelog": "2.2.1",
     "babel-eslint": "11.0.0-beta.2",
     "babel-loader": "8.1.0",
-    "codecov": "3.7.2",
+    "codecov": "3.8.0",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.5",
     "eslint": "7.10.0",
