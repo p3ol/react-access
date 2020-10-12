@@ -74,7 +74,7 @@ export default ({
 
     Object.keys(events).map(k => win.poool('unevent', k, events[k]));
 
-    await win.poool.flush?.();
+    await win.poool('flush');
   };
 
   return (
