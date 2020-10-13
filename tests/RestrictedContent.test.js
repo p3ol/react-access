@@ -1,8 +1,9 @@
 import React, { useContext, forwardRef } from 'react';
 import { shallow, mount } from 'enzyme';
+import { act } from 'react-dom/test-utils';
 
 import { DefaultContext } from '../src/contexts';
-import RestrictedContent from '../src/RestrictedContent';
+import { RestrictedContent } from '../src';
 import PaywallContext from '../src/PaywallContext';
 
 describe('<RestrictedContent />', () => {
@@ -24,6 +25,9 @@ describe('<RestrictedContent />', () => {
         <RestrictedContent><Child /></RestrictedContent>
       </PaywallContext>
     );
+
+    await act(async () => { component.update(); });
+
     expect(component.find('#context-container-test').text())
       .toBe('context-container-test');
 

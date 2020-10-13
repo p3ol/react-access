@@ -3,22 +3,23 @@ import { shallow } from 'enzyme';
 import puppeteer from 'puppeteer';
 import devServer from 'jest-dev-server';
 
-import Paywall from '../src/Paywall';
+import { Paywall } from '../src';
 
-describe('<PaywallContext />', () => {
+describe('<Paywall />', () => {
   let browser, page;
 
   beforeAll(async () => {
     jest.setTimeout(30000);
+    process.env.TEST_PORT = 63002;
     await devServer.setup({
-      command: 'NODE_ENV="test" yarn serve',
-      port: 63000,
+      command: 'yarn serve',
+      port: 63002,
       launchTimeout: 30000,
     });
 
     browser = await puppeteer.launch();
     page = await browser.newPage();
-    await page.goto('http://localhost:63000/');
+    await page.goto('http://localhost:63002/premium');
   });
 
   it('should render', () => {
