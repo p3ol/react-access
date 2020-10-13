@@ -8,11 +8,6 @@ export default ({
   id,
   pageType = 'premium',
   events = {},
-  scriptUrl = 'https://assets.poool.fr/poool.min.js',
-  doc = typeof document !== 'undefined'
-    ? document : /* istanbul ignore next: ssr edge case */global,
-  win = typeof window !== 'undefined'
-    ? window : /* istanbul ignore next: ssr edge case */ global,
   beforeInit,
 }) => {
   const paywallIdRef = useRef(id || generateId());
@@ -23,6 +18,7 @@ export default ({
     styles,
     texts,
     container,
+    lib,
   } = useContext(DefaultContext);
 
   /* istanbul ignore next: tested within puppeteer */
@@ -32,49 +28,36 @@ export default ({
     }
 
     return () => deinit();
-  }, [paywallWrapperRef.current]);
-
-  /* istanbul ignore next: tested within puppeteer */
-  const loadScript = () => new Promise((resolve, reject) => {
-    /* eslint-disable */
-    !(function (w,d,s,u,p,y,z,t,o) {
-      w[p]=w[p]||function () { (w[p]._q=w[p]._q||[]).push(arguments) },
-      t=d.createElement(s),o=d.getElementsByTagName(s)[0],
-      t.async=1,t.onload=y,t.src=u,t.onerror=z,o.parentNode.insertBefore(t,o);
-    }(win, doc, 'script', scriptUrl, 'poool', resolve, reject));
-    /* eslint-enable */
-  });
+  }, [lib, paywallWrapperRef.current]);
 
   /* istanbul ignore next: tested within puppeteer */
   const init = async () => {
-    await loadScript();
-
-    if (typeof win.poool === 'undefined') {
+    if (!lib) {
       return;
     }
 
-    win.poool('init', appId);
-    win.poool('styles', styles);
-    win.poool('texts', texts);
-    win.poool('config', {
+    lib('init', appId);
+    lib('styles', styles);
+    lib('texts', texts);
+    lib('config', {
       ...config,
       post_container: `[id='${container}']`,
       widget_container: `[id='${paywallWrapperRef.current.id}']`,
     });
-    Object.keys(events).map(k => win.poool('event', k, events[k]));
-    beforeInit?.(win.poool);
-    win.poool('send', 'page-view', pageType);
+    Object.keys(events).map(k => lib('event', k, events[k]));
+    beforeInit?.(lib);
+    lib('send', 'page-view', pageType);
   };
 
   /* istanbul ignore next: tested within puppeteer */
   const deinit = async () => {
-    if (typeof win.poool === 'undefined') {
+    if (!lib) {
       return;
     }
 
-    Object.keys(events).map(k => win.poool('unevent', k, events[k]));
+    Object.keys(events).map(k => lib('unevent', k, events[k]));
 
-    await win.poool('flush');
+    await lib('flush');
   };
 
   return (

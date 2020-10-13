@@ -47,3 +47,19 @@ export const generateId = () => {
 
   return id;
 };
+
+export const loadScript = (url, win, doc) => new Promise((resolve, reject) => {
+  /* istanbul ignore else: tested inside puppeteer */
+  if (process.env.NODE_ENV === 'test') {
+    resolve();
+  }
+
+  /* istanbul ignore next: cannot test script load inside jsdom */
+  /* eslint-disable */
+  !(function (w,d,s,u,p,y,z,t,o) {
+    w[p]=w[p]||function () { (w[p]._q=w[p]._q||[]).push(arguments) },
+    t=d.createElement(s),o=d.getElementsByTagName(s)[0],
+    t.async=1,t.onload=y,t.src=u,t.onerror=z,(o ? o.parentNode || d.head : d.head).insertBefore(t,o);
+  }(win, doc, 'script', url, 'poool', resolve, reject));
+  /* eslint-enable */
+});
