@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/p3ol/react-access/compare/v0.1.4...v1.0.0) (2020-10-14)
+
+
+### Features
+
+* add usePoool hook ([e81f63d](https://github.com/p3ol/react-access/commit/e81f63d41caffe4ae02f21d5e110f217c4242d4c))
+
+
+### Bug Fixes
+
+* fix wrong call to flush ([89a3bf8](https://github.com/p3ol/react-access/commit/89a3bf89b058d40b3fd811a3c895f0f9c1af056a))
+
 ### [0.1.4](https://github.com/p3ol/react-access/compare/v0.1.3...v0.1.4) (2020-08-13)
 
 
