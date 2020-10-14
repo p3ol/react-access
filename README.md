@@ -59,6 +59,7 @@ Please note that this build will probably add more than 150kb to your final bund
 - `config` {`Object`} (optional) Default paywall config (https://dev.poool.fr/access/configuration).
 - `styles` {`Object`} (optional) Default paywall styles (https://dev.poool.fr/access/styles).
 - `texts` {`Object`} (optional) Default paywall texts (https://dev.poool.fr/access/texts).
+- `scriptUrl` {`String`} (optional, default: `'https://assets.poool.fr/poool.min.js'`) Default Poool Access SDK url
 
 ### `<RestrictedContent />`
 
@@ -73,10 +74,27 @@ No custom props
 - `id` {`String`} (optional, default: random id) Custom wrapper component ID
 - `pageType` {`String`} (optional, default: `'premium'`) Current page type (https://dev.poool.fr/access/actions#page-view)
 - `events` {`Object`} (optional, default: `{}`) Paywall events listeners (https://dev.poool.fr/access/events)
-- `scriptUrl` {`String`} (optional, default: `'https://assets.poool.fr/poool.min.js'`) Default Poool Access SDK url
 - `beforeInit` {`Function`} (optional, default: `() => {}`) Use this to do whatever you want to apply to config, styles, ... before paywall render
   - `poool` {`Function`} Reference to global `poool` passed as parameter
 
+### `usePoool()`
+
+Can be used to retrieved some properties from the current paywall context, as well as the Poool SDK itself.
+
+#### Returns
+
+- `poool` {`Function`} The entire poool library
+- `appId` {`String`} Current app ID
+- `config` {`Object`} Context config
+- `texts` {`Object`} Context texts
+- `styles` {`Object`} Context styles
+
+#### Example
+
+```jsx
+const { poool, appId } = usePoool();
+poool && poool('init', appId);
+```
 
 ## Contributing
 

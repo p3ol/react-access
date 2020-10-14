@@ -12,7 +12,7 @@ module.exports = {
     open: process.env.NODE_ENV !== 'test',
     hot: true,
     contentBase: './dist',
-    port: 63000,
+    port: process.env.TEST_PORT || 63000,
     host: 'localhost',
     historyApiFallback: true,
   },
