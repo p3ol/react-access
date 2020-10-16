@@ -13,10 +13,10 @@
   "esnext": "src",
   "sideEffects": false,
   "devDependencies": {
-    "@babel/core": "7.11.6",
-    "@babel/plugin-transform-runtime": "7.11.5",
-    "@babel/preset-env": "7.11.5",
-    "@babel/preset-react": "7.10.4",
+    "@babel/core": "7.12.1",
+    "@babel/plugin-transform-runtime": "7.12.1",
+    "@babel/preset-env": "7.12.1",
+    "@babel/preset-react": "7.12.1",
     "@poool/eslint-config": "1.2.3",
     "@poool/eslint-config-react": "1.2.3",
     "@poool/eslint-plugin": "1.2.3",
@@ -70,11 +70,11 @@
     "release": "./node_modules/.bin/standard-version && git push --follow-tags"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.11.2",
+    "@babel/runtime-corejs3": "7.12.1",
     "core-js": "3.6.5"
   },
   "resolutions": {
-    "@babel/parser": "7.11.5",
+    "@babel/parser": "7.12.2",
     "babel-eslint": "11.0.0-beta.2"
   }
 }
