@@ -1,9 +1,7 @@
 export const classNames = (...args) => {
-  const classes = [];
-
-  args.map(arg => {
+  return args.reduce((classes, arg) => {
     if (!arg) {
-      return;
+      return classes;
     }
 
     /* istanbul ignore else: not needed */
@@ -17,15 +15,11 @@ export const classNames = (...args) => {
         classes.push(inner);
       }
     } else if (typeof arg === 'object') {
-      Object.keys(arg).map(k => {
-        if (arg[k]) {
-          classes.push(k);
-        }
-      });
+      Object.keys(arg).map(k => arg[k] && classes.push(k));
     }
-  });
 
-  return classes.join(' ');
+    return classes;
+  }, []).join(' ');
 };
 
 export const mockState = (state, action) => ({ ...state, ...action });
