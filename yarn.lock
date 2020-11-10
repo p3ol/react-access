@@ -1686,7 +1686,7 @@
     lz-string "^1.4.4"
     pretty-format "^26.4.2"
 
-"@testing-library/react@^11.1.1":
+"@testing-library/react@11.1.1":
   version "11.1.1"
   resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-11.1.1.tgz#226d8dc7491b702fcaac2d7d88d42892e655893a"
   integrity sha512-DT/P2opE9o4NWCd/oIL73b6VF/Xk9AY8iYSstKfz9cXw0XYPQ5IhA/cuYfoN9nU+mAynW8DpAVfEWdM6e7zF6g==
