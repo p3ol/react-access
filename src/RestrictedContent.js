@@ -13,7 +13,7 @@ export default ({ children }) => {
       contentRef.current.id =
         contentRef.current.id ||
         /* istanbul ignore next: just in case */ generateId();
-      setContent(contentRef.current.id);
+      setContent?.(contentRef.current.id);
     }
   }, [contentRef.current]);
 
