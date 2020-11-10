@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/p3ol/react-access/compare/v1.0.0...v1.0.1) (2020-11-10)
+
+
+### Bug Fixes
+
+* fix missing extential check ([7e33633](https://github.com/p3ol/react-access/commit/7e33633c88e116324c39314ea832e4bd0c80aee7))
+* **deps:** update dependency core-js to v3.7.0 ([94815e7](https://github.com/p3ol/react-access/commit/94815e7d70d3dbddcc8132dffc7079bd4cda7814))
+
 ## [1.0.0](https://github.com/p3ol/react-access/compare/v0.1.4...v1.0.0) (2020-10-14)
 
 
