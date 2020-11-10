@@ -1,7 +1,7 @@
 import React, { useReducer, useEffect } from 'react';
-import { mount } from 'enzyme';
 import sinon from 'sinon';
 import { classNames, mockState, randomString, generateId } from '../src/utils';
+import { render, waitFor } from '@testing-library/react';
 
 describe('utils.js', () => {
   describe('classNames(...classes)', () => {
@@ -38,7 +38,7 @@ describe('utils.js', () => {
       expect(foo.bar).toBe(5);
     });
 
-    it('should act as a reducer to useReducer hook', () => {
+    it('should act as a reducer to useReducer hook', async () => {
       const onReady = sinon.spy();
       const Test = () => {
         const [state, dispatch] = useReducer(mockState, { ready: false });
@@ -56,10 +56,10 @@ describe('utils.js', () => {
         return null;
       };
 
-      const component = mount(<Test />);
-      component.update();
-
-      expect(onReady.called).toBe(true);
+      render(<Test />);
+      await waitFor(() => {
+        expect(onReady.called).toBe(true);
+      });
     });
   });
 

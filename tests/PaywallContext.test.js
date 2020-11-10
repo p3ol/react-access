@@ -1,6 +1,5 @@
 import React, { createRef } from 'react';
-import { mount } from 'enzyme';
-import { act } from 'react-dom/test-utils';
+import { render, waitFor } from '@testing-library/react';
 
 import { PaywallContext, usePoool } from '../src';
 
@@ -8,37 +7,47 @@ describe('<PaywallContext />', () => {
   let ref;
   beforeAll(() => {
     ref = global.poool;
-    global.poool = () => {};
+    global.poool = null;
   });
 
   it('should render children', async () => {
-
-    const component = mount(
+    const { container, unmount } = render(
       <PaywallContext><div className="test" /></PaywallContext>
     );
 
-    await act(async () => { component.update(); });
-    expect(component.find('.test').length).toBe(1);
+    await waitFor(() => {
+      expect(container.querySelectorAll('.test').length).toBe(1);
+    });
+
+    unmount();
   });
 
   it('should not reload the library twice', async () => {
     const ref_ = createRef();
+
     const TestComponent = () => {
       const { poool } = usePoool();
       ref_.current = poool;
       return null;
     };
 
-    const component = mount(
+    const { rerender, unmount } = render(
       <PaywallContext><TestComponent /></PaywallContext>
     );
 
-    await act(async () => { component.update(); });
-    expect(ref_.current).toBeTruthy();
+    await waitFor(() => {
+      expect(ref_.current).toBeTruthy();
+    });
+
     const witness = ref_.current;
 
-    await act(async () => { component.setProps({ appId: 'test' }); });
-    expect(ref_.current).toBe(witness);
+    rerender(<PaywallContext appId="test"><TestComponent /></PaywallContext>);
+
+    await waitFor(() => {
+      expect(ref_.current).toBe(witness);
+    });
+
+    unmount();
   });
 
   afterAll(() => {

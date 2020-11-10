@@ -1,7 +1,7 @@
 import React, { createRef, forwardRef } from 'react';
 import puppeteer from 'puppeteer';
 import devServer from 'jest-dev-server';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import { usePoool } from '../src';
 
@@ -32,7 +32,7 @@ describe('hooks.js', () => {
 
     it('should provide an object with some props', () => {
       const ref = createRef();
-      mount(<TestComponent ref={ref} />);
+      render(<TestComponent ref={ref} />);
       expect(ref.current).toBeTruthy();
       expect(ref.current).toHaveProperty('poool');
       expect(ref.current).toHaveProperty('appId');

@@ -1,7 +1,7 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import puppeteer from 'puppeteer';
 import devServer from 'jest-dev-server';
+import { render } from '@testing-library/react';
 
 import { Paywall } from '../src';
 
@@ -23,13 +23,13 @@ describe('<Paywall />', () => {
   });
 
   it('should render', () => {
-    const component = shallow(<Paywall id="test" />);
-    expect(component.find('#test').length).toBe(1);
+    const { container } = render(<Paywall id="test" />);
+    expect(container.querySelectorAll('#test').length).toBe(1);
   });
 
   it('should render without an id set', () => {
-    const component = shallow(<Paywall />);
-    expect(component.find('.poool-widget').length).toBe(1);
+    const { container } = render(<Paywall />);
+    expect(container.querySelectorAll('.poool-widget').length).toBe(1);
   });
 
   it('should render a full paywall when used with all necessary' +
