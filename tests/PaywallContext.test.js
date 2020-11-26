@@ -28,6 +28,7 @@ describe('<PaywallContext />', () => {
     const TestComponent = () => {
       const { poool } = usePoool();
       ref_.current = poool;
+
       return null;
     };
 

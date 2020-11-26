@@ -1,7 +1,8 @@
 import React, { useReducer, useEffect } from 'react';
 import sinon from 'sinon';
-import { classNames, mockState, randomString, generateId } from '../src/utils';
 import { render, waitFor } from '@testing-library/react';
+
+import { classNames, mockState, randomString, generateId } from '../src/utils';
 
 describe('utils.js', () => {
   describe('classNames(...classes)', () => {
@@ -40,6 +41,7 @@ describe('utils.js', () => {
 
     it('should act as a reducer to useReducer hook', async () => {
       const onReady = sinon.spy();
+
       const Test = () => {
         const [state, dispatch] = useReducer(mockState, { ready: false });
 
