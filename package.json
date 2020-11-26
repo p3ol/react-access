@@ -27,7 +27,7 @@
     "@rollup/plugin-node-resolve": "10.0.0",
     "@testing-library/react": "11.2.2",
     "auto-changelog": "2.2.1",
-    "babel-loader": "8.2.1",
+    "babel-loader": "8.2.2",
     "codecov": "3.8.1",
     "eslint": "7.14.0",
     "eslint-config-standard": "16.0.2",
