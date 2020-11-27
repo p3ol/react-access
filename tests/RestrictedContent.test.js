@@ -17,6 +17,7 @@ describe('<RestrictedContent />', () => {
   it('should set content element ref inside context on mount', async () => {
     const Child = forwardRef((props, ref) => {
       const { container } = useContext(DefaultContext);
+
       return <div ref={ref} id="context-container-test">{ container }</div>;
     });
 
