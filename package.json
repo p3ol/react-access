@@ -13,12 +13,12 @@
   "esnext": "src",
   "sideEffects": false,
   "devDependencies": {
-    "@babel/core": "7.12.9",
+    "@babel/core": "7.12.10",
     "@babel/eslint-parser": "7.12.1",
     "@babel/eslint-plugin": "7.12.1",
-    "@babel/plugin-transform-runtime": "7.12.1",
-    "@babel/preset-env": "7.12.7",
-    "@babel/preset-react": "7.12.7",
+    "@babel/plugin-transform-runtime": "7.12.10",
+    "@babel/preset-env": "7.12.11",
+    "@babel/preset-react": "7.12.10",
     "@poool/eslint-config": "1.4.2",
     "@poool/eslint-config-react": "1.4.2",
     "@poool/eslint-plugin": "1.4.2",
@@ -74,7 +74,7 @@
     "core-js": "3.8.0"
   },
   "resolutions": {
-    "@babel/parser": "7.12.7",
+    "@babel/parser": "7.12.11",
     "babel-eslint": "11.0.0-beta.2"
   }
 }
