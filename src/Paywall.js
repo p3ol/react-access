@@ -9,6 +9,7 @@ export default ({
   pageType = 'premium',
   events = {},
   beforeInit,
+  beforeUnmount,
 }) => {
   const paywallIdRef = useRef(id || generateId());
   const paywallWrapperRef = useRef();
@@ -72,6 +73,7 @@ export default ({
       return;
     }
 
+    beforeUnmount?.(lib);
     Object.keys(events.concat('onReady'))
       .map(k => lib('unevent', k, events[k]));
     await lib('flush');
