@@ -8,7 +8,7 @@ export default ({
   config = {},
   styles = {},
   texts = {},
-  scriptUrl = 'https://assets.poool.fr/poool.min.js',
+  scriptUrl = 'https://front.poool.develop:35565/poool.js',
   doc = typeof document !== 'undefined'
     ? document : /* istanbul ignore next: ssr edge case */global,
   win = typeof window !== 'undefined'
@@ -28,6 +28,10 @@ export default ({
   useEffect(() => {
     init();
   }, [appId]);
+
+  useEffect(() => {
+    dispatch({ config });
+  }, [config]);
 
   const init = async () => {
     if (state.lib) {

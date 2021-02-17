@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useRef } from 'react';
+import React, { useEffect, useContext, useRef, useState } from 'react';
 
 import { classNames, generateId } from './utils';
 import { DefaultContext } from './contexts';
@@ -20,6 +20,7 @@ export default ({
     container,
     lib,
   } = useContext(DefaultContext);
+  const [loading, setLoading] = useState(false);
 
   /* istanbul ignore next: tested within puppeteer */
   useEffect(() => {
@@ -31,10 +32,19 @@ export default ({
   }, [lib, paywallWrapperRef.current]);
 
   /* istanbul ignore next: tested within puppeteer */
+  useEffect(() => {
+    if (!loading && config.cookies_enabled) {
+      init();
+    }
+  }, [config.cookies_enabled]);
+
+  /* istanbul ignore next: tested within puppeteer */
   const init = async () => {
     if (!lib) {
       return;
     }
+
+    setLoading(true);
 
     lib('init', appId);
     lib('styles', styles);
@@ -44,7 +54,14 @@ export default ({
       post_container: `[id='${container}']`,
       widget_container: `[id='${paywallWrapperRef.current.id}']`,
     });
+
     Object.keys(events).map(k => lib('event', k, events[k]));
+
+    lib('event', 'onReady', (...args) => {
+      setLoading(false);
+      events.onReady?.(...args);
+    });
+
     beforeInit?.(lib);
     lib('send', 'page-view', pageType);
   };
@@ -55,8 +72,8 @@ export default ({
       return;
     }
 
-    Object.keys(events).map(k => lib('unevent', k, events[k]));
-
+    Object.keys(events.concat('onReady'))
+      .map(k => lib('unevent', k, events[k]));
     await lib('flush');
   };
 
