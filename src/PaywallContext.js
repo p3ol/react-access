@@ -8,7 +8,7 @@ export default ({
   config = {},
   styles = {},
   texts = {},
-  scriptUrl = 'https://front.poool.develop:35565/poool.js',
+  scriptUrl = 'https://assets.poool.fr/poool.min.js',
   doc = typeof document !== 'undefined'
     ? document : /* istanbul ignore next: ssr edge case */global,
   win = typeof window !== 'undefined'
