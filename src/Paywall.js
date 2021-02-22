@@ -39,6 +39,7 @@ export default ({
     }
   }, [config?.cookies_enabled]);
 
+  /* istanbul ignore next: tested within puppeteer */
   const onReady = () => {
     setLoading(false);
   };
