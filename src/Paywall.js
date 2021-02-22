@@ -15,9 +15,9 @@ export default ({
   const paywallWrapperRef = useRef();
   const {
     appId,
-    config = {},
-    styles = {},
-    texts = {},
+    config,
+    styles,
+    texts,
     container,
     lib,
   } = useContext(DefaultContext);
@@ -34,10 +34,10 @@ export default ({
 
   /* istanbul ignore next: tested within puppeteer */
   useEffect(() => {
-    if (!loading && config.cookies_enabled) {
+    if (!loading && config?.cookies_enabled) {
       init();
     }
-  }, [config.cookies_enabled]);
+  }, [config?.cookies_enabled]);
 
   /* istanbul ignore next: tested within puppeteer */
   const init = async () => {
@@ -51,12 +51,12 @@ export default ({
     lib('styles', styles);
     lib('texts', texts);
     lib('config', {
-      ...config,
+      ...(config || {}),
       post_container: `[id='${container}']`,
       widget_container: `[id='${paywallWrapperRef.current.id}']`,
     });
 
-    Object.keys(events).map(k => lib('event', k, events[k]));
+    Object.entries(events || {}).map(([k, v]) => lib('event', k, v));
 
     lib('event', 'onReady', (...args) => {
       setLoading(false);
@@ -74,8 +74,8 @@ export default ({
     }
 
     beforeUnmount?.(lib);
-    Object.keys(events.concat('onReady'))
-      .map(k => lib('unevent', k, events[k]));
+    Object.entries(events || {}).map(([k, v]) => lib('unevent', k, v));
+    lib('unevent', 'onReady', onReady);
     await lib('flush');
   };
 
