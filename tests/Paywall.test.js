@@ -107,7 +107,7 @@ describe('<Paywall />', () => {
   });
 
   afterAll(async () => {
-    devServer.teardown();
+    await devServer.teardown();
     await browser.close();
   });
 
