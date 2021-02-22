@@ -71,7 +71,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.12.18",
-    "core-js": "3.8.3"
+    "core-js": "3.9.0"
   },
   "resolutions": {
     "@babel/parser": "7.12.17",
