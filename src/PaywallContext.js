@@ -5,9 +5,9 @@ import { DefaultContext } from './contexts';
 
 export default ({
   appId,
-  config = {},
-  styles = {},
-  texts = {},
+  config,
+  styles,
+  texts,
   scriptUrl = 'https://assets.poool.fr/poool.min.js',
   doc = typeof document !== 'undefined'
     ? document : /* istanbul ignore next: ssr edge case */global,
@@ -28,6 +28,10 @@ export default ({
   useEffect(() => {
     init();
   }, [appId]);
+
+  useEffect(() => {
+    dispatch({ config });
+  }, [config]);
 
   const init = async () => {
     if (state.lib) {

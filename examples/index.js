@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext, createContext } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import { Router, Link, Switch, Route } from 'react-router-dom';
 import {
   PaywallContext,
   Paywall,
@@ -92,6 +93,37 @@ const Premium = () => {
   );
 };
 
+const Consent = () => {
+  const { setEnabled } = useContext(AppContext);
+  const [ready, setReady] = useState(null);
+
+  return (
+    <div>
+      <button
+        id="consent-button"
+        style={{ marginBottom: 100 }}
+        onClick={setEnabled.bind(null, true)}
+      >
+        Give consent
+      </button>
+      <RestrictedContent>
+        <div id="restricted-content">
+          This sentence should be almost complete.
+          This one should be entirely troncated, and if there&apos;s a rerender,
+          the first one should not be touched again.
+        </div>
+      </RestrictedContent>
+      <Paywall events={{ onReady: () => setReady(true) }} />
+
+      { /* FOR TESTING PURPOSES, DO NOT REMOVE */ }
+      { ready && (
+        <div id="on-ready">{ JSON.stringify(ready) }</div>
+      ) }
+      { /* END TESTING */ }
+    </div>
+  );
+};
+
 const Home = () => {
   const { poool, appId, config, styles, texts } = usePoool();
 
@@ -126,22 +158,43 @@ const Home = () => {
       { /* END TESTING */ }
 
       <Link to="/premium">Go to premium</Link>
+      <Link to="/consent">Go to consent</Link>
     </div>
   );
 };
 
-const App = () => (
-  <BrowserRouter>
-    <PaywallContext
-      appId="155PF-L7Q6Q-EB2GG-04TF8"
-      config={{ cookies_enabled: true, debug: true, custom_segment: 'react' }}
-    >
-      <Switch>
-        <Route path="/premium" exact={true} component={Premium} />
-        <Route exact={true} component={Home} />
-      </Switch>
-    </PaywallContext>
-  </BrowserRouter>
-);
+const AppContext = createContext({});
+const defaultHistory = createBrowserHistory();
+
+const App = () => {
+  const [enabled, setEnabled] = useState(!(
+    global.location.pathname === '/consent'
+  ));
+
+  defaultHistory.listen(location => {
+    setEnabled(!(location.pathname === '/consent'));
+  });
+
+  return (
+    <Router history={defaultHistory}>
+      <AppContext.Provider value={{ setEnabled }}>
+        <PaywallContext
+          appId="155PF-L7Q6Q-EB2GG-04TF8"
+          config={{
+            cookies_enabled: enabled,
+            debug: true,
+            custom_segment: 'react',
+          }}
+        >
+          <Switch>
+            <Route path="/premium" exact={true} component={Premium} />
+            <Route path="/consent" exact={true} component={Consent} />
+            <Route exact={true} component={Home} />
+          </Switch>
+        </PaywallContext>
+      </AppContext.Provider>
+    </Router>
+  );
+};
 
 ReactDOM.render(<App />, document.getElementById('app'));

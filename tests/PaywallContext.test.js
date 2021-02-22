@@ -15,7 +15,7 @@ describe('<PaywallContext />', () => {
       <PaywallContext><div className="test" /></PaywallContext>
     );
 
-    await waitFor(() => {
+    await waitFor(async () => {
       expect(container.querySelectorAll('.test').length).toBe(1);
     });
 
