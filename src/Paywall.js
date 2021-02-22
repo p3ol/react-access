@@ -39,6 +39,10 @@ export default ({
     }
   }, [config?.cookies_enabled]);
 
+  const onReady = () => {
+    setLoading(false);
+  };
+
   /* istanbul ignore next: tested within puppeteer */
   const init = async () => {
     if (!lib) {
@@ -58,10 +62,7 @@ export default ({
 
     Object.entries(events || {}).map(([k, v]) => lib('event', k, v));
 
-    lib('event', 'onReady', (...args) => {
-      setLoading(false);
-      events.onReady?.(...args);
-    });
+    lib('event', 'onReady', onReady);
 
     beforeInit?.(lib);
     lib('send', 'page-view', pageType);
