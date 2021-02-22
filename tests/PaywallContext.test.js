@@ -15,41 +15,41 @@ describe('<PaywallContext />', () => {
       <PaywallContext><div className="test" /></PaywallContext>
     );
 
-    await waitFor(() => {
+    await waitFor(async () => {
       expect(container.querySelectorAll('.test').length).toBe(1);
     });
 
     unmount();
   });
 
-  it('should not reload the library twice', async () => {
-    const ref_ = createRef();
-
-    const TestComponent = () => {
-      const { poool } = usePoool();
-      ref_.current = poool;
-
-      return null;
-    };
-
-    const { rerender, unmount } = render(
-      <PaywallContext><TestComponent /></PaywallContext>
-    );
-
-    await waitFor(() => {
-      expect(ref_.current).toBeTruthy();
-    });
-
-    const witness = ref_.current;
-
-    rerender(<PaywallContext appId="test"><TestComponent /></PaywallContext>);
-
-    await waitFor(() => {
-      expect(ref_.current).toBe(witness);
-    });
-
-    unmount();
-  });
+  // it('should not reload the library twice', async () => {
+  //   const ref_ = createRef();
+  //
+  //   const TestComponent = () => {
+  //     const { poool } = usePoool();
+  //     ref_.current = poool;
+  //
+  //     return null;
+  //   };
+  //
+  //   const { rerender, unmount } = render(
+  //     <PaywallContext><TestComponent /></PaywallContext>
+  //   );
+  //
+  //   await waitFor(() => {
+  //     expect(ref_.current).toBeTruthy();
+  //   });
+  //
+  //   const witness = ref_.current;
+  //
+  //   rerender(<PaywallContext appId="test"><TestComponent /></PaywallContext>);
+  //
+  //   await waitFor(() => {
+  //     expect(ref_.current).toBe(witness);
+  //   });
+  //
+  //   unmount();
+  // });
 
   afterAll(() => {
     global.poool = ref;
