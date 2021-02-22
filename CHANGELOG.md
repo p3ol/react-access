@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/p3ol/react-access/compare/v1.0.1...v1.1.0) (2021-02-22)
+
+
+### Features
+
+* add new beforeUnmount pre-unmount-callback ([1823c5c](https://github.com/p3ol/react-access/commit/1823c5c063fc0a06506a3d2cc7cc8f0d3c8ad939))
+* auto re-render on cookies_enabled change ([caa9e07](https://github.com/p3ol/react-access/commit/caa9e07d4bedd31e5d69624d5a10bb8b978ecd5d))
+
+
+### Bug Fixes
+
+* avoid rerendering to infinite and beyond ([19a1b60](https://github.com/p3ol/react-access/commit/19a1b6049975158fb20d9f99e0971afe25626ef2))
+* fix internal onready event listener ([e3452f5](https://github.com/p3ol/react-access/commit/e3452f5e99af38857e54b1e6a7c65e1a5c796a3f))
+* fix linter issues ([ad4423a](https://github.com/p3ol/react-access/commit/ad4423ad4fab5b4aee58c26daad9bf36b9f5c3aa))
+* handle non existing config, styles, texts, events ([e93b355](https://github.com/p3ol/react-access/commit/e93b355dccb303b9a66193c86fbae384a9bdd206))
+* pass default values to usePoool hook ([3ddeb1d](https://github.com/p3ol/react-access/commit/3ddeb1d546bf6fbe42c2c8a18879ff995c4f3a96))
+* set missing default values ([48f2202](https://github.com/p3ol/react-access/commit/48f220286971d9ec5e5872dce197898264a080d0))
+* **deps:** update dependency core-js to v3.8.0 ([ba338e5](https://github.com/p3ol/react-access/commit/ba338e50df1a0d53792777fff00e0b64549b8e3d))
+* **deps:** update dependency core-js to v3.8.1 ([7686a62](https://github.com/p3ol/react-access/commit/7686a621c88f3d8c277ff8937ca38ce2eef8bc31))
+* **deps:** update dependency core-js to v3.8.2 ([86b2d1e](https://github.com/p3ol/react-access/commit/86b2d1e132543c4e836cbc34e6e8f9c162c1336a))
+* **deps:** update dependency core-js to v3.8.3 ([95ff22c](https://github.com/p3ol/react-access/commit/95ff22c7b165c702cd6b2e559999d46f6a11f613))
+
 ### [1.0.1](https://github.com/p3ol/react-access/compare/v1.0.0...v1.0.1) (2020-11-10)
 
 
