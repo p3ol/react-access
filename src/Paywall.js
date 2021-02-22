@@ -15,9 +15,9 @@ export default ({
   const paywallWrapperRef = useRef();
   const {
     appId,
-    config,
-    styles,
-    texts,
+    config = {},
+    styles = {},
+    texts = {},
     container,
     lib,
   } = useContext(DefaultContext);
