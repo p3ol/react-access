@@ -76,6 +76,8 @@ No custom props
 - `events` {`Object`} (optional, default: `{}`) Paywall events listeners (https://dev.poool.fr/access/events)
 - `beforeInit` {`Function`} (optional, default: `() => {}`) Use this to do whatever you want to apply to config, styles, ... before paywall render
   - `poool` {`Function`} Reference to global `poool` passed as parameter
+- `beforeUnmount` {`Function`} (optional, default: `() => {}`) Use this to do whatever you want to do before paywall unmount
+  - `poool` {`Function`} Reference to global `poool` passed as parameter
 
 ### `usePoool()`
 
