@@ -56,6 +56,7 @@ export default ({
     lib('styles', styles);
     lib('texts', texts);
     lib('config', {
+      force_container_recovery: true,
       ...(config || {}),
       post_container: `[id='${container}']`,
       widget_container: `[id='${paywallWrapperRef.current.id}']`,
