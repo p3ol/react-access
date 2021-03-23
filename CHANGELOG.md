@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/p3ol/react-access/compare/v1.1.0...v1.1.1) (2021-03-23)
+
+
+### Bug Fixes
+
+* enable force_container_recovery to avoid rerender issues ([e5430c9](https://github.com/p3ol/react-access/commit/e5430c9341356d468b0fffb1502ed222422e82a4))
+* **deps:** update dependency core-js to v3.9.0 ([104f9ba](https://github.com/p3ol/react-access/commit/104f9ba87946f66253e4098dd7f9adf8c6d91703))
+* **deps:** update dependency core-js to v3.9.1 ([542b470](https://github.com/p3ol/react-access/commit/542b47034f728d018e2230965d8663f5e494098d))
+
 ## [1.1.0](https://github.com/p3ol/react-access/compare/v1.0.1...v1.1.0) (2021-02-22)
 
 
