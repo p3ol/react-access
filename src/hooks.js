@@ -7,5 +7,12 @@ export const usePoool = () => {
     appId, lib, config = {}, styles = {}, texts = {},
   } = useContext(DefaultContext);
 
-  return { poool: lib, appId, config, styles, texts };
+  if (!lib || !global.poool) {
+    global.poool = global.poool || function () {
+      global.poool._q = global.poool._q || [];
+      global.poool.push(arguments);
+    };
+  }
+
+  return { poool: lib || global.poool, appId, config, styles, texts };
 };
