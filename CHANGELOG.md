@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/p3ol/react-access/compare/v1.1.1...v1.1.2) (2021-03-30)
+
+
+### Bug Fixes
+
+* allow custom global for usePoool hook ([295a6d8](https://github.com/p3ol/react-access/commit/295a6d861d43464cb9636f1eb645aaa905495c33))
+* allow lib to be called when only hook is used ([f9e1d97](https://github.com/p3ol/react-access/commit/f9e1d97a106d09aefc5d76ef1d77da29c6253bf6))
+
 ### [1.1.1](https://github.com/p3ol/react-access/compare/v1.1.0...v1.1.1) (2021-03-23)
 
 
