@@ -28,7 +28,7 @@
     "@testing-library/react": "11.2.6",
     "auto-changelog": "2.2.1",
     "babel-loader": "8.2.2",
-    "codecov": "3.8.1",
+    "codecov": "3.8.2",
     "eslint": "7.23.0",
     "eslint-config-standard": "16.0.2",
     "eslint-plugin-babel": "5.3.1",
