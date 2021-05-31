@@ -85,7 +85,7 @@ export default ({
   return (
     <div
       ref={paywallWrapperRef}
-      id={paywallIdRef.current}
+      id={paywallWrapperRef.current?.id || paywallIdRef.current}
       className={classNames('poool-widget', className)}
     />
   );
