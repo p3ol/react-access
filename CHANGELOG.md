@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.4](https://github.com/p3ol/react-access/compare/v1.1.3...v1.1.4) (2021-05-31)
+
+
+### Bug Fixes
+
+* use wrapper id instead of a new one when hydrating an ssr app ([9bf89e0](https://github.com/p3ol/react-access/commit/9bf89e013f1958ea5ca62c9aca632a072ddfe66e))
+
 ### [1.1.3](https://github.com/p3ol/react-access/compare/v1.1.2...v1.1.3) (2021-05-31)
 
 
