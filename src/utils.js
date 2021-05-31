@@ -34,7 +34,7 @@ export const generateId = () => {
     const temp = `poool-${randomString()}-${randomString()}`;
 
     /* istanbul ignore else: virtually impossible to happen */
-    if (!document.getElementById(temp)) {
+    if (typeof document === 'undefined' || !document.getElementById?.(temp)) {
       id = temp;
     }
   }
