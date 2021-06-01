@@ -13,6 +13,7 @@ const Premium = () => {
   const [beforeInit, setBeforeInit] = useState(null);
   const [identity, setIdentity] = useState(null);
   const [ready, setReady] = useState(null);
+  const [mounted, setMounted] = useState(0);
 
   return (
     <div className="app">
@@ -70,6 +71,7 @@ const Premium = () => {
 
       <Paywall
         beforeInit={() => setBeforeInit(true) }
+        afterMount={() => setMounted(old => old + 1)}
         events={{
           onReady: () => setReady(true),
           onIdentityAvailable: e => setIdentity(e),
@@ -88,6 +90,9 @@ const Premium = () => {
       { ready && (
         <div id="on-ready">{ JSON.stringify(ready) }</div>
       ) }
+      { mounted && (
+        <div id="mounted">{ JSON.stringify(mounted) }</div>
+      ) }
       { /* END TESTING */ }
     </div>
   );
@@ -96,6 +101,7 @@ const Premium = () => {
 const Consent = () => {
   const { setEnabled } = useContext(AppContext);
   const [ready, setReady] = useState(null);
+  const [mounted, setMounted] = useState(0);
 
   return (
     <div>
@@ -113,11 +119,17 @@ const Consent = () => {
           the first one should not be touched again.
         </div>
       </RestrictedContent>
-      <Paywall events={{ onReady: () => setReady(true) }} />
+      <Paywall
+        events={{ onReady: () => setReady(true) }}
+        afterMount={() => setMounted(old => old + 1)}
+      />
 
       { /* FOR TESTING PURPOSES, DO NOT REMOVE */ }
       { ready && (
         <div id="on-ready">{ JSON.stringify(ready) }</div>
+      ) }
+      { mounted && (
+        <div id="mounted">{ JSON.stringify(mounted) }</div>
       ) }
       { /* END TESTING */ }
     </div>
@@ -163,6 +175,15 @@ const Home = () => {
   );
 };
 
+const AlternativeHome = () => (
+  <div>
+    <h1>Home without page view</h1>
+
+    <Link id="premium-link" to="/premium">Go to premium</Link>
+    <Link id="consent-link" to="/consent">Go to consent</Link>
+  </div>
+);
+
 const AppContext = createContext({});
 const defaultHistory = createBrowserHistory();
 
@@ -172,7 +193,8 @@ const App = () => {
   ));
 
   defaultHistory.listen(location => {
-    setEnabled(!(location.pathname === '/consent'));
+    const pathname = location?.location?.pathname || location?.pathname;
+    setEnabled(!(pathname === '/consent'));
   });
 
   return (
@@ -189,7 +211,8 @@ const App = () => {
           <Switch>
             <Route path="/premium" exact={true} component={Premium} />
             <Route path="/consent" exact={true} component={Consent} />
-            <Route exact={true} component={Home} />
+            <Route path="/alt-home" exact={true} component={AlternativeHome} />
+            <Route exact={true} path="/" component={Home} />
           </Switch>
         </PaywallContext>
       </AppContext.Provider>

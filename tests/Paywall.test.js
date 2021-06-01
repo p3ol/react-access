@@ -75,6 +75,10 @@ describe('<Paywall />', () => {
 
       expect(ready).toBe(true);
     });
+
+    afterAll(async () => {
+      await page.close();
+    });
   });
 
   describe('Consent', () => {
@@ -87,6 +91,8 @@ describe('<Paywall />', () => {
 
     it('should automatically rerender paywall when giving ' +
       'consent', async () => {
+      jest.useRealTimers();
+
       await page.waitForSelector('#on-ready');
       const content = await page.evaluate(() =>
         document.querySelector('#restricted-content').innerText
@@ -94,15 +100,54 @@ describe('<Paywall />', () => {
 
       expect(content).toBe('This sentence should...');
 
+      await new Promise(resolve => setTimeout(resolve, 11));
+
       await page.evaluate(() =>
         document.querySelector('#consent-button').click()
       );
+
+      await new Promise(resolve => setTimeout(resolve, 11));
 
       const contentAfterConsent = await page.evaluate(() =>
         document.querySelector('#restricted-content').innerText
       );
 
-      expect(content).toBe(contentAfterConsent);
+      expect(contentAfterConsent).toBe('This sentence should...');
+
+      const mounted = await page.evaluate(() =>
+        document.querySelector('#mounted').innerText
+      );
+
+      expect(mounted).toBe('2');
+    });
+
+    afterAll(async () => {
+      await page.close();
+    });
+  });
+
+  describe('Routing', () => {
+    let page;
+
+    beforeAll(async () => {
+      page = await browser.newPage();
+      await page.goto('http://localhost:63002/alt-home');
+    });
+
+    it('should not re-render paywall multiple times on route ' +
+      'change', async () => {
+      await page.click('#premium-link');
+
+      await page.waitForSelector('#on-ready');
+      const content = await page.evaluate(() =>
+        document.querySelector('#mounted').innerText
+      );
+
+      expect(content).toBe('1');
+    });
+
+    afterAll(async () => {
+      await page.close();
     });
   });
 
