@@ -1,9 +1,9 @@
 import React, { createRef, forwardRef } from 'react';
 import puppeteer from 'puppeteer';
 import devServer from 'jest-dev-server';
-import { render } from '@testing-library/react';
+import { render, act, waitFor } from '@testing-library/react';
 
-import { usePoool } from '../src';
+import { usePoool, useTimeout } from '../src/hooks';
 
 const TestComponent = forwardRef((_, ref) => {
   const obj = usePoool();
@@ -11,6 +11,14 @@ const TestComponent = forwardRef((_, ref) => {
 
   return null;
 });
+
+const TimeoutTestComponent = ({ onTimeout }) => {
+  useTimeout(() => {
+    onTimeout();
+  }, 500, []);
+
+  return <div />;
+};
 
 describe('hooks.js', () => {
   describe('usePoool()', () => {
@@ -91,5 +99,27 @@ describe('hooks.js', () => {
       await browser.close();
     });
 
+  });
+
+  describe('useTimeout(listener, time, changes)', () => {
+    beforeAll(() => {
+      jest.useFakeTimers();
+    });
+
+    it('should allow to execute a task after a given amount of ' +
+      'ms', async () => {
+      const onTimeout = jest.fn();
+      render(<TimeoutTestComponent onTimeout={onTimeout} />);
+      act(() => { jest.advanceTimersByTime(600); });
+      act(() => { jest.runAllTimers(); });
+
+      await waitFor(() => {
+        expect(onTimeout).toHaveBeenCalled();
+      });
+    });
+
+    afterAll(() => {
+      jest.clearAllTimers();
+    });
   });
 });
