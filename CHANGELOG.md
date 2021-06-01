@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/p3ol/react-access/compare/v1.1.4...v1.2.0) (2021-06-01)
+
+
+### Features
+
+* add prop to explicitly rely on current restricted content ref ([f7b2817](https://github.com/p3ol/react-access/commit/f7b2817867941600db10c9c83bd9734c9ed1894d))
+* delay paywall mount to correctly handle restricted content ([46c4f44](https://github.com/p3ol/react-access/commit/46c4f4441f852503858066ae13d89e509910b5bd))
+
 ### [1.1.4](https://github.com/p3ol/react-access/compare/v1.1.3...v1.1.4) (2021-05-31)
 
 
