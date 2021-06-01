@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 
 import { DefaultContext } from './contexts';
 
@@ -18,4 +18,19 @@ export const usePoool = ({
   }
 
   return { poool: lib || win.poool, appId, config, styles, texts };
+};
+
+export const useTimeout = (cb, time, changes = []) => {
+  const returnedCallbackRef = useRef();
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      returnedCallbackRef.current = cb();
+    }, time);
+
+    return () => {
+      clearTimeout(timeout);
+      returnedCallbackRef.current?.();
+    };
+  }, changes);
 };

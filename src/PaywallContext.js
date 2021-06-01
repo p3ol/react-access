@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useCallback, useEffect } from 'react';
 
 import { mockState, loadScript } from './utils';
 import { DefaultContext } from './contexts';
@@ -8,12 +8,10 @@ export default ({
   config,
   styles,
   texts,
-  scriptUrl = 'https://assets.poool.fr/poool.min.js',
-  doc = typeof document !== 'undefined'
-    ? document : /* istanbul ignore next: ssr edge case */global,
-  win = typeof window !== 'undefined'
-    ? window : /* istanbul ignore next: ssr edge case */ global,
+  doc,
+  win,
   children,
+  scriptUrl = 'https://assets.poool.fr/poool.min.js',
 }) => {
   const [state, dispatch] = useReducer(mockState, {
     container: null,
@@ -22,8 +20,13 @@ export default ({
     appId,
     styles,
     texts,
-    setContent: container => dispatch({ container }),
   });
+
+  const getContext = useCallback(() => ({
+    ...state,
+    init,
+    setContent: container => dispatch({ container }),
+  }), Object.values(state));
 
   useEffect(() => {
     init();
@@ -34,18 +37,21 @@ export default ({
   }, [config]);
 
   const init = async () => {
-    if (state.lib) {
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
       return;
     }
 
-    await loadScript(scriptUrl, win, doc);
-    state.lib = win.poool;
+    const win_ = win || typeof window !== 'undefined' ? window : global;
+    const doc_ = doc || typeof document !== 'undefined' ? document : global;
+
+    await loadScript(scriptUrl, win_, doc_);
+    state.lib = win_.poool;
     dispatch({ lib: state.lib });
   };
 
   return (
     <DefaultContext.Provider
-      value={state}
+      value={getContext()}
       children={children}
     />
   );

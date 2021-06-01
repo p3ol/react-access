@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useRef, useState } from 'react';
 
 import { classNames, generateId } from './utils';
 import { DefaultContext } from './contexts';
+import { useTimeout } from './hooks';
 
 export default ({
   className,
@@ -9,7 +10,9 @@ export default ({
   pageType = 'premium',
   events = {},
   beforeInit,
+  afterMount,
   beforeUnmount,
+  initDelay = 10,
 }) => {
   const paywallIdRef = useRef(id || generateId());
   const paywallWrapperRef = useRef();
@@ -24,20 +27,15 @@ export default ({
   const [loading, setLoading] = useState(false);
 
   /* istanbul ignore next: tested within puppeteer */
-  useEffect(() => {
+  useTimeout(() => {
     if (container && paywallWrapperRef.current) {
       init();
     }
+  }, initDelay, [lib, container, config?.cookies_enabled]);
 
-    return () => deinit();
-  }, [lib, paywallWrapperRef.current]);
-
-  /* istanbul ignore next: tested within puppeteer */
   useEffect(() => {
-    if (!loading && config?.cookies_enabled) {
-      init();
-    }
-  }, [config?.cookies_enabled]);
+    return () => deinit();
+  }, []);
 
   /* istanbul ignore next: tested within puppeteer */
   const onReady = () => {
@@ -46,10 +44,16 @@ export default ({
 
   /* istanbul ignore next: tested within puppeteer */
   const init = async () => {
-    if (!lib) {
+    if (
+      typeof window === 'undefined' ||
+      typeof document === 'undefined' ||
+      !lib ||
+      loading
+    ) {
       return;
     }
 
+    afterMount?.();
     setLoading(true);
 
     lib('init', appId);
