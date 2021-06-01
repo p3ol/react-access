@@ -12,6 +12,7 @@ export default ({
   beforeInit,
   afterMount,
   beforeUnmount,
+  restrictedContentRef,
   initDelay = 10,
 }) => {
   const paywallIdRef = useRef(id || generateId());
@@ -62,7 +63,8 @@ export default ({
     lib('config', {
       force_container_recovery: true,
       ...(config || {}),
-      post_container: `[id='${container}']`,
+      post_container:
+        `[id='${restrictedContentRef?.current?.id || container}']`,
       widget_container: `[id='${paywallWrapperRef.current.id}']`,
     });
 
