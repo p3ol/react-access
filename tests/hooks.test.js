@@ -2,8 +2,11 @@ import React, { createRef, forwardRef } from 'react';
 import puppeteer from 'puppeteer';
 import devServer from 'jest-dev-server';
 import { render, act, waitFor } from '@testing-library/react';
+import sinon from 'sinon';
 
 import { usePoool, useTimeout } from '../src/hooks';
+
+const sleep = time => new Promise(resolve => setTimeout(resolve, time));
 
 const TestComponent = forwardRef((_, ref) => {
   const obj = usePoool();
@@ -20,12 +23,13 @@ const TimeoutTestComponent = ({ onTimeout }) => {
   return <div />;
 };
 
+jest.setTimeout(30000);
 describe('hooks.js', () => {
+
   describe('usePoool()', () => {
     let browser, page;
 
     beforeAll(async () => {
-      jest.setTimeout(30000);
       process.env.TEST_PORT = 63001;
       await devServer.setup({
         command: 'yarn serve',
@@ -102,24 +106,12 @@ describe('hooks.js', () => {
   });
 
   describe('useTimeout(listener, time, changes)', () => {
-    beforeAll(() => {
-      jest.useFakeTimers();
-    });
-
     it('should allow to execute a task after a given amount of ' +
       'ms', async () => {
-      const onTimeout = jest.fn();
+      const onTimeout = sinon.spy();
       render(<TimeoutTestComponent onTimeout={onTimeout} />);
-      act(() => { jest.advanceTimersByTime(600); });
-      act(() => { jest.runAllTimers(); });
-
-      await waitFor(() => {
-        expect(onTimeout).toHaveBeenCalled();
-      });
-    });
-
-    afterAll(() => {
-      jest.clearAllTimers();
+      await sleep(600);
+      expect(onTimeout.called).toBe(true);
     });
   });
 });

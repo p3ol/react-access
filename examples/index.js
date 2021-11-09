@@ -206,6 +206,8 @@ const App = () => {
             cookies_enabled: enabled,
             debug: true,
             custom_segment: 'react',
+            cookies_domain: 'localhost',
+            audit_load_timeout: 30000,
           }}
         >
           <Switch>
