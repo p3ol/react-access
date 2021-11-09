@@ -12,7 +12,6 @@ module.exports = {
   devServer: {
     open: process.env.NODE_ENV !== 'test',
     hot: true,
-    contentBase: './dist',
     port: process.env.TEST_PORT || 63000,
     host: 'localhost',
     historyApiFallback: true,
