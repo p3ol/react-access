@@ -6,10 +6,10 @@ import { render } from '@testing-library/react';
 import { Paywall } from '../src';
 
 describe('<Paywall />', () => {
+  jest.setTimeout(30000);
   let browser;
 
   beforeAll(async () => {
-    jest.setTimeout(30000);
     process.env.TEST_PORT = 63002;
     await devServer.setup({
       command: 'yarn serve',
@@ -17,7 +17,19 @@ describe('<Paywall />', () => {
       launchTimeout: 30000,
     });
 
-    browser = await puppeteer.launch();
+    browser = await puppeteer.launch({
+      headless: true,
+      dumpio: true,
+      pipe: true,
+      args: [
+        '--enable-logging',
+        '--lang=en-US,en',
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-web-security',
+        '--disable-features=IsolateOrigins,site-per-process',
+      ],
+    });
   });
 
   describe('Premium content', () => {
@@ -45,7 +57,7 @@ describe('<Paywall />', () => {
         document.querySelector('iframe#p3-paywall').src
       );
 
-      expect(src).toBe('https://assets.poool.fr/paywall.html');
+      expect(src).toBe('https://assets.poool.fr/paywall-frame.html');
     });
 
     it('should fire beforeInit handler', async () => {
