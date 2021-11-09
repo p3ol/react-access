@@ -1,7 +1,7 @@
 import React, { createRef, forwardRef } from 'react';
 import puppeteer from 'puppeteer';
 import devServer from 'jest-dev-server';
-import { render, act, waitFor } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import sinon from 'sinon';
 
 import { usePoool, useTimeout } from '../src/hooks';
