@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, createContext } from 'react';
 import ReactDOM from 'react-dom';
 import { createBrowserHistory } from 'history';
-import { Router, Link, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
 import {
   PaywallContext,
   Paywall,
@@ -198,7 +198,7 @@ const App = () => {
   });
 
   return (
-    <Router history={defaultHistory}>
+    <BrowserRouter history={defaultHistory}>
       <AppContext.Provider value={{ setEnabled }}>
         <PaywallContext
           appId="155PF-L7Q6Q-EB2GG-04TF8"
@@ -210,15 +210,19 @@ const App = () => {
             audit_load_timeout: 30000,
           }}
         >
-          <Switch>
-            <Route path="/premium" exact={true} component={Premium} />
-            <Route path="/consent" exact={true} component={Consent} />
-            <Route path="/alt-home" exact={true} component={AlternativeHome} />
-            <Route exact={true} path="/" component={Home} />
-          </Switch>
+          <Routes>
+            <Route path="/premium" exact={true} element={<Premium />} />
+            <Route path="/consent" exact={true} element={<Consent />} />
+            <Route
+              path="/alt-home"
+              exact={true}
+              element={<AlternativeHome />}
+            />
+            <Route exact={true} path="/" element={<Home />} />
+          </Routes>
         </PaywallContext>
       </AppContext.Provider>
-    </Router>
+    </BrowserRouter>
   );
 };
 
