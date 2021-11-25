@@ -4,6 +4,7 @@ import { mockState, mergeDeep } from '@poool/junipero-utils';
 
 import { AccessContext as Ctx } from './contexts';
 import { loadScript } from './utils';
+import AuditContext from './AuditContext';
 
 const AccessContext = ({
   appId,
@@ -12,7 +13,8 @@ const AccessContext = ({
   styles,
   events,
   variables,
-  scriptUrl = 'https://assets.poool.fr/access.js',
+  scriptUrl = 'https://assets.poool.fr/access.min.js',
+  withAudit = false,
   ...rest
 }) => {
   const [state, dispatch] = useReducer(mockState, {
@@ -20,12 +22,16 @@ const AccessContext = ({
   });
 
   useEffect(() => {
-    console.log('AccessContext.init');
     init();
   }, []);
 
   const init = async () => {
-    if (!globalThis.Access || !globalThis.Access.isPoool) {
+    if (
+      !globalThis.Access ||
+      !globalThis.Access.isPoool ||
+      !globalThis.PooolAccess ||
+      !globalThis.PooolAccess.isPoool
+    ) {
       await loadScript(scriptUrl);
     }
 
@@ -83,9 +89,17 @@ const AccessContext = ({
     destroyFactory,
   }), [state.lib, config?.cookies_enabled]);
 
-  return (
+  const content = (
     <Ctx.Provider value={getContext()} { ...rest } />
   );
+
+  if (withAudit) {
+    return (
+      <AuditContext appId={appId} config={config}>{ content }</AuditContext>
+    );
+  }
+
+  return content;
 };
 
 AccessContext.displayName = 'AccessContext';
@@ -97,6 +111,7 @@ AccessContext.propTypes = {
   events: PropTypes.object,
   variables: PropTypes.object,
   scriptUrl: PropTypes.string,
+  withAudit: PropTypes.bool,
 };
 
 export default AccessContext;

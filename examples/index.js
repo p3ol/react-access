@@ -1,11 +1,14 @@
-import { useRef, useState, useEffect, useContext, createContext } from 'react';
+import { useRef, useState, useContext, createContext } from 'react';
 import ReactDOM from 'react-dom';
 import { createBrowserHistory } from 'history';
 import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
 import {
   AccessContext,
   Paywall,
+  Pixel,
   RestrictedContent,
+  useAccess,
+  useAudit,
 } from '@poool/react-access';
 
 const Premium = () => {
@@ -74,6 +77,7 @@ const Premium = () => {
           identityAvailable: e => setIdentity(e),
         }}
       />
+      <Pixel type="page-view" data={{ type: 'premium' }} />
 
       <Link to="/">Return to home</Link>
 
@@ -125,23 +129,19 @@ const Consent = () => {
 };
 
 const Home = () => {
-  // const { poool, appId, config, styles, texts } = usePoool();
-
-  // useEffect(() => {
-  //   poool?.('init', appId);
-  //   poool?.('config', config);
-  //   poool?.('send', 'page-view', 'page');
-
-  //   return () => poool?.('flush');
-  // }, [poool]);
+  const { lib: access, appId, config, styles, texts } = useAccess();
+  const { lib: audit } = useAudit();
 
   return (
     <div>
       <h1>Home</h1>
 
       { /* FOR TESTING PURPOSES, DO NOT REMOVE */ }
-      { typeof poool === 'function' && (
-        <div id="has-poool">true</div>
+      { typeof access === 'object' && (
+        <div id="has-access">true</div>
+      ) }
+      { typeof audit === 'object' && (
+        <div id="has-audit">true</div>
       ) }
       { typeof appId === 'string' && (
         <div id="has-app-id">true</div>
@@ -159,6 +159,8 @@ const Home = () => {
 
       <Link to="/premium">Go to premium</Link>
       <Link to="/consent">Go to consent</Link>
+
+      <Pixel type="page-view" data={{ type: 'page' }} />
     </div>
   );
 };
@@ -197,6 +199,7 @@ const App = () => {
             cookies_domain: 'localhost',
             audit_load_timeout: 30000,
           }}
+          withAudit={true}
         >
           <Routes>
             <Route path="/premium" exact={true} element={<Premium />} />

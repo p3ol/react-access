@@ -35,7 +35,7 @@ const Paywall = ({
   ]);
 
   const create = () => {
-    paywallRef.current = createFactory({
+    paywallRef.current = createFactory?.({
       events,
     });
 
@@ -61,7 +61,7 @@ const Paywall = ({
 
     container.innerHTML = '';
     paywallRef.current.off('identityAvailable', onIdentityAvailable);
-    destroyFactory(paywallRef.current);
+    destroyFactory?.(paywallRef.current);
     paywallRef.current = null;
   };
 
