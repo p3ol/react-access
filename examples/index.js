@@ -1,23 +1,21 @@
-import React, { useState, useEffect, useContext, createContext } from 'react';
+import { useRef, useState, useEffect, useContext, createContext } from 'react';
 import ReactDOM from 'react-dom';
 import { createBrowserHistory } from 'history';
 import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
 import {
-  PaywallContext,
+  AccessContext,
   Paywall,
   RestrictedContent,
-  usePoool,
 } from '@poool/react-access';
 
 const Premium = () => {
-  const [beforeInit, setBeforeInit] = useState(null);
+  const contentRef = useRef();
   const [identity, setIdentity] = useState(null);
   const [ready, setReady] = useState(null);
-  const [mounted, setMounted] = useState(0);
 
   return (
     <div className="app">
-      <RestrictedContent>
+      <RestrictedContent ref={contentRef}>
         <div className="articleBody">
           { /* eslint-disable max-len */ }
           <p>
@@ -70,28 +68,21 @@ const Premium = () => {
       </RestrictedContent>
 
       <Paywall
-        beforeInit={() => setBeforeInit(true) }
-        afterMount={() => setMounted(old => old + 1)}
+        contentRef={contentRef}
         events={{
-          onReady: () => setReady(true),
-          onIdentityAvailable: e => setIdentity(e),
+          ready: () => setReady(true),
+          identityAvailable: e => setIdentity(e),
         }}
       />
 
       <Link to="/">Return to home</Link>
 
       { /* FOR TESTING PURPOSES, DO NOT REMOVE */ }
-      { beforeInit && (
-        <div id="before-init">{ JSON.stringify(beforeInit) }</div>
-      ) }
       { identity && (
         <div id="on-identity-available">{ JSON.stringify(identity) }</div>
       ) }
       { ready && (
         <div id="on-ready">{ JSON.stringify(ready) }</div>
-      ) }
-      { mounted && (
-        <div id="mounted">{ JSON.stringify(mounted) }</div>
       ) }
       { /* END TESTING */ }
     </div>
@@ -99,9 +90,9 @@ const Premium = () => {
 };
 
 const Consent = () => {
+  const contentRef = useRef();
   const { setEnabled } = useContext(AppContext);
   const [ready, setReady] = useState(null);
-  const [mounted, setMounted] = useState(0);
 
   return (
     <div>
@@ -112,7 +103,7 @@ const Consent = () => {
       >
         Give consent
       </button>
-      <RestrictedContent>
+      <RestrictedContent ref={contentRef}>
         <div id="restricted-content">
           This sentence should be almost complete.
           This one should be entirely troncated, and if there&apos;s a rerender,
@@ -120,16 +111,13 @@ const Consent = () => {
         </div>
       </RestrictedContent>
       <Paywall
+        contentRef={contentRef}
         events={{ onReady: () => setReady(true) }}
-        afterMount={() => setMounted(old => old + 1)}
       />
 
       { /* FOR TESTING PURPOSES, DO NOT REMOVE */ }
       { ready && (
         <div id="on-ready">{ JSON.stringify(ready) }</div>
-      ) }
-      { mounted && (
-        <div id="mounted">{ JSON.stringify(mounted) }</div>
       ) }
       { /* END TESTING */ }
     </div>
@@ -137,15 +125,15 @@ const Consent = () => {
 };
 
 const Home = () => {
-  const { poool, appId, config, styles, texts } = usePoool();
+  // const { poool, appId, config, styles, texts } = usePoool();
 
-  useEffect(() => {
-    poool?.('init', appId);
-    poool?.('config', config);
-    poool?.('send', 'page-view', 'page');
+  // useEffect(() => {
+  //   poool?.('init', appId);
+  //   poool?.('config', config);
+  //   poool?.('send', 'page-view', 'page');
 
-    return () => poool?.('flush');
-  }, [poool]);
+  //   return () => poool?.('flush');
+  // }, [poool]);
 
   return (
     <div>
@@ -200,7 +188,7 @@ const App = () => {
   return (
     <BrowserRouter history={defaultHistory}>
       <AppContext.Provider value={{ setEnabled }}>
-        <PaywallContext
+        <AccessContext
           appId="155PF-L7Q6Q-EB2GG-04TF8"
           config={{
             cookies_enabled: enabled,
@@ -220,7 +208,7 @@ const App = () => {
             />
             <Route exact={true} path="/" element={<Home />} />
           </Routes>
-        </PaywallContext>
+        </AccessContext>
       </AppContext.Provider>
     </BrowserRouter>
   );
