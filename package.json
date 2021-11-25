@@ -55,6 +55,7 @@
     "webpack-dev-server": "4.7.4"
   },
   "peerDependencies": {
+    "prop-types": "^15.7.0",
     "react": "^16.8.0 || ^17.0.0"
   },
   "scripts": {
@@ -72,6 +73,8 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.17.2",
-    "core-js": "3.21.1"
+    "core-js": "3.21.1",
+    "@poool/junipero-utils": "2.0.0-rc.15",
+    "prop-types": "15.7.2"
   }
 }
