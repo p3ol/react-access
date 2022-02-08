@@ -13,7 +13,7 @@
   "esnext": "src",
   "sideEffects": false,
   "devDependencies": {
-    "@babel/core": "7.17.0",
+    "@babel/core": "7.17.2",
     "@babel/eslint-parser": "7.17.0",
     "@babel/eslint-plugin": "7.16.5",
     "@babel/plugin-transform-runtime": "7.17.0",
@@ -71,7 +71,7 @@
     "release": "./node_modules/.bin/standard-version && git push --follow-tags"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.17.0",
+    "@babel/runtime-corejs3": "7.17.2",
     "core-js": "3.21.0"
   }
 }
