@@ -28,11 +28,7 @@ const Paywall = ({
     return () => {
       destroy(container);
     };
-  }, [
-    lib,
-    containerRef.current,
-    globalConfig?.cookies_enabled,
-  ]);
+  }, [lib, globalConfig?.cookies_enabled]);
 
   const create = () => {
     paywallRef.current = createFactory?.({
