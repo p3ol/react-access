@@ -199,6 +199,8 @@ const App = () => {
             cookies_domain: 'localhost',
             audit_load_timeout: 30000,
           }}
+          texts={{}}
+          styles={{}}
           withAudit={true}
         >
           <Routes>
