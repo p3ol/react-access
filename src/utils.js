@@ -16,13 +16,13 @@ export const generateId = () => {
   return id;
 };
 
-export const loadScript = url => new Promise((resolve, reject) => {
+export const loadScript = (url, id) => new Promise((resolve, reject) => {
   /* istanbul ignore else: tested inside puppeteer */
   if (process.env.NODE_ENV === 'test') {
-    resolve();
+    return resolve();
   }
 
-  if (globalThis.document?.querySelector('head script#poool-access')) {
+  if (document.querySelector(`#${id}`)) {
     return resolve();
   }
 
@@ -31,5 +31,6 @@ export const loadScript = url => new Promise((resolve, reject) => {
   script.onerror = reject;
   script.async = true;
   script.src = url;
+  script.id = id;
   globalThis.document.head.appendChild(script);
 });

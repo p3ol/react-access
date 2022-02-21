@@ -32,7 +32,7 @@ const AccessContext = ({
       !globalThis.PooolAccess ||
       !globalThis.PooolAccess.isPoool
     ) {
-      await loadScript(scriptUrl);
+      await loadScript(scriptUrl, 'poool-react-access-lib');
     }
 
     const lib = globalThis.Access.noConflict();
