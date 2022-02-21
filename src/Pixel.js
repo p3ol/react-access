@@ -10,12 +10,12 @@ const Pixel = ({
   onDone,
   reuse = false,
 }) => {
-  const { lib: Audit_ } = useAudit();
+  const { lib: Audit_, config: auditConfig } = useAudit();
   const [used, setUsed] = useState(false);
 
   useEffect(() => {
     send();
-  }, [Audit_]);
+  }, [Audit_, auditConfig?.cookies_enabled]);
 
   const send = useCallback(async () => {
     if (!Audit_ || (used && !reuse)) {

@@ -1,7 +1,19 @@
-import { useRef, useState, useContext, createContext } from 'react';
+import {
+  useRef,
+  useState,
+  useContext,
+  createContext,
+  useMemo,
+  useEffect,
+} from 'react';
 import ReactDOM from 'react-dom';
 import { createBrowserHistory } from 'history';
-import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
+import {
+  Link,
+  Routes,
+  Route,
+  unstable_HistoryRouter as HistoryRouter,
+} from 'react-router-dom';
 import {
   AccessContext,
   Paywall,
@@ -118,6 +130,7 @@ const Consent = () => {
         contentRef={contentRef}
         events={{ onReady: () => setReady(true) }}
       />
+      <Pixel reuse={true} type="page-view" data={{ type: 'premium' }} />
 
       { /* FOR TESTING PURPOSES, DO NOT REMOVE */ }
       { ready && (
@@ -175,20 +188,25 @@ const AlternativeHome = () => (
 );
 
 const AppContext = createContext({});
-const defaultHistory = createBrowserHistory();
 
 const App = () => {
   const [enabled, setEnabled] = useState(!(
     global.location.pathname === '/consent'
   ));
 
-  defaultHistory.listen(location => {
-    const pathname = location?.location?.pathname || location?.pathname;
-    setEnabled(!(pathname === '/consent'));
-  });
+  const history_ = useMemo(() => (
+    createBrowserHistory()
+  ), []);
+
+  useEffect(() => {
+    history_.listen(location => {
+      const pathname = location?.location?.pathname || location?.pathname;
+      setEnabled(!(pathname === '/consent'));
+    });
+  }, [history_]);
 
   return (
-    <BrowserRouter history={defaultHistory}>
+    <HistoryRouter history={history_}>
       <AppContext.Provider value={{ setEnabled }}>
         <AccessContext
           appId="155PF-L7Q6Q-EB2GG-04TF8"
@@ -215,7 +233,7 @@ const App = () => {
           </Routes>
         </AccessContext>
       </AppContext.Provider>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 };
 

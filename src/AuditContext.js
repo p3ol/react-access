@@ -22,7 +22,7 @@ const AuditContext = ({
     return () => {
       deinit();
     };
-  }, []);
+  }, [config?.cookies_enabled]);
 
   const init = async () => {
     if (
@@ -31,10 +31,11 @@ const AuditContext = ({
       !globalThis.PooolAudit ||
       !globalThis.PooolAudit.isPoool
     ) {
-      await loadScript(scriptUrl);
+      await loadScript(scriptUrl, 'poool-react-audit-lib');
     }
 
-    const lib = globalThis.Audit.noConflict().init(appId).config(config);
+    const auditRef = globalThis.Audit || globalThis.PooolAudit;
+    const lib = auditRef.noConflict().init(appId).config(config);
 
     Object.entries(events || {}).forEach(([event, callback]) => {
       if (callback.once) {
