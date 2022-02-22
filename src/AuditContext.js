@@ -86,10 +86,7 @@ AuditContext.displayName = 'AuditContext';
 AuditContext.propTypes = {
   appId: PropTypes.string.isRequired,
   config: PropTypes.object,
-  texts: PropTypes.object,
-  styles: PropTypes.object,
   events: PropTypes.object,
-  variables: PropTypes.object,
   scriptUrl: PropTypes.string,
 };
 
