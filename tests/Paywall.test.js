@@ -212,34 +212,33 @@ describe('<Paywall />', () => {
     });
   });
 
-  // describe('Routing', () => {
-  //   let page;
+  describe('Routing', () => {
+    let page;
 
-  //   beforeAll(async () => {
-  //     page = await browser.newPage();
-  //     await page.goto('http://localhost:63002/alt-home');
-  //   });
+    beforeAll(async () => {
+      page = await browser.newPage();
+      await page.goto('http://localhost:63002/alt-home');
+    });
 
-  //   it('should not re-render paywall multiple times on route ' +
-  //     'change', async () => {
-  //     await page.click('#premium-link');
+    it('should not re-render paywall multiple times on route ' +
+      'change', async () => {
+      await page.click('#consent-link');
 
-  //     await page.waitForSelector('#on-ready');
-  //     const content = await page.evaluate(() =>
-  //       document.querySelector('#mounted').innerText
-  //     );
+      await page.waitForSelector('#on-ready');
+      const content = await page.evaluate(() =>
+        document.querySelector('#mounted').innerText
+      );
 
-  //     expect(content).toBe('1');
-  //   });
+      expect(content).toBe('1');
+    });
 
-  //   afterAll(async () => {
-  //     await page.close();
-  //   });
-  // });
+    afterAll(async () => {
+      await page.close();
+    });
+  });
 
   afterAll(async () => {
     await devServer.teardown();
     await browser.close();
   });
-
 });

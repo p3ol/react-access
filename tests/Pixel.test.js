@@ -4,7 +4,7 @@ import { Pixel } from '../src';
 import { withAudit } from './utils';
 
 describe('<Pixel />', () => {
-  it('should immediatly send selected event', () => {
+  it('should immediatly send selected event', async () => {
     const sendEventMock = jest.fn();
 
     render(withAudit(<Pixel type="page-view" />, {
@@ -12,7 +12,7 @@ describe('<Pixel />', () => {
         sendEvent: sendEventMock,
       },
     }));
-    expect(sendEventMock).toHaveBeenCalled();
+    await waitFor(() => expect(sendEventMock).toHaveBeenCalled());
   });
 
   it('should not resend event if cookies_enabled change but ' +
@@ -48,7 +48,7 @@ describe('<Pixel />', () => {
     await waitFor(() => expect(sendEventMock).toHaveBeenCalledTimes(2));
   });
 
-  it('should send conversation if its asked for', () => {
+  it('should send conversation if its asked for', async () => {
     const sendEventMock = jest.fn();
 
     render(withAudit(<Pixel type="conversion" />, {
@@ -56,11 +56,11 @@ describe('<Pixel />', () => {
         sendEvent: sendEventMock,
       },
     }));
-    expect(sendEventMock)
-      .toHaveBeenCalledWith('conversion', undefined, undefined);
+    await waitFor(() => expect(sendEventMock)
+      .toHaveBeenCalledWith('conversion', undefined, undefined));
   });
 
-  it('should send page-view with data if its asked for', () => {
+  it('should send page-view with data if its asked for', async () => {
     const sendEventMock = jest.fn();
     const data = { type: 'premium' };
 
@@ -70,11 +70,11 @@ describe('<Pixel />', () => {
           sendEvent: sendEventMock,
         },
       }));
-    expect(sendEventMock)
-      .toHaveBeenCalledWith('page-view', data, undefined);
+    await waitFor(() => expect(sendEventMock)
+      .toHaveBeenCalledWith('page-view', data, undefined));
   });
 
-  it('should send options if its asked for', () => {
+  it('should send options if its asked for', async () => {
     const sendEventMock = jest.fn();
     const options = { beacon: true };
     render(withAudit(
@@ -83,7 +83,7 @@ describe('<Pixel />', () => {
           sendEvent: sendEventMock,
         },
       }));
-    expect(sendEventMock)
-      .toHaveBeenCalledWith('page-view', undefined, options);
+    await waitFor(() => expect(sendEventMock)
+      .toHaveBeenCalledWith('page-view', undefined, options));
   });
 });

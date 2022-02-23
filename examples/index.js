@@ -27,6 +27,7 @@ const Premium = () => {
   const contentRef = useRef();
   const [identity, setIdentity] = useState(null);
   const [ready, setReady] = useState(null);
+  const [mounted, setMounted] = useState(0);
 
   return (
     <div className="app">
@@ -85,7 +86,10 @@ const Premium = () => {
       <Paywall
         contentRef={contentRef}
         events={{
-          ready: () => setReady(true),
+          ready: () => {
+            setReady(true);
+            setMounted(old => old + 1);
+          },
           identityAvailable: e => setIdentity(e),
         }}
       />
@@ -100,6 +104,9 @@ const Premium = () => {
       { ready && (
         <div id="on-ready">{ JSON.stringify(ready) }</div>
       ) }
+      { mounted && (
+        <div id="mounted">{ JSON.stringify(mounted) }</div>
+      ) }
       { /* END TESTING */ }
     </div>
   );
@@ -109,6 +116,7 @@ const Consent = () => {
   const contentRef = useRef();
   const { setEnabled } = useContext(AppContext);
   const [ready, setReady] = useState(null);
+  const [mounted, setMounted] = useState(0);
 
   return (
     <div>
@@ -128,13 +136,19 @@ const Consent = () => {
       </RestrictedContent>
       <Paywall
         contentRef={contentRef}
-        events={{ onReady: () => setReady(true) }}
+        events={{ onReady: () => {
+          setReady(true);
+          setMounted(old => old + 1);
+        } }}
       />
       <Pixel reuse={true} type="page-view" data={{ type: 'premium' }} />
 
       { /* FOR TESTING PURPOSES, DO NOT REMOVE */ }
       { ready && (
         <div id="on-ready">{ JSON.stringify(ready) }</div>
+      ) }
+      { mounted && (
+        <div id="mounted">{ JSON.stringify(mounted) }</div>
       ) }
       { /* END TESTING */ }
     </div>
