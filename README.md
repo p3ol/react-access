@@ -226,3 +226,63 @@ yarn test
 ## License
 
 This software is licensed under [MIT](https://github.com/p3ol/react-access/blob/master/LICENSE).
+
+## v2 Migration
+
+- `<PaywallContext />` has been replaced with `<AccessContext />` (used to show the paywall) and `<AuditContext />` (used to track particular events)
+- `usePoool` has been replaced with `useAccess` and `useAudit`, both requiring the above contexts to be a parent component
+- `<Paywall />` now needs a `contentRef` prop to be able to lock/unlock the content, and the ref should be retrieved from `<RestrictedContent />`
+- `<Pixel />` has been added to avoid manual event tracking using the legacy `poool()` function
+
+Basic example in v1:
+```jsx
+import {
+  PaywallContext,
+  RestrictedContent,
+  Paywall,
+  usePoool,
+} from '@poool/react-access';
+
+export default () => {
+  const { poool } = usePoool();
+
+  useEffect(() => {
+    poool('send', 'page-view', 'premium');
+  }, []);
+
+  return (
+    <PaywallContext appId="test" config={{ cookies_enabled: true }}>
+      <RestrictedContent><div>test</div></RestrictedContent>
+      <Paywall />
+    </PaywallContext>
+  );
+};
+```
+
+To be transformed in v2:
+```jsx
+import { useRef } from 'react';
+import {
+  AccessContext,
+  RestrictedContent,
+  Paywall,
+  usePoool,
+} from '@poool/react-access';
+
+export default () => {
+  const contentRef = useRef();
+
+  return (
+    <AccessContext
+      appId="test"
+      config={{ cookies_enabled: true }}
+      withAudit={true}
+    >
+      <RestrictedContent ref={contentRef}><div>test</div></RestrictedContent>
+
+      <Paywall contentRef={contentRef} />
+      <Pixel type="page-view" data={{ type: 'premium' }} />
+    </AccessContext>
+  );
+};
+```
