@@ -230,7 +230,7 @@ This software is licensed under [MIT](https://github.com/p3ol/react-access/blob/
 ## v2 Migration
 
 - `<PaywallContext />` has been replaced with `<AccessContext />` (used to show the paywall) and `<AuditContext />` (used to track particular events)
-- `usePoool` has been replaced with `useAccess` and `useAudit`, both requiring the above contexts to be a parent component
+- `usePoool` has been replaced with `useAccess` and `useAudit`, both respectively requiring the above contexts to be a parent component
 - `<Paywall />` now needs a `contentRef` prop to be able to lock/unlock the content, and the ref should be retrieved from `<RestrictedContent />`
 - `<Pixel />` has been added to avoid manual event tracking using the legacy `poool()` function
 
@@ -266,7 +266,7 @@ import {
   AccessContext,
   RestrictedContent,
   Paywall,
-  usePoool,
+  Pixel,
 } from '@poool/react-access';
 
 export default () => {
