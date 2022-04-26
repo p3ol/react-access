@@ -1,98 +1,99 @@
-import React, { useEffect, useContext, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
+import PropTypes from 'prop-types';
 
-import { classNames, generateId } from './utils';
-import { DefaultContext } from './contexts';
-import { useTimeout } from './hooks';
+import { useAccess } from './hooks';
+import { generateId } from './utils';
 
-export default ({
-  className,
+const Paywall = ({
   id,
+  events,
+  contentRef,
+  children,
   pageType = 'premium',
-  events = {},
-  beforeInit,
-  afterMount,
-  beforeUnmount,
-  restrictedContentRef,
-  initDelay = 10,
 }) => {
-  const paywallIdRef = useRef(id || generateId());
-  const paywallWrapperRef = useRef();
+  const paywallRef = useRef();
+  const containerRef = useRef();
   const {
-    appId,
-    config,
-    styles,
-    texts,
-    container,
     lib,
-  } = useContext(DefaultContext);
-  const [loading, setLoading] = useState(false);
-
-  /* istanbul ignore next: tested within puppeteer */
-  useTimeout(() => {
-    if (container && paywallWrapperRef.current) {
-      init();
-    }
-  }, initDelay, [lib, container, config?.cookies_enabled]);
+    createFactory,
+    destroyFactory,
+    config: globalConfig,
+  } = useAccess();
 
   useEffect(() => {
-    return () => deinit();
-  }, []);
+    create();
 
-  /* istanbul ignore next: tested within puppeteer */
-  const onReady = () => {
-    setLoading(false);
-  };
+    const container = containerRef.current;
 
-  /* istanbul ignore next: tested within puppeteer */
-  const init = async () => {
-    if (
-      typeof window === 'undefined' ||
-      typeof document === 'undefined' ||
-      !lib ||
-      loading
-    ) {
-      return;
-    }
+    return () => {
+      destroy(container);
+    };
+  }, [lib, globalConfig?.cookies_enabled]);
 
-    afterMount?.();
-    setLoading(true);
-
-    lib('init', appId);
-    lib('styles', styles);
-    lib('texts', texts);
-    lib('config', {
-      force_container_recovery: true,
-      ...(config || {}),
-      post_container:
-        `[id='${restrictedContentRef?.current?.id || container}']`,
-      widget_container: `[id='${paywallWrapperRef.current.id}']`,
+  const create = () => {
+    paywallRef.current = createFactory?.({
+      events,
     });
 
-    Object.entries(events || {}).map(([k, v]) => lib('event', k, v));
-
-    lib('event', 'onReady', onReady);
-
-    beforeInit?.(lib);
-    lib('send', 'page-view', pageType);
-  };
-
-  /* istanbul ignore next: tested within puppeteer */
-  const deinit = async () => {
-    if (!lib) {
+    if (!paywallRef.current) {
       return;
     }
 
-    beforeUnmount?.(lib);
-    Object.entries(events || {}).map(([k, v]) => lib('unevent', k, v));
-    lib('unevent', 'onReady', onReady);
-    await lib('flush');
+    paywallRef.current.once('identityAvailable', onIdentityAvailable);
+
+    paywallRef.current.createPaywall({
+      pageType,
+      target: containerRef.current,
+      content: contentRef?.current?.contentRef?.current,
+      mode: contentRef?.current?.mode,
+      percent: contentRef?.current?.percent,
+    });
   };
 
+  const destroy = container => {
+    if (!paywallRef.current) {
+      return;
+    }
+
+    container.innerHTML = '';
+    paywallRef.current.off('identityAvailable', onIdentityAvailable);
+    destroyFactory?.(paywallRef.current);
+    paywallRef.current = null;
+  };
+
+  const onIdentityAvailable = e => {
+    try {
+      globalThis.document.dispatchEvent(new CustomEvent('$_poool.onMessage', {
+        detail: {
+          type: '$_poool.setUser',
+          data: e,
+        },
+      }));
+    } catch (_) {}
+  };
+
+  const customId = useMemo(() => generateId(), []);
+
   return (
-    <div
-      ref={paywallWrapperRef}
-      id={paywallWrapperRef.current?.id || paywallIdRef.current}
-      className={classNames('poool-widget', className)}
-    />
+    <>
+      <div id={id || customId} ref={containerRef} className="poool-widget" />
+      { children }
+    </>
   );
 };
+
+Paywall.displayName = 'Paywall';
+Paywall.propTypes = {
+  contentRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.object }),
+  ]),
+  children: PropTypes.element,
+  events: PropTypes.object,
+  id: PropTypes.string,
+  pageType: PropTypes.oneOf([
+    'premium', 'free', 'page', 'subscription', 'registration',
+  ]),
+};
+
+export default Paywall;

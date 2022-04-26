@@ -1,32 +1,11 @@
-import React, { createRef, forwardRef } from 'react';
 import puppeteer from 'puppeteer';
 import devServer from 'jest-dev-server';
-import { render } from '@testing-library/react';
-import sinon from 'sinon';
-
-import { usePoool, useTimeout } from '../src/hooks';
-
-const sleep = time => new Promise(resolve => setTimeout(resolve, time));
-
-const TestComponent = forwardRef((_, ref) => {
-  const obj = usePoool();
-  ref.current = obj;
-
-  return null;
-});
-
-const TimeoutTestComponent = ({ onTimeout }) => {
-  useTimeout(() => {
-    onTimeout();
-  }, 500, []);
-
-  return <div />;
-};
 
 jest.setTimeout(30000);
+
 describe('hooks.js', () => {
 
-  describe('usePoool()', () => {
+  describe('useAccess()', () => {
     let browser, page;
 
     beforeAll(async () => {
@@ -42,24 +21,22 @@ describe('hooks.js', () => {
       await page.goto('http://localhost:63001/');
     });
 
-    it('should provide an object with some props', () => {
-      const ref = createRef();
-      render(<TestComponent ref={ref} />);
-      expect(ref.current).toBeTruthy();
-      expect(ref.current).toHaveProperty('poool');
-      expect(ref.current).toHaveProperty('appId');
-      expect(ref.current).toHaveProperty('config');
-      expect(ref.current).toHaveProperty('styles');
-      expect(ref.current).toHaveProperty('texts');
-    });
-
-    it('should provide a poool function', async () => {
-      await page.waitForSelector('#has-poool');
-      const hasPoool = await page.evaluate(() =>
-        JSON.parse(document.querySelector('#has-poool').innerText)
+    it('should provide the access lib', async () => {
+      await page.waitForSelector('#has-access');
+      const hasAccess = await page.evaluate(() =>
+        JSON.parse(document.querySelector('#has-access').innerText)
       );
 
-      expect(hasPoool).toBe(true);
+      expect(hasAccess).toBe(true);
+    });
+
+    it('should provide the audit lib', async () => {
+      await page.waitForSelector('#has-audit');
+      const hasAudit = await page.evaluate(() =>
+        JSON.parse(document.querySelector('#has-audit').innerText)
+      );
+
+      expect(hasAudit).toBe(true);
     });
 
     it('should provide an appId property', async () => {
@@ -103,15 +80,5 @@ describe('hooks.js', () => {
       await browser.close();
     });
 
-  });
-
-  describe('useTimeout(listener, time, changes)', () => {
-    it('should allow to execute a task after a given amount of ' +
-      'ms', async () => {
-      const onTimeout = sinon.spy();
-      render(<TimeoutTestComponent onTimeout={onTimeout} />);
-      await sleep(600);
-      expect(onTimeout.called).toBe(true);
-    });
   });
 });

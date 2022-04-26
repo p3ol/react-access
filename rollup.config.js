@@ -11,9 +11,10 @@ const output = `./dist${isForIE ? '/ie' : ''}`;
 const name = 'poool-react-access';
 const formats = ['umd', 'cjs', 'esm'];
 
-const defaultExternals = ['react'];
+const defaultExternals = ['react', 'prop-types'];
 const defaultGlobals = {
   react: 'React',
+  propTypes: 'PropTypes',
 };
 
 const defaultPlugins = [

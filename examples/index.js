@@ -1,23 +1,37 @@
-import React, { useState, useEffect, useContext, createContext } from 'react';
+import {
+  useRef,
+  useState,
+  useContext,
+  createContext,
+  useMemo,
+  useEffect,
+} from 'react';
 import ReactDOM from 'react-dom';
 import { createBrowserHistory } from 'history';
-import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
 import {
-  PaywallContext,
+  Link,
+  Routes,
+  Route,
+  unstable_HistoryRouter as HistoryRouter,
+} from 'react-router-dom';
+import {
+  AccessContext,
   Paywall,
+  Pixel,
   RestrictedContent,
-  usePoool,
+  useAccess,
+  useAudit,
 } from '@poool/react-access';
 
 const Premium = () => {
-  const [beforeInit, setBeforeInit] = useState(null);
+  const contentRef = useRef();
   const [identity, setIdentity] = useState(null);
   const [ready, setReady] = useState(null);
   const [mounted, setMounted] = useState(0);
 
   return (
     <div className="app">
-      <RestrictedContent>
+      <RestrictedContent ref={contentRef}>
         <div className="articleBody">
           { /* eslint-disable max-len */ }
           <p>
@@ -70,20 +84,20 @@ const Premium = () => {
       </RestrictedContent>
 
       <Paywall
-        beforeInit={() => setBeforeInit(true) }
-        afterMount={() => setMounted(old => old + 1)}
+        contentRef={contentRef}
         events={{
-          onReady: () => setReady(true),
-          onIdentityAvailable: e => setIdentity(e),
+          ready: () => {
+            setReady(true);
+            setMounted(old => old + 1);
+          },
+          identityAvailable: e => setIdentity(e),
         }}
       />
+      <Pixel type="page-view" data={{ type: 'premium' }} />
 
       <Link to="/">Return to home</Link>
 
       { /* FOR TESTING PURPOSES, DO NOT REMOVE */ }
-      { beforeInit && (
-        <div id="before-init">{ JSON.stringify(beforeInit) }</div>
-      ) }
       { identity && (
         <div id="on-identity-available">{ JSON.stringify(identity) }</div>
       ) }
@@ -99,6 +113,7 @@ const Premium = () => {
 };
 
 const Consent = () => {
+  const contentRef = useRef();
   const { setEnabled } = useContext(AppContext);
   const [ready, setReady] = useState(null);
   const [mounted, setMounted] = useState(0);
@@ -112,7 +127,7 @@ const Consent = () => {
       >
         Give consent
       </button>
-      <RestrictedContent>
+      <RestrictedContent ref={contentRef}>
         <div id="restricted-content">
           This sentence should be almost complete.
           This one should be entirely troncated, and if there&apos;s a rerender,
@@ -120,9 +135,13 @@ const Consent = () => {
         </div>
       </RestrictedContent>
       <Paywall
-        events={{ onReady: () => setReady(true) }}
-        afterMount={() => setMounted(old => old + 1)}
+        contentRef={contentRef}
+        events={{ onReady: () => {
+          setReady(true);
+          setMounted(old => old + 1);
+        } }}
       />
+      <Pixel reuse={true} type="page-view" data={{ type: 'premium' }} />
 
       { /* FOR TESTING PURPOSES, DO NOT REMOVE */ }
       { ready && (
@@ -137,23 +156,19 @@ const Consent = () => {
 };
 
 const Home = () => {
-  const { poool, appId, config, styles, texts } = usePoool();
-
-  useEffect(() => {
-    poool?.('init', appId);
-    poool?.('config', config);
-    poool?.('send', 'page-view', 'page');
-
-    return () => poool?.('flush');
-  }, [poool]);
+  const { lib: access, appId, config, styles, texts } = useAccess();
+  const { lib: audit } = useAudit();
 
   return (
     <div>
       <h1>Home</h1>
 
       { /* FOR TESTING PURPOSES, DO NOT REMOVE */ }
-      { typeof poool === 'function' && (
-        <div id="has-poool">true</div>
+      { typeof access === 'object' && (
+        <div id="has-access">true</div>
+      ) }
+      { typeof audit === 'object' && (
+        <div id="has-audit">true</div>
       ) }
       { typeof appId === 'string' && (
         <div id="has-app-id">true</div>
@@ -171,6 +186,8 @@ const Home = () => {
 
       <Link to="/premium">Go to premium</Link>
       <Link to="/consent">Go to consent</Link>
+
+      <Pixel type="page-view" data={{ type: 'page' }} />
     </div>
   );
 };
@@ -185,22 +202,27 @@ const AlternativeHome = () => (
 );
 
 const AppContext = createContext({});
-const defaultHistory = createBrowserHistory();
 
 const App = () => {
   const [enabled, setEnabled] = useState(!(
     global.location.pathname === '/consent'
   ));
 
-  defaultHistory.listen(location => {
-    const pathname = location?.location?.pathname || location?.pathname;
-    setEnabled(!(pathname === '/consent'));
-  });
+  const history_ = useMemo(() => (
+    createBrowserHistory()
+  ), []);
+
+  useEffect(() => {
+    history_.listen(location => {
+      const pathname = location?.location?.pathname || location?.pathname;
+      setEnabled(!(pathname === '/consent'));
+    });
+  }, [history_]);
 
   return (
-    <BrowserRouter history={defaultHistory}>
+    <HistoryRouter history={history_}>
       <AppContext.Provider value={{ setEnabled }}>
-        <PaywallContext
+        <AccessContext
           appId="155PF-L7Q6Q-EB2GG-04TF8"
           config={{
             cookies_enabled: enabled,
@@ -209,6 +231,9 @@ const App = () => {
             cookies_domain: 'localhost',
             audit_load_timeout: 30000,
           }}
+          texts={{}}
+          styles={{}}
+          withAudit={true}
         >
           <Routes>
             <Route path="/premium" exact={true} element={<Premium />} />
@@ -220,9 +245,9 @@ const App = () => {
             />
             <Route exact={true} path="/" element={<Home />} />
           </Routes>
-        </PaywallContext>
+        </AccessContext>
       </AppContext.Provider>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 };
 
