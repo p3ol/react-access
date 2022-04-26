@@ -1,7 +1,9 @@
 module.exports = {
   clearMocks: true,
   collectCoverage: true,
-  timers: 'real',
+  fakeTimers: {
+    enableGlobally: false,
+  },
   testEnvironment: 'jsdom',
   coverageDirectory: 'coverage',
   coveragePathIgnorePatterns: [
@@ -11,4 +13,7 @@ module.exports = {
   transform: {
     '^.+\\.js$': 'babel-jest',
   },
+  transformIgnorePatterns: [
+    'node_modules/(?!(rxjs)/)',
+  ],
 };
