@@ -1,3 +1,4 @@
 import { createContext } from 'react';
 
-export const DefaultContext = createContext({});
+export const AccessContext = createContext({});
+export const AuditContext = createContext({});

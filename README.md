@@ -6,36 +6,91 @@
 
 ## Installation
 
-```
+```bash
 yarn add @poool/react-access
 ```
 
 ## Usage
 
 ```jsx
-import React from 'react';
-import { PaywallContext, RestrictedContent, Paywall } from '@poool/react-access';
+import { useRef } from 'react';
+import {
+  AccessContext,
+  RestrictedContent,
+  Paywall,
+  Pixel,
+} from '@poool/react-access';
 
-export default () => (
-  { /* Wrap everything with our PaywallContext component */ }
-  <PaywallContext appId="insert_your_app_id" config={{ cookies_enabled: true }}>
+export default = () => {
+  const contentRef = useRef();
 
-    { /* Wrap your content with our RestrictedContent component */ }
-    <RestrictedContent>
-      <div className="articleBody">
-        <p>Your article content</p>
-      </div>
-    </RestrictedContent>
+  return (
+    <>
+      { /*
+        Wrap everything with our AccessContext component. Note the withAudit
+        prop which saves you from writing AuditContext inside of
+        AccessContext
+      */ }
+      <AccessContext
+        appId="insert_your_app_id"
+        config={{ cookies_enabled: true }}
+        withAudit={true}
+      >
+        { /* Wrap your content with our RestrictedContent component */ }
+        <RestrictedContent ref={contentRef}>
+          <div className="articleBody">
+            <p>Your article content</p>
+          </div>
+        </RestrictedContent>
 
-    { /* Place our paywall element where you want your paywall to be displayed */ }
-    <Paywall
-      pageType="premium"
-      beforeInit={poool => {
-        poool('config', 'debug', true);
-      }}
-    />
-  </PaywallContext>
-);
+        { /*
+          Place our <Paywall /> component where you want your paywall to be
+          displayed
+        */ }
+        <Paywall contentRef={contentRef} />
+
+        { /*
+          Place our <Pixel /> component anywhere inside an <AuditContext />
+          component (or <AccessContext withAudit={true} />) to track page-view
+          events (used for native segmentation)
+        */ }
+        <Pixel type="page-view" data={{ type: 'premium' }} />
+      </AccessContext>
+    </>
+  );
+};
+```
+
+### Usage with AuditContext
+
+```jsx
+import { useRef } from 'react';
+import {
+  AccessContext,
+  AuditContext,
+  Paywall,
+  RestrictedContent,
+  Pixel,
+} from '@poool/react-access';
+
+export default () => {
+  const contentRef = useRef();
+
+  return (
+    <AuditContext appId="insert_your_app_id">
+      <AccessContext appId="insert_your_app_id">
+        <RestrictedContent ref={contentRef}>
+          <div className="articleBody">
+            <p>Your article content</p>
+          </div>
+        </RestrictedContent>
+
+        <Paywall contentRef={contentRef} />
+        <Pixel type="conversion" />
+      </AuditContext>
+    </AuditContext>
+  );
+};
 ```
 
 ### IE Compatibility
@@ -51,54 +106,96 @@ Please note that this build will probably add more than 150kb to your final bund
 
 ## Documentation
 
-### `<PaywallContext />`
+### `<AccessContext />`
 
 #### Props
 
 - `appId` {`String`} Your Poool App ID
-- `config` {`Object`} (optional) Default paywall config (https://dev.poool.fr/access/configuration).
-- `styles` {`Object`} (optional) Default paywall styles (https://dev.poool.fr/access/styles).
-- `texts` {`Object`} (optional) Default paywall texts (https://dev.poool.fr/access/texts).
-- `scriptUrl` {`String`} (optional, default: `'https://assets.poool.fr/poool.min.js'`) Default Poool Access SDK url
+- `config` {`Object`} (optional) Default paywall config (see the [configuration](https://poool.dev/docs/javascript/access/configuration) documentation).
+- `styles` {`Object`} (optional) Default paywall styles (see the [styles](https://poool.dev//docs/javascript/access/appearances) documentation).
+- `texts` {`Object`} (optional) Default paywall texts (see the [texts](https://poool.dev/docs/javascript/access/texts) documentation).
+- `events` {`Object`} (optional) Paywall events listeners (see the [events](https://poool.dev/docs/javascript/access/events) documentation).
+- `variables` {`Object`} (optional) Paywall variables (see the [variables](https://poool.dev/docs/javascript/access/variables) documentation).
+- `scriptUrl` {`String`} (optional, default: `'https://assets.poool.fr/access.min.js'`) Default Poool Access SDK url
+- `withAudit` {`Boolean`} (optional, default: `false`) Whether to include AuditContext in AccessContext or not
+
+### `<AuditContext />`
+
+#### Props
+
+- `appId` {`String`} Your Poool App ID
+- `config` {`Object`} (optional) Default audit config (see the [configuration](https://poool.dev/docs/javascript/audit/configuration) documentation).
+- `events` {`Object`} (optional) Audit events listeners (see the [events](https://poool.dev/docs/javascript/audit/events) documentation).
+- `scriptUrl` {`String`} (optional, default: `'https://assets.poool.fr/audit.min.js'`) Default Poool Audit SDK url
 
 ### `<RestrictedContent />`
 
 #### Props
 
-No custom props
+- `mode` {`String` : `'excerpt'` | `'hide'`| `'custom'`} (optional) Way to hide content see [Access configuration](https://poool.dev/docs/javascript/access/configuration#mode) for more informations.
+- `percent` {`Number`} (optional) Percentage of content to hide.
 
 ### `<Paywall />`
 
 #### Props
 
+- `contentRef` {`React.Ref`} Reference to the RestrictedContent component associated to this Paywall 
 - `id` {`String`} (optional, default: random id) Custom wrapper component ID
-- `pageType` {`String`} (optional, default: `'premium'`) Current page type (https://dev.poool.fr/access/actions#page-view)
-- `events` {`Object`} (optional, default: `{}`) Paywall events listeners (https://dev.poool.fr/access/events)
-- `beforeInit` {`Function`} (optional, default: `() => {}`) Use this to do whatever you want to apply to config, styles, ... before paywall render
-  - `poool` {`Function`} Reference to global `poool` passed as parameter
-- `beforeUnmount` {`Function`} (optional, default: `() => {}`) Use this to do whatever you want to do before paywall unmount
-  - `poool` {`Function`} Reference to global `poool` passed as parameter
+- `pageType` {`String`} (optional, default: `'premium'`) Current page type (supported types: `page`, `premium`, `free`, `subscription`)
+- `events` {`Object`} (optional, default: `{}`) Paywall events listeners (see the [events](https://poool.dev/docs/javascript/access/events) documentation)
 
-### `usePoool()`
+### `<Pixel />`
 
-Can be used to retrieved some properties from the current paywall context, as well as the Poool SDK itself.
+#### Props
+
+- `type` {`String`} Event type (supported types: `page-view`, `conversion`)
+- `data`{`Object`} (optional but mandatory when type is page-view) Data associated to the event (see the [audit](https://poool.dev/docs/javascript/audit/methods#page-view) documentation)
+- `options` {`Object`} (optional) Options to pass to the event (see the [audit](https://poool.dev/docs/javascript/audit/methods#options) documentation)
+- `onDone` {`Function`} (optional) Callback to execute when the event is done
+- `reuse` {`Boolean`} (optional, default: `false`) Whether to reuse the same event or not
+
+### useAccess()
+
+Can be used to retrieve some properties from the current access context, as well as the Access SDK itself.
 
 #### Returns
 
-- `poool` {`Function`} The entire poool library
+- `lib` {`Function`} The entire Access sdk
 - `appId` {`String`} Current app ID
-- `config` {`Object`} Context config
-- `texts` {`Object`} Context texts
-- `styles` {`Object`} Context styles
+- `config` {`Object`} Current access context config
+- `texts` {`Object`} Current context texts
+- `styles` {`Object`} Current context styles
+- `variables` {`Object`} Current context variables
+- `events` {`Object`} Current access context events listeners
+- `scriptURL` {`Object`} Access SDK url
 
 #### Example
 
-```jsx
-const { poool, appId } = usePoool();
-poool && poool('init', appId);
+```js
+const { appId, lib: access } = useAccess();
+```
+
+### useAudit()
+
+Can be used to retrieve some properties from the current audit context, as well as the Audit SDK itself.
+
+#### Returns 
+
+- `lib` {`Function`} The entire Audit sdk
+- `appId` {`String`} Current app ID
+- `config` {`Object`} Current audit context config
+- `events` {`Object`} Current audit context events listeners
+- `scriptURL` {`Function`} Audit SDK url
+
+#### Example
+
+```js
+const { appId, lib: audit } = useAudit();
 ```
 
 ## Contributing
+
+[![](https://contrib.rocks/image?repo=p3ol/react-access)](https://github.com/p3ol/react-access/graphs/contributors)
 
 Please check the [CONTRIBUTING.md](https://github.com/p3ol/react-access/blob/master/CONTRIBUTING.md) doc for contribution guidelines.
 
@@ -126,13 +223,3 @@ yarn test
 ## License
 
 This software is licensed under [MIT](https://github.com/p3ol/react-access/blob/master/LICENSE).
-
-## Contributors
-
-<!-- Contributors START
-Ugo_Stephant dackmin https://ugostephant.io code doc tools
-Contributors END -->
-<!-- Contributors table START -->
-| <img src="https://avatars.githubusercontent.com/dackmin?s=100" width="100" alt="Ugo Stephant" /><br />[<sub>Ugo Stephant</sub>](https://github.com/dackmin)<br />[💻](https://github.com/p3ol/react-access/commits?author=dackmin) [📖](https://github.com/p3ol/react-access/commits?author=dackmin) 🔧 | <img src="https://avatars.githubusercontent.com/defless?s=100" width="100" alt="Simon Deflesschouwer" /><br />[<sub>Simon Deflesschouwer</sub>](https://github.com/defless)<br />[🔧](https://github.com/p3ol/react-access/commits?author=defless) |
-| :---: | :---: |
-<!-- Contributors table END -->

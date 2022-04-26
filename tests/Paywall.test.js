@@ -1,9 +1,10 @@
 import React from 'react';
 import puppeteer from 'puppeteer';
 import devServer from 'jest-dev-server';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 
 import { Paywall } from '../src';
+import { withAccess } from './utils';
 
 describe('<Paywall />', () => {
   jest.setTimeout(30000);
@@ -32,6 +33,94 @@ describe('<Paywall />', () => {
     });
   });
 
+  it('should create paywall at start', () => {
+    const createPaywallMock = jest.fn();
+    const createFactoryMock = jest.fn().mockReturnValue({
+      createPaywall: createPaywallMock,
+      once: jest.fn(),
+      off: jest.fn(),
+    });
+
+    render(withAccess(<Paywall />, {
+      createFactory: createFactoryMock,
+    }));
+
+    expect(createFactoryMock).toHaveBeenCalled();
+    expect(createPaywallMock).toHaveBeenCalled();
+  });
+
+  it('should set listener on identityAvailable event ', () => {
+    const onceMock = jest.fn();
+    const createFactoryMock = jest.fn().mockReturnValue({
+      createPaywall: jest.fn(),
+      once: onceMock,
+      off: jest.fn(),
+    });
+
+    render(withAccess(<Paywall />, {
+      createFactory: createFactoryMock,
+    }));
+
+    expect(createFactoryMock).toHaveBeenCalled();
+    expect(onceMock)
+      .toHaveBeenCalledWith('identityAvailable', expect.any(Function));
+  });
+
+  it('should create paywall with given properties', () => {
+    const contentRef = {
+      current: {
+        contentRef: { current: 'blabla' },
+        mode: 'excerpt',
+        percent: 96,
+      },
+    };
+    const createPaywallMock = jest.fn();
+    const createFactoryMock = jest.fn().mockReturnValue({
+      createPaywall: createPaywallMock,
+      once: jest.fn(),
+      off: jest.fn(),
+    });
+
+    render(withAccess(<Paywall pageType="premium" contentRef={contentRef} />, {
+      createFactory: createFactoryMock,
+    }));
+
+    expect(createFactoryMock).toHaveBeenCalled();
+    expect(createPaywallMock).toHaveBeenCalledWith({
+      pageType: 'premium',
+      target: expect.anything(),
+      content: 'blabla',
+      mode: 'excerpt',
+      percent: 96,
+    });
+  });
+
+  it('should recreate paywall if cookies_enabled has changed', async () => {
+    const createPaywallMock = jest.fn();
+    const config = { cookies_enabled: false };
+    const createFactoryMock = jest.fn().mockReturnValue({
+      createPaywall: createPaywallMock,
+      once: jest.fn(),
+      off: jest.fn(),
+    });
+
+    const { rerender } = render(withAccess(<Paywall />, {
+      createFactory: createFactoryMock,
+      config,
+    }));
+
+    expect(createFactoryMock).toHaveBeenCalled();
+    expect(createPaywallMock).toHaveBeenCalled();
+
+    config.cookies_enabled = true;
+    rerender(withAccess(<Paywall />, {
+      createFactory: createFactoryMock,
+      config,
+    }));
+    await waitFor(() => expect(createPaywallMock).toHaveBeenCalledTimes(2));
+    await waitFor(() => expect(createFactoryMock).toHaveBeenCalledTimes(2));
+  });
+
   describe('Premium content', () => {
     let page;
 
@@ -58,15 +147,6 @@ describe('<Paywall />', () => {
       );
 
       expect(src).toBe('https://assets.poool.fr/paywall-frame.html');
-    });
-
-    it('should fire beforeInit handler', async () => {
-      await page.waitForSelector('#before-init');
-      const beforeInit = await page.evaluate(() =>
-        JSON.parse(document.querySelector('#before-init').innerText)
-      );
-
-      expect(beforeInit).toBe(true);
     });
 
     it('should fire onIdentityAvailable event handler', async () => {
@@ -125,12 +205,6 @@ describe('<Paywall />', () => {
       );
 
       expect(contentAfterConsent).toBe('This sentence should...');
-
-      const mounted = await page.evaluate(() =>
-        document.querySelector('#mounted').innerText
-      );
-
-      expect(mounted).toBe('2');
     });
 
     afterAll(async () => {
@@ -148,7 +222,7 @@ describe('<Paywall />', () => {
 
     it('should not re-render paywall multiple times on route ' +
       'change', async () => {
-      await page.click('#premium-link');
+      await page.click('#consent-link');
 
       await page.waitForSelector('#on-ready');
       const content = await page.evaluate(() =>
@@ -167,5 +241,4 @@ describe('<Paywall />', () => {
     await devServer.teardown();
     await browser.close();
   });
-
 });
