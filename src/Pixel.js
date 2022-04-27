@@ -6,6 +6,7 @@ import { useAudit } from './hooks';
 const Pixel = ({
   type,
   data,
+  config,
   options,
   onDone,
   reuse = false,
@@ -22,7 +23,7 @@ const Pixel = ({
       return;
     }
 
-    await Audit_.sendEvent(type, data, options);
+    await Audit_.config(config || {}).sendEvent(type, data, options);
     setUsed(true);
     onDone?.();
   }, [Audit_, used]);
@@ -34,6 +35,7 @@ Pixel.displayName = 'Pixel';
 Pixel.propTypes = {
   type: PropTypes.oneOf(['page-view', 'conversion']).isRequired,
   data: PropTypes.object,
+  config: PropTypes.object,
   options: PropTypes.object,
   onDone: PropTypes.func,
   reuse: PropTypes.bool,
