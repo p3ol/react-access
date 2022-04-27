@@ -145,7 +145,11 @@ Please note that this build will probably add more than 150kb to your final bund
 - `contentRef` {`React.Ref`} Reference to the RestrictedContent component associated to this Paywall 
 - `id` {`String`} (optional, default: random id) Custom wrapper component ID
 - `pageType` {`String`} (optional, default: `'premium'`) Current page type (supported types: `page`, `premium`, `free`, `subscription`)
-- `events` {`Object`} (optional, default: `{}`) Paywall events listeners (see the [events](https://poool.dev/docs/javascript/access/events) documentation)
+- `config` {`Object`} (optional) Paywall config (see the [configuration](https://poool.dev/docs/javascript/access/configuration) documentation).
+- `styles` {`Object`} (optional) Paywall styles (see the [styles](https://poool.dev//docs/javascript/access/appearances) documentation).
+- `texts` {`Object`} (optional) Paywall texts (see the [texts](https://poool.dev/docs/javascript/access/texts) documentation).
+- `variables` {`Object`} (optional) Paywall variables (see the [variables](https://poool.dev/docs/javascript/access/variables) documentation).
+- `events` {`Object`} (optional) Paywall events listeners (see the [events](https://poool.dev/docs/javascript/access/events) documentation)
 
 ### `<Pixel />`
 
@@ -153,6 +157,7 @@ Please note that this build will probably add more than 150kb to your final bund
 
 - `type` {`String`} Event type (supported types: `page-view`, `conversion`)
 - `data`{`Object`} (optional but mandatory when type is page-view) Data associated to the event (see the [audit](https://poool.dev/docs/javascript/audit/methods#page-view) documentation)
+- `config` {`Object`} (optional) Pixel config (see the [configuration](https://poool.dev/docs/javascript/audit/configuration) documentation).
 - `options` {`Object`} (optional) Options to pass to the event (see the [audit](https://poool.dev/docs/javascript/audit/methods#options) documentation)
 - `onDone` {`Function`} (optional) Callback to execute when the event is done
 - `reuse` {`Boolean`} (optional, default: `false`) Whether to reuse the same event or not
@@ -247,6 +252,7 @@ export default () => {
   const { poool } = usePoool();
 
   useEffect(() => {
+    poool('config', 'context', 'sports');
     poool('send', 'page-view', 'premium');
   }, []);
 
@@ -280,7 +286,7 @@ export default () => {
     >
       <RestrictedContent ref={contentRef}><div>test</div></RestrictedContent>
 
-      <Paywall contentRef={contentRef} />
+      <Paywall config={{ context: 'sports' }} contentRef={contentRef} />
       <Pixel type="page-view" data={{ type: 'premium' }} />
     </AccessContext>
   );
