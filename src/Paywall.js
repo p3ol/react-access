@@ -9,6 +9,10 @@ const Paywall = ({
   events,
   contentRef,
   children,
+  config,
+  texts,
+  styles,
+  variables,
   pageType = 'premium',
 }) => {
   const paywallRef = useRef();
@@ -33,6 +37,10 @@ const Paywall = ({
   const create = () => {
     paywallRef.current = createFactory?.({
       events,
+      config,
+      texts,
+      styles,
+      variables,
     });
 
     if (!paywallRef.current) {
@@ -89,7 +97,11 @@ Paywall.propTypes = {
     PropTypes.shape({ current: PropTypes.object }),
   ]),
   children: PropTypes.element,
+  config: PropTypes.object,
+  texts: PropTypes.object,
+  styles: PropTypes.object,
   events: PropTypes.object,
+  variables: PropTypes.object,
   id: PropTypes.string,
   pageType: PropTypes.oneOf([
     'premium', 'free', 'page', 'subscription', 'registration',
