@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/p3ol/react-access/compare/v2.0.0...v2.0.1) (2022-04-27)
+
+
+### Bug Fixes
+
+* allow to pass config to pixel ([ca03d27](https://github.com/p3ol/react-access/commit/ca03d272f010c8c28407ef820e388fd3e6cd1fe2))
+* allow to pass config, texts, styles & variables to paywall component ([6edcdda](https://github.com/p3ol/react-access/commit/6edcdda5333330f1ac9bce5a2d6830af5b0510d9))
+* bring back helpers from paywall component ([d31950d](https://github.com/p3ol/react-access/commit/d31950dfaf80e648d90248a00e1ff7ff1cd45eab))
+
 ## [2.0.0](https://github.com/p3ol/react-access/compare/v1.2.0...v2.0.0) (2022-04-26)
 
 
