@@ -1,10 +1,16 @@
-import { useEffect, useMemo, useRef } from 'react';
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useImperativeHandle,
+  forwardRef,
+} from 'react';
 import PropTypes from 'prop-types';
 
 import { useAccess } from './hooks';
 import { generateId } from './utils';
 
-const Paywall = ({
+const Paywall = forwardRef(({
   id,
   events,
   contentRef,
@@ -14,7 +20,7 @@ const Paywall = ({
   styles,
   variables,
   pageType = 'premium',
-}) => {
+}, ref) => {
   const paywallRef = useRef();
   const containerRef = useRef();
   const {
@@ -23,6 +29,13 @@ const Paywall = ({
     destroyFactory,
     config: globalConfig,
   } = useAccess();
+
+  useImperativeHandle(ref, () => ({
+    containerRef,
+    recreate,
+    create,
+    destroy,
+  }));
 
   useEffect(() => {
     create();
@@ -58,15 +71,20 @@ const Paywall = ({
     });
   };
 
-  const destroy = container => {
+  const destroy = async container => {
     if (!paywallRef.current) {
       return;
     }
 
     container.innerHTML = '';
     paywallRef.current.off('identityAvailable', onIdentityAvailable);
-    destroyFactory?.(paywallRef.current);
+    await destroyFactory?.(paywallRef.current);
     paywallRef.current = null;
+  };
+
+  const recreate = async () => {
+    await destroy(containerRef.current);
+    create();
   };
 
   const onIdentityAvailable = e => {
@@ -88,7 +106,7 @@ const Paywall = ({
       { children }
     </>
   );
-};
+});
 
 Paywall.displayName = 'Paywall';
 Paywall.propTypes = {

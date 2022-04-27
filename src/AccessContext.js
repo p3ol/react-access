@@ -73,7 +73,8 @@ const AccessContext = ({
     Object.entries(events || {}).forEach(([event, callback]) => {
       factory?.off(event, callback.callback || callback);
     });
-    factory.destroy();
+
+    return factory.destroy();
   };
 
   const getContext = useCallback(() => ({
