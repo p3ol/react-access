@@ -24,7 +24,7 @@
     "@poool/eslint-plugin": "1.5.2",
     "@rollup/plugin-babel": "5.3.1",
     "@rollup/plugin-commonjs": "22.0.0",
-    "@rollup/plugin-node-resolve": "13.2.1",
+    "@rollup/plugin-node-resolve": "13.3.0",
     "@testing-library/react": "12.1.5",
     "auto-changelog": "2.4.0",
     "babel-loader": "8.2.5",
