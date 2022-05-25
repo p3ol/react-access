@@ -13,12 +13,12 @@
   "esnext": "src",
   "sideEffects": false,
   "devDependencies": {
-    "@babel/core": "7.17.10",
-    "@babel/eslint-parser": "7.17.0",
+    "@babel/core": "7.18.2",
+    "@babel/eslint-parser": "7.18.2",
     "@babel/eslint-plugin": "7.17.7",
-    "@babel/plugin-transform-runtime": "7.17.10",
-    "@babel/preset-env": "7.17.10",
-    "@babel/preset-react": "7.16.7",
+    "@babel/plugin-transform-runtime": "7.18.2",
+    "@babel/preset-env": "7.18.2",
+    "@babel/preset-react": "7.17.12",
     "@poool/eslint-config": "1.5.2",
     "@poool/eslint-config-react": "1.5.2",
     "@poool/eslint-plugin": "1.5.2",
@@ -74,7 +74,7 @@
     "release": "./node_modules/.bin/standard-version && git push --follow-tags"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.17.9",
+    "@babel/runtime-corejs3": "7.18.3",
     "core-js": "3.22.5",
     "@poool/junipero-utils": "2.0.0-rc.21",
     "prop-types": "15.8.1"
