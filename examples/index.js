@@ -6,7 +6,7 @@ import {
   useMemo,
   useEffect,
 } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { createBrowserHistory } from 'history';
 import {
   Link,
@@ -251,4 +251,4 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('app'));
+createRoot(document.getElementById('app')).render(<App />);
