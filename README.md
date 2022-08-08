@@ -90,7 +90,7 @@ export default () => {
 
         <Paywall contentRef={contentRef} />
         <Pixel type="conversion" />
-      </AuditContext>
+      </AccessContext>
     </AuditContext>
   );
 };
