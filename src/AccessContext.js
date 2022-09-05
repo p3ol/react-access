@@ -35,7 +35,8 @@ const AccessContext = ({
       await loadScript(scriptUrl, 'poool-react-access-lib');
     }
 
-    const lib = globalThis.Access.noConflict();
+    const accessRef = globalThis.PooolAccess || globalThis.Access;
+    const lib = accessRef.noConflict();
     dispatch({ lib });
   };
 

@@ -34,7 +34,7 @@ const AuditContext = ({
       await loadScript(scriptUrl, 'poool-react-audit-lib');
     }
 
-    const auditRef = globalThis.Audit || globalThis.PooolAudit;
+    const auditRef = globalThis.PooolAudit || globalThis.Audit;
     const lib = auditRef.noConflict().init(appId).config(config);
 
     Object.entries(events || {}).forEach(([event, callback]) => {
