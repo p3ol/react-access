@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.2](https://github.com/p3ol/react-access/compare/v2.0.1...v2.0.2) (2022-09-05)
+
+
+### Bug Fixes
+
+* avoid multiple noConflicts ([b434aae](https://github.com/p3ol/react-access/commit/b434aae62c051a6280239300dc9ec016753b74d2))
+* **deps:** update dependency core-js to v3.22.3 ([f948482](https://github.com/p3ol/react-access/commit/f9484827816a3b2d4cbc61bbdfd8cf8e3231bfe0))
+* **deps:** update dependency core-js to v3.22.4 ([c1e4858](https://github.com/p3ol/react-access/commit/c1e4858f9c61817621b3c52121d197d1829e604f))
+* **deps:** update dependency core-js to v3.22.5 ([9a735ad](https://github.com/p3ol/react-access/commit/9a735ad75e035a96e7c8d1ea8676a345ca16165a))
+* **deps:** update dependency core-js to v3.22.7 ([a70bb9d](https://github.com/p3ol/react-access/commit/a70bb9dcbf08237d08fa6ed0f5ecaac8874ab4ae))
+* **deps:** update dependency core-js to v3.22.8 ([fbe672c](https://github.com/p3ol/react-access/commit/fbe672ca9dbb345627ef60ba95b5f332344ee92c))
+* **deps:** update dependency core-js to v3.23.1 ([c4fdae9](https://github.com/p3ol/react-access/commit/c4fdae9c82fd36b7541de84f2f0df8b9165d5b36))
+* **deps:** update dependency core-js to v3.23.2 ([8d0fed0](https://github.com/p3ol/react-access/commit/8d0fed090f487741209370d143c0eb1ac1dd6865))
+* **deps:** update dependency core-js to v3.23.3 ([368428c](https://github.com/p3ol/react-access/commit/368428c05c08a8f17d3ce6c441b8016d67db54f7))
+* **deps:** update dependency core-js to v3.23.4 ([f66e46a](https://github.com/p3ol/react-access/commit/f66e46a0dffd76f21772af6b21c08f7f95e96dd9))
+* **deps:** update dependency core-js to v3.23.5 ([28cd2d4](https://github.com/p3ol/react-access/commit/28cd2d4f219b420516675dd8dd27cc30c70198bf))
+* **deps:** update dependency core-js to v3.24.0 ([d387fbf](https://github.com/p3ol/react-access/commit/d387fbfb6df7797cac30abf91b981360b9792f1d))
+* **deps:** update dependency core-js to v3.24.1 ([6b1dd96](https://github.com/p3ol/react-access/commit/6b1dd963f91e8ff575bde75241fb7a705f4cb7cf))
+* **deps:** update dependency core-js to v3.25.0 ([d2aac5a](https://github.com/p3ol/react-access/commit/d2aac5ad67352698822f5c41dbeec0afc1371c17))
+* react 18 compat ([0d5b6bf](https://github.com/p3ol/react-access/commit/0d5b6bff23c7d40dae60cf60d07c31fa0114260b))
+
 ### [2.0.1](https://github.com/p3ol/react-access/compare/v2.0.0...v2.0.1) (2022-04-27)
 
 
