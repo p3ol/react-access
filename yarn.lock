@@ -1661,12 +1661,12 @@
     "@babel/plugin-transform-react-jsx-development" "^7.18.6"
     "@babel/plugin-transform-react-pure-annotations" "^7.18.6"
 
-"@babel/runtime-corejs3@7.17.9":
-  version "7.17.9"
-  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.17.9.tgz#3d02d0161f0fbf3ada8e88159375af97690f4055"
-  integrity sha512-WxYHHUWF2uZ7Hp1K+D1xQgbgkGUfA+5UPOegEXGt2Y5SMog/rYCVaifLZDbw8UkNXozEqqrZTy6bglL7xTaCOw==
+"@babel/runtime-corejs3@7.19.1":
+  version "7.19.1"
+  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.19.1.tgz#f0cbbe7edda7c4109cd253bb1dee99aba4594ad9"
+  integrity sha512-j2vJGnkopRzH+ykJ8h68wrHnEUmtK//E723jjixiAl/PPf6FhqY/vYRcMVlNydRKQjQsTsYEjpx+DZMIvnGk/g==
   dependencies:
-    core-js-pure "^3.20.2"
+    core-js-pure "^3.25.1"
     regenerator-runtime "^0.13.4"
 
 "@babel/runtime-corejs3@7.19.6":
@@ -2350,13 +2350,13 @@
   dependencies:
     eslint-rule-composer "0.3.0"
 
-"@poool/junipero-utils@2.0.0-rc.21":
-  version "2.0.0-rc.21"
-  resolved "https://registry.yarnpkg.com/@poool/junipero-utils/-/junipero-utils-2.0.0-rc.21.tgz#483924ccb1fad4aac2b80e03e226951ce66884f1"
-  integrity sha512-lN2YEEEtbOPm6eP7OjNIalChhynwbG4IU11hg5przagyKjENbZ+wqxpytCvTlPO2aKVKXnbacyw9uvyOlZrOgw==
+"@poool/junipero-utils@2.0.0-rc.22":
+  version "2.0.0-rc.22"
+  resolved "https://registry.yarnpkg.com/@poool/junipero-utils/-/junipero-utils-2.0.0-rc.22.tgz#337fcbfd3c22031be28638fa79a661e3c84db413"
+  integrity sha512-vIiM59Av8P3AzoVIFiu53aTYkVyKN10NVQTcAZKkbzA/acIYuUvwi1hcdZLGfSDrHppn2lTBTwYUzBneWOe5EA==
   dependencies:
-    "@babel/runtime-corejs3" "7.17.9"
-    core-js "3.22.0"
+    "@babel/runtime-corejs3" "7.19.1"
+    core-js "3.25.5"
 
 "@remix-run/router@1.0.3":
   version "1.0.3"
@@ -4103,20 +4103,15 @@ core-js-compat@^3.25.1:
   dependencies:
     browserslist "^4.21.3"
 
-core-js-pure@^3.20.2:
-  version "3.22.2"
-  resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.22.2.tgz#c10bffdc3028d25c2aae505819a05543db61544f"
-  integrity sha512-Lb+/XT4WC4PaCWWtZpNPaXmjiNDUe5CJuUtbkMrIM1kb1T/jJoAIp+bkVP/r5lHzMr+ZAAF8XHp7+my6Ol0ysQ==
-
 core-js-pure@^3.25.1:
   version "3.25.1"
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.25.1.tgz#79546518ae87cc362c991d9c2d211f45107991ee"
   integrity sha512-7Fr74bliUDdeJCBMxkkIuQ4xfxn/SwrVg+HkJUAoNEXVqYLv55l6Af0dJ5Lq2YBUW9yKqSkLXaS5SYPK6MGa/A==
 
-core-js@3.22.0:
-  version "3.22.0"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.22.0.tgz#b52007870c5e091517352e833b77f0b2d2b259f3"
-  integrity sha512-8h9jBweRjMiY+ORO7bdWSeWfHhLPO7whobj7Z2Bl0IDo00C228EdGgH7FE4jGumbEjzcFfkfW8bXgdkEDhnwHQ==
+core-js@3.25.5:
+  version "3.25.5"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.25.5.tgz#e86f651a2ca8a0237a5f064c2fe56cef89646e27"
+  integrity sha512-nbm6eZSjm+ZuBQxCUPQKQCoUEfFOXjUZ8dTTyikyKaWrTYmAVbykQfwsKE5dBK88u3QCkCrzsx/PPlKfhsvgpw==
 
 core-js@3.26.0:
   version "3.26.0"
