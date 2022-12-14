@@ -1,4 +1,4 @@
-![CI](https://github.com/p3ol/react-access/workflows/CI/badge.svg)
+[![CI](https://github.com/p3ol/react-access/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/p3ol/react-access/actions/workflows/ci.yml)
 
 # Poool Access - React SDK
 
