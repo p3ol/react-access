@@ -23,7 +23,7 @@
     "@poool/eslint-config-react": "2.0.2",
     "@poool/eslint-plugin": "2.0.2",
     "@rollup/plugin-babel": "6.0.3",
-    "@rollup/plugin-commonjs": "23.0.2",
+    "@rollup/plugin-commonjs": "23.0.4",
     "@rollup/plugin-node-resolve": "15.0.1",
     "@testing-library/react": "13.4.0",
     "auto-changelog": "2.4.0",
