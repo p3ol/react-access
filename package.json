@@ -74,7 +74,7 @@
     "release": "./node_modules/.bin/standard-version && git push --follow-tags"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.20.7",
+    "@babel/runtime-corejs3": "7.20.13",
     "@poool/junipero-utils": "2.0.0-rc.22",
     "core-js": "3.26.1",
     "prop-types": "15.8.1"
