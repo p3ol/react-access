@@ -5,7 +5,7 @@ import babel from '@rollup/plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
-
+import dts from 'rollup-plugin-dts';
 // @rollup/plugin-terser v0.2.0 __filename missing issue for esm config
 const __filename = fileURLToPath(import.meta.url);
 globalThis.__filename = globalThis._filename || __filename;
@@ -32,7 +32,7 @@ const defaultPlugins = [
   terser(),
 ];
 
-export default formats.map(f => ({
+export default [...formats.map(f => ({
   input,
   plugins: [
     ...defaultPlugins,
@@ -57,4 +57,8 @@ export default formats.map(f => ({
       },
     } : {}),
   },
-}));
+})), {
+  input: './src/index.d.ts',
+  output: [{ file: `dist/${name}.d.ts`, format: 'es' }],
+  plugins: [dts()],
+}];
