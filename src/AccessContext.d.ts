@@ -2,7 +2,7 @@ import React from 'react';
 
 import { eventCallback } from '.';
 
-declare interface AccessConfig {
+export declare interface AccessConfig {
   debug?: boolean;
   mode?: 'hide' | 'excerpt' | 'custom';
   percent?: number;
@@ -81,7 +81,7 @@ declare interface AccessConfig {
   cookies_path?: string;
 }
 
-declare interface AccessEvents {
+export declare interface AccessEvents {
   identityAvailable?: eventCallback<{
     userId: String,
     contextName: String
@@ -184,14 +184,12 @@ declare interface AccessEvents {
     buttonId: String;
   }>
 }
-declare interface Texts {
-  [key: string]: string;
-}
+
 declare interface AccessContextprops extends
 React.ComponentPropsWithoutRef<any> {
   appId: string;
   config?: AccessConfig;
-  texts?: Texts;
+  texts?: {[key: string]: string;};
   events?: AccessEvents;
   variables?: {
     [key: string]: any;

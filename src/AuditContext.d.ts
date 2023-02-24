@@ -12,7 +12,7 @@ interface AuditEvents {
   onIdentityUnknown?: eventCallback<any>;
   trackeError?: eventCallback<{error: Object}>;
 }
-interface AuditConfig {
+export declare interface AuditConfig {
   debug?: boolean;
   cookies_enabled?: boolean;
   cookies_domain?: string;

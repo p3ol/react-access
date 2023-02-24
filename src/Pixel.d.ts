@@ -1,10 +1,14 @@
+import { AuditConfig } from './AuditContext';
+
 declare interface PixelProps extends React.ComponentPropsWithoutRef<any> {
   type: 'page-view' | 'conversion';
   data?: {
     type: 'premium' | 'free' | 'page' | 'subscription'
   }
-  config?: Object;
-  options?: Object;
+  config?: AuditConfig;
+  options?: {
+    beacons?: boolean
+  };
   onDone?: () => any;
   reuse?: Boolean
 }
