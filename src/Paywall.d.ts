@@ -1,4 +1,4 @@
-import { MutableRefObject } from "react";
+import React, { MutableRefObject } from 'react';
 
 declare interface PaywallProps extends React.ComponentPropsWithRef<any> {
   contentRef: MutableRefObject<any>,
@@ -10,7 +10,7 @@ declare interface PaywallProps extends React.ComponentPropsWithRef<any> {
   styles?: Object,
   variables?: Object,
   pageType?: 'premium' | 'free' | 'page' | 'subscription' | 'registration'
-};
+}
 
-declare function Paywall(props: PaywallProps): JSX.Element;
+declare function Paywall(props: PaywallProps): JSX.Element
 export default Paywall;

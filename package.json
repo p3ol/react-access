@@ -10,7 +10,7 @@
   "cdn": "dist/poool-react-access.umd.js",
   "jsnext:main": "dist/esm/index.js",
   "module": "dist/esm/index.js",
-  "types": "dist/poool-react-access.umd.d.ts",
+  "types": "dist/poool-react-access.d.ts",
   "esnext": "src",
   "sideEffects": false,
   "devDependencies": {

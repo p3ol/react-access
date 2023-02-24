@@ -7,7 +7,7 @@ declare interface PixelProps extends React.ComponentPropsWithoutRef<any> {
   options?: Object;
   onDone?: () => any;
   reuse?: Boolean
-};
+}
 
 declare function Pixel (props: PixelProps): JSX.Element;
 export default Pixel;
