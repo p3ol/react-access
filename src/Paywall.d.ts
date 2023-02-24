@@ -2,7 +2,7 @@ import React, { MutableRefObject } from 'react';
 
 import { AccessConfig, AccessEvents } from './AccessContext';
 
-declare interface styles {
+export declare interface styles {
   layout: 'portrait' | 'landscape';
   brand_logo?: string;
   brand_cover?: string;

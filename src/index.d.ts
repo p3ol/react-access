@@ -6,3 +6,4 @@ export { default as AuditContext } from './AuditContext';
 export { default as Paywall } from './Paywall';
 export { default as Pixel } from './Pixel';
 export { default as RestrictedContent } from './RestrictedContent';
+export { useAccess, useAudit } from './hooks';

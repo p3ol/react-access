@@ -1,6 +1,6 @@
 import { eventCallback } from '.';
 
-interface AuditEvents {
+export declare interface AuditEvents {
   onIdentityAvailable?: eventCallback<{
     userId: string,
     contextName: String,
