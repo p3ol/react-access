@@ -1,9 +1,9 @@
 import { AuditConfig } from './AuditContext';
 
 declare interface PixelProps extends React.ComponentPropsWithoutRef<any> {
-  type: 'page-view' | 'conversion';
+  type: 'page-view';
   data?: {
-    type: 'premium' | 'free' | 'page' | 'subscription'
+    type: 'premium' | 'free' | 'page'
   }
   config?: AuditConfig;
   options?: {
