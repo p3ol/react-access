@@ -1,12 +1,13 @@
-import { AccessConfig, AccessEvents } from './AccessContext';
-import { AuditConfig, AuditEvents } from './AuditContext';
-import { styles } from './Paywall';
+import { Poool } from 'poool-access';
+
+import { AccessEvents } from './AccessContext';
+import { AuditEvents } from './AuditContext';
 
 export declare function useAccess(): {
   appId: String,
-  config: AccessConfig,
+  config: Poool.AccessConfigOptions,
   texts: {[key: string]: string}
-  styles: styles,
+  styles: Poool.styles,
   events: AccessEvents,
   variables: {[key: string]: any},
   scriptUrl: string,
@@ -17,7 +18,7 @@ export declare function useAccess(): {
 
 export declare function useAudit(): {
   appId: String,
-  config: AuditConfig,
+  config: Poool.AuditConfigOptions,
   events: AuditEvents,
   scriptUrl: string,
   lib: any

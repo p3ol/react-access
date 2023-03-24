@@ -1,4 +1,4 @@
-import { AuditConfig } from './AuditContext';
+import { Poool } from 'poool-access';
 
 declare interface PixelProps extends React.ComponentPropsWithoutRef<any> {
   type: 'page-view';
@@ -6,7 +6,7 @@ declare interface PixelProps extends React.ComponentPropsWithoutRef<any> {
     type?: 'premium' | 'free' | 'page',
     [key: string]: any
   }
-  config?: AuditConfig;
+  config?: Poool.AuditConfigOptions;
   options?: {
     beacons?: boolean,
     [key: string]: any
