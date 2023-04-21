@@ -80,7 +80,7 @@
   "dependencies": {
     "@babel/runtime-corejs3": "7.20.13",
     "@poool/junipero-utils": "2.0.0-rc.22",
-    "@types/poool-access": "^5.10.0",
+    "@types/poool-access": "5.10.0",
     "core-js": "3.27.2",
     "prop-types": "15.8.1"
   }
