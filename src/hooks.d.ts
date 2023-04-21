@@ -13,7 +13,7 @@ export declare function useAccess(): {
    * More infos:
    * https://www.poool.dev/docs/access/javascript/access/installation
    */
-  appId: String,
+  appId: string,
   /**
    * Your poool access config options
    *
@@ -79,7 +79,7 @@ export declare function useAudit(): {
    *
    * More infos: https://www.poool.dev/docs/access/javascript/audit/installation
    */
-  appId: String,
+  appId: string,
   /**
    * Your poool audit config options
    *

@@ -11,11 +11,11 @@ export declare interface AuditEvents {
    */
   onIdentityAvailable?: eventCallback<{
     userId: string,
-    contextName: String,
-    contextType: String,
-    contextValue: String,
-    groupSlug: String,
-    journeyName: String
+    contextName: string,
+    contextType: string,
+    contextValue: string,
+    groupSlug: string,
+    journeyName: string
   }>;
   /**
    * Triggered when the user ID isnt available (ex: disabled cookies).

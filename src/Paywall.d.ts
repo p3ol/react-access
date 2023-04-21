@@ -11,7 +11,7 @@ declare interface PaywallProps extends React.ComponentPropsWithRef<any> {
   /**
    * Custom wrapper component ID
    */
-  id?: String;
+  id?: string;
   /**
    * The paywall events
    *

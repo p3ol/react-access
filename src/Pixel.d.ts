@@ -42,7 +42,7 @@ declare interface PixelProps extends React.ComponentPropsWithoutRef<any> {
    *
    * More infos: https://www.poool.dev/docs/access/react
    */
-  reuse?: Boolean
+  reuse?: boolean
 }
 /**
  * Place our ` component anywhere inside an <AuditContext /> component (or
