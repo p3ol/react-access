@@ -155,7 +155,7 @@ Please note that this build will probably add more than 150kb to your final bund
 
 #### Props
 
-- `type` {`String`} Event type (supported types: `page-view`, `conversion`)
+- `type` {`String`} Event type (supported types: `page-view`)
 - `data`{`Object`} (optional but mandatory when type is page-view) Data associated to the event (see the [audit](https://poool.dev/docs/javascript/audit/methods#page-view) documentation)
 - `config` {`Object`} (optional) Pixel config (see the [configuration](https://poool.dev/docs/javascript/audit/configuration) documentation).
 - `options` {`Object`} (optional) Options to pass to the event (see the [audit](https://poool.dev/docs/javascript/audit/methods#options) documentation)

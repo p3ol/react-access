@@ -33,7 +33,7 @@ const Pixel = ({
 
 Pixel.displayName = 'Pixel';
 Pixel.propTypes = {
-  type: PropTypes.oneOf(['page-view', 'conversion']).isRequired,
+  type: PropTypes.oneOf(['page-view']).isRequired,
   data: PropTypes.object,
   config: PropTypes.object,
   options: PropTypes.object,
