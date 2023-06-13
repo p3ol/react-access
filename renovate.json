@@ -7,6 +7,13 @@
     "matchDepTypes": ["devDependencies", "dependencies"],
     "automerge": true
   }, {
+    "matchUpdateTypes": ["minor","major"],
+    "matchDepTypes": ["dependencies"],
+    "semanticCommitType": "feat"
+  }, {
+    "matchDepTypes": ["devDependencies"],
+    "prPriority": -1
+  }, {
     "matchPackagePatterns": ["^@poool/eslint"],
     "groupName": "poool eslint monorepo"
   }]
