@@ -3,11 +3,11 @@
     "config:base"
   ],
   "packageRules": [{
-    "updateTypes": ["patch", "pin"],
-    "depTypeList": ["devDependencies", "dependencies"],
+    "matchUpdateTypes": ["patch", "pin"],
+    "matchDepTypes": ["devDependencies", "dependencies"],
     "automerge": true
   }, {
-    "packagePatterns": ["^@poool/eslint"],
+    "matchPackagePatterns": ["^@poool/eslint"],
     "groupName": "poool eslint monorepo"
   }]
 }
