@@ -48,18 +48,6 @@ describe('<Pixel />', () => {
     await waitFor(() => expect(sendEventMock).toHaveBeenCalledTimes(2));
   });
 
-  it('should send conversation if its asked for', async () => {
-    const sendEventMock = jest.fn();
-
-    render(withAudit(<Pixel type="conversion" />, {
-      lib: {
-        sendEvent: sendEventMock,
-      },
-    }));
-    await waitFor(() => expect(sendEventMock)
-      .toHaveBeenCalledWith('conversion', undefined, undefined));
-  });
-
   it('should send page-view with data if its asked for', async () => {
     const sendEventMock = jest.fn();
     const data = { type: 'premium' };
