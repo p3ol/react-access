@@ -7,8 +7,8 @@ import {
 } from 'react';
 import PropTypes from 'prop-types';
 
-import { useAccess } from './hooks';
-import { generateId } from './utils';
+import { useAccess } from '../hooks';
+import { generateId } from '../utils';
 
 const Paywall = forwardRef(({
   id,

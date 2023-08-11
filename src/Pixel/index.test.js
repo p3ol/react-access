@@ -1,7 +1,7 @@
 import { render, waitFor } from '@testing-library/react';
 
-import { Pixel } from '../src';
-import { withAudit } from './utils';
+import { withAudit } from '~tests-utils';
+import Pixel from './index';
 
 describe('<Pixel />', () => {
   it('should immediatly send selected event', async () => {

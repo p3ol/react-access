@@ -3,8 +3,8 @@ import puppeteer from 'puppeteer';
 import devServer from 'jest-dev-server';
 import { render, waitFor } from '@testing-library/react';
 
-import { Paywall } from '../src';
-import { withAccess } from './utils';
+import { withAccess } from '~tests-utils';
+import Paywall from './index';
 
 describe('<Paywall />', () => {
   jest.setTimeout(30000);

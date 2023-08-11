@@ -1,7 +1,7 @@
 import { Poool } from 'poool-access';
 import React from 'react';
 
-import { eventCallback } from '.';
+import { eventCallback } from '../index';
 
 export declare interface AccessEvents {
   /**

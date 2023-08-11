@@ -2,8 +2,8 @@ import { useCallback, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import { mockState } from '@poool/junipero-utils';
 
-import { AuditContext as Ctx } from './contexts';
-import { loadScript } from './utils';
+import { AuditContext as Ctx } from '../contexts';
+import { loadScript } from '../utils';
 
 const AuditContext = ({
   appId,

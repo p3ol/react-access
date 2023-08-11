@@ -1,3 +1,5 @@
+const path = require('node:path');
+
 module.exports = {
   clearMocks: true,
   collectCoverage: true,
@@ -13,7 +15,7 @@ module.exports = {
   transform: {
     '^.+\\.js$': 'babel-jest',
   },
-  transformIgnorePatterns: [
-    'node_modules/(?!(rxjs)/)',
-  ],
+  moduleNameMapper: {
+    '^~tests-utils$': path.resolve(__dirname, 'tests/utils.js'),
+  },
 };

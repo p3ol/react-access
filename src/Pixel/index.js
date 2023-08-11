@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { useAudit } from './hooks';
+import { useAudit } from '../hooks';
 
 const Pixel = ({
   type,

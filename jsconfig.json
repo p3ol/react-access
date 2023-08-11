@@ -1,0 +1,8 @@
+
+{
+  "compilerOptions": {
+    "paths": {
+      "~tests-utils": ["./tests/utils.js"]
+    }
+  }
+}

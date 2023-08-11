@@ -2,9 +2,9 @@ import { useCallback, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import { mockState, mergeDeep } from '@poool/junipero-utils';
 
-import { AccessContext as Ctx } from './contexts';
-import { loadScript } from './utils';
-import AuditContext from './AuditContext';
+import { AccessContext as Ctx } from '../contexts';
+import { loadScript } from '../utils';
+import AuditContext from '../AuditContext';
 
 const AccessContext = ({
   appId,

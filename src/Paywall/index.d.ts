@@ -1,7 +1,7 @@
 import { Poool } from 'poool-access';
 import React, { MutableRefObject } from 'react';
 
-import { AccessEvents } from './AccessContext';
+import { AccessEvents } from '../AccessContext';
 
 declare interface PaywallProps extends React.ComponentPropsWithRef<any> {
   /**

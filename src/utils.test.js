@@ -1,4 +1,4 @@
-import { randomString, generateId } from '../src/utils';
+import { randomString, generateId } from './utils';
 
 describe('utils.js', () => {
   describe('randomString()', () => {

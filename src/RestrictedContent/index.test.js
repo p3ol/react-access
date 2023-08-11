@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import { RestrictedContent } from '../src';
+import RestrictedContent from './index';
 
 describe('<RestrictedContent />', () => {
 
