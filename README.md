@@ -221,7 +221,16 @@ yarn test
 
 This software is licensed under [MIT](https://github.com/p3ol/react-access/blob/master/LICENSE).
 
-## v2 Migration
+## v2 -> v3 Migration
+
+**There shouldn't be any migration needed for this version.**
+
+v3 only drops support for Node 14 & yarn, so unless you want to contribute to this repo using Node 14 or Yarn, you don't have to do anything.
+
+It also drops support for Internet Explorer, but as Access.js already dropped support for IE in 2019, this release only removes some useless IE polyfills.
+
+
+## v1 -> v2 Migration
 
 - `<PaywallContext />` has been replaced with `<AccessContext />` (used to show the paywall) and `<AuditContext />` (used to track particular events)
 - `usePoool` has been replaced with `useAccess` and `useAudit`, both respectively requiring the above contexts to be a parent component
