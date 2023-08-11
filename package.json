@@ -15,7 +15,7 @@
   "sideEffects": false,
   "engines": {
     "node": "16 || 18 || 20",
-    "yarn": "1"
+    "npm": ">=8"
   },
   "devDependencies": {
     "@babel/core": "7.22.10",
@@ -65,11 +65,12 @@
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
   },
   "scripts": {
+    "preinstall": "node ./scripts/check-package-manager.js",
     "clean": "rm -rf ./dist || true",
-    "prebuild": "yarn clean",
+    "prebuild": "npm run clean",
     "build": "./node_modules/.bin/rollup -c",
     "serve": "./node_modules/.bin/webpack serve --config ./webpack.config.js",
-    "prepack": "yarn build && yarn lint && yarn test",
+    "prepack": "npm run build && npm run lint && npm run test",
     "test": "NODE_ENV='test' ./node_modules/.bin/jest",
     "lint": "./node_modules/.bin/eslint --max-warnings=0 .",
     "release": "./node_modules/.bin/standard-version && git push --follow-tags"
