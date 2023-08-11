@@ -10,17 +10,17 @@ export declare interface AccessEvents {
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
   identityAvailable?: eventCallback<{
-    userId: String,
-    contextName: String
-     contextType: String,
-     contextValue: String,
-     groupSlug: String,
-     scenarioName: String,
-     widget: String,
-     actionName: String,
-     trigger: String,
-     triggerType: String,
-     triggerValue: String
+    userId: string,
+    contextName: string
+     contextType: string,
+     contextValue: string,
+     groupSlug: string,
+     scenarioName: string,
+     widget: string,
+     actionName: string,
+     trigger: string,
+     triggerType: string,
+     triggerValue: string
   }>;
   /**
    * Triggered when the paywall locks the current article.
@@ -32,11 +32,11 @@ export declare interface AccessEvents {
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
   ready?: eventCallback<{
-    widget: String,
-    actionName: String,
-    trigger: String,
-    triggerType: String,
-    triggerValue: String
+    widget: string,
+    actionName: string,
+    trigger: string,
+    triggerType: string,
+    triggerValue: string
   }>;
   /**
    * Triggered when the paywall has been seen by the user
@@ -45,11 +45,11 @@ export declare interface AccessEvents {
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
   paywallSeen?: eventCallback<{
-    widget: String,
-    actionName: String,
-    trigger: String,
-    triggerType: String,
-    triggerValue: String
+    widget: string,
+    actionName: string,
+    trigger: string,
+    triggerType: string,
+    triggerValue: string
   }>;
   /**
    * Triggered when the paywall unlocks the current article.
@@ -57,11 +57,11 @@ export declare interface AccessEvents {
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
   release?: eventCallback<{
-    widget: String,
-    actionName: String,
-    trigger: String,
-    triggerType: String,
-    triggerValue: String
+    widget: string,
+    actionName: string,
+    trigger: string,
+    triggerType: string,
+    triggerValue: string
   }>
   /**
    * Triggered when a user registers to your newsletter using
@@ -73,9 +73,9 @@ export declare interface AccessEvents {
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
   register?: eventCallback<{
-    email: String,
-    newsletterId: String,
-    passId: String
+    email: string,
+    newsletterId: string,
+    passId: string
   }>;
   /**
    * Triggered when a user has
@@ -84,11 +84,11 @@ export declare interface AccessEvents {
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
   subscribeClick?: eventCallback<{
-    widget: String,
-    actionName: String,
-    button: String,
+    widget: string,
+    actionName: string,
+    button: string,
     originalEvent: MouseEvent,
-    url: String
+    url: string
   }>;
   /**
    * Triggered when a user has clicked a signin button/link inside the paywall.
@@ -96,11 +96,11 @@ export declare interface AccessEvents {
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
   loginClick?: eventCallback<{
-    widget: String,
-    actionName: String,
-    button: String,
+    widget: string,
+    actionName: string,
+    button: string,
     originalEvent: MouseEvent,
-    url: String
+    url: string
   }>;
   /**
    * Triggered when a user has clicked the Link Discovery widget's button
@@ -109,11 +109,11 @@ export declare interface AccessEvents {
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
   discoveryLinkClick?: eventCallback<{
-    widget: String,
-    actionName: String,
-    button: String,
+    widget: string,
+    actionName: string,
+    button: string,
     originalEvent: MouseEvent,
-    url: String
+    url: string
   }>;
   /**
    * Triggered when a user has clicked the 'No thanks' link in the widget.
@@ -123,9 +123,9 @@ export declare interface AccessEvents {
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
   alternativeClick?: eventCallback<{
-    widget: String,
-    actionName: String,
-    button: String,
+    widget: string,
+    actionName: string,
+    button: string,
     originalEvent: MouseEvent,
   }>;
   /**
@@ -150,11 +150,11 @@ export declare interface AccessEvents {
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
   dataPolicyClick?: eventCallback<{
-    widget: String,
-    actionName: String,
-    button: String,
+    widget: string,
+    actionName: string,
+    button: string,
     originalEvent: MouseEvent,
-    url: String
+    url: string
   }>;
   /**
    * Triggered when a user registers through a form using the Form widget.
@@ -165,9 +165,9 @@ export declare interface AccessEvents {
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
   formSubmit?: eventCallback<{
-    name: String,
+    name: string,
     fields: { [fieldKey: string]: any },
-    valid: { [fieldKey: string]: Boolean}
+    valid: { [fieldKey: string]: boolean}
   }>;
   /**
    * Triggered when a user clicks on Sign-in with Facebook inside the paywall,
@@ -178,8 +178,8 @@ export declare interface AccessEvents {
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
   facebookLoginClick?: eventCallback<{
-    widget: String,
-    actionName: String,
+    widget: string,
+    actionName: string,
     originalEvent: MouseEvent,
   }>;
   /**
@@ -191,8 +191,8 @@ export declare interface AccessEvents {
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
   googleLoginClick?: eventCallback<{
-    widget: String,
-    actionName: String,
+    widget: string,
+    actionName: string,
     originalEvent: MouseEvent,
   }>;
   /**
@@ -220,17 +220,17 @@ export declare interface AccessEvents {
    * used in an advanced appearance or a form.
    *
    * Event Button
-   * Arguments: { event: { name: String, buttonId: String } }
+   * Arguments: { event: { name: string, buttonId: string } }
    *
    * Link Button
-   * Arguments: { event: { url: String, buttonId: String } }
+   * Arguments: { event: { url: string, buttonId: string } }
    *
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
   customButtonClick?: eventCallback<{
     name?: string;
     url?: string;
-    buttonId: String;
+    buttonId: string;
   }>
 }
 

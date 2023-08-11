@@ -1,4 +1,3 @@
-
 import { Poool } from 'poool-access';
 
 import { eventCallback } from '../index';
@@ -28,7 +27,7 @@ export declare interface AuditEvents {
    *
    * More infos: https://www.poool.dev/docs/access/javascript/audit/events
    */
-  trackeError?: eventCallback<{error: Object}>;
+  trackeError?: eventCallback<{error: object}>;
 }
 
 declare interface AuditContextProps

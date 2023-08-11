@@ -4,12 +4,13 @@ module.exports = {
     'react/react-in-jsx-scope': 0,
   },
   overrides: [{
-    files: ['**/*.test.js'],
+    files: ['src/**/*.test.js'],
     env: {
       jest: true,
     },
   }, {
     files: ['src/**/*.{ts,tsx}'],
+    extends: ['plugin:@typescript-eslint/recommended'],
     parser: '@typescript-eslint/parser',
     globals: {
       JSX: 'readonly',
@@ -17,7 +18,8 @@ module.exports = {
     },
     rules: {
       // function params are considered as unused vars
-      'no-unused-vars': 0,
+      // 'no-unused-vars': 0,
+      '@typescript-eslint/no-explicit-any': 0,
     },
   }],
 };
