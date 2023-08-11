@@ -5,7 +5,7 @@
 > The easiest way to add Poool Access to your React app ✨
 
 
-ℹ️ You're looking at the documentation for the v2 of React Access. If you're looking for v1, please see the [v1 docs](https://github.com/p3ol/react-access/tree/legacy/v1).
+ℹ️ You're looking at the documentation for the v2+ of React Access. If you're looking for v1, please see the [v1 docs](https://github.com/p3ol/react-access/tree/legacy/v1).
 
 ## Installation
 
