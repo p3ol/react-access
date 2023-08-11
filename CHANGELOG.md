@@ -2,6 +2,54 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/p3ol/react-access/compare/v2.0.2...v3.0.0) (2023-08-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* replace yarn with npm
+* upgrade various dev dependencies
+* remove node 14 compat & add node 20 compat
+* remove ie compatibility
+
+### Features
+
+* **doc:** remove conversion references from doc (and subscription event type too) ([ead586f](https://github.com/p3ol/react-access/commit/ead586f6ba48eb6ea5be633453a4f5494d3aba14))
+* pin types dependency ([be25466](https://github.com/p3ol/react-access/commit/be25466c661ce63d0dd15f5227972e80b09d9185))
+* **react-access:** add doc for every component ([5a84633](https://github.com/p3ol/react-access/commit/5a8463316bee793c6647a204c489581d916bfa95))
+* remove ie compatibility ([92ea08e](https://github.com/p3ol/react-access/commit/92ea08ed816479d705ebefb484f843c3304a8379))
+* remove node 14 compat & add node 20 compat ([377c20a](https://github.com/p3ol/react-access/commit/377c20a3fdc53693863c3b039632dd1aca351370))
+* **typescript:** remove conversions and subscription page type from pixel ([5ba9fc7](https://github.com/p3ol/react-access/commit/5ba9fc77e78ab56ff4aed2bc65e050f673735463))
+* update some types ([1cba97b](https://github.com/p3ol/react-access/commit/1cba97b443dbec71a9bbadecb97dcea943f8e924))
+* use DT types instead of redefining types ([e101021](https://github.com/p3ol/react-access/commit/e1010216ac392cba37acabbb417f0f589db35732))
+* use primitive types ([cd4689c](https://github.com/p3ol/react-access/commit/cd4689c382242f291ca6bd72b6cd6ccd5166d642))
+
+
+### Bug Fixes
+
+* **ci:** use yarn cache for node libraries ([134bd4f](https://github.com/p3ol/react-access/commit/134bd4f49f4d5fee96438cca8c6f2facf0aebe66))
+* **deps:** update dependency @babel/runtime-corejs3 to v7.20.13 ([5075b0a](https://github.com/p3ol/react-access/commit/5075b0a25a770ecdba6eb36ac8dda9f4870d15b2))
+* **deps:** update dependency @poool/junipero-utils to v2.0.0 ([3c6f1ae](https://github.com/p3ol/react-access/commit/3c6f1ae3648c8459f81272943f39b6e9f487a317))
+* **deps:** update dependency @poool/junipero-utils to v2.0.0-rc.22 ([fd6c2c1](https://github.com/p3ol/react-access/commit/fd6c2c144e16960ffd178c5fcffcbe07864e47fc))
+* **deps:** update dependency core-js to v3.25.1 ([ea1fccf](https://github.com/p3ol/react-access/commit/ea1fccfe48e7f5a6de98cf2aff38b058673a6b74))
+* **deps:** update dependency core-js to v3.25.2 ([1b77c17](https://github.com/p3ol/react-access/commit/1b77c17a4d8178d17c8ece43e5e5b62b27096a61))
+* **deps:** update dependency core-js to v3.25.3 ([54526a5](https://github.com/p3ol/react-access/commit/54526a5ca8d0b8721eea327664229963680f3895))
+* **deps:** update dependency core-js to v3.25.4 ([0afbdb0](https://github.com/p3ol/react-access/commit/0afbdb0ffc851e44f7ebdee5f7543986223e4012))
+* **deps:** update dependency core-js to v3.25.5 ([f875d0a](https://github.com/p3ol/react-access/commit/f875d0ab601fa7599c4e434b8f826e0f7be7fc75))
+* **deps:** update dependency core-js to v3.26.0 ([5343c85](https://github.com/p3ol/react-access/commit/5343c85ebac8f42538a0e125287b8404f574abf4))
+* **deps:** update dependency core-js to v3.26.1 ([f1f5f1b](https://github.com/p3ol/react-access/commit/f1f5f1bebe5b2e0862255b85e728e17e5f7e0c41))
+* **deps:** update dependency core-js to v3.27.2 ([29edf07](https://github.com/p3ol/react-access/commit/29edf078c6789f7d2a709a9cf8666858ab8f90d9))
+* **deps:** update dependency core-js to v3.30.1 ([9b10f20](https://github.com/p3ol/react-access/commit/9b10f20e482fea7d38c5bfcc2c6c1e283a6c4c45))
+* **deps:** update dependency core-js to v3.30.2 ([f0462ec](https://github.com/p3ol/react-access/commit/f0462ecabe75123cb466c92a2a8f70da287ced40))
+* lint typescript ([49d1c5c](https://github.com/p3ol/react-access/commit/49d1c5cf2a0b27f2ef02338abd22508e0723bf16))
+* **renovate:** minor/major updates are now features ([443631e](https://github.com/p3ol/react-access/commit/443631e527839b4b441a85c7dacec7ef14004d81))
+* **renovate:** rename deprecated fields ([d65190a](https://github.com/p3ol/react-access/commit/d65190a7ae622d42a5e767402b7506ef48a1018e))
+* use new junipero ([7a4edef](https://github.com/p3ol/react-access/commit/7a4edef636a1bb60bc3f4db2a10986d74193b4e8))
+
+
+* replace yarn with npm ([139e1e1](https://github.com/p3ol/react-access/commit/139e1e1c8c57dc30e5b9ec4f819deac80a630286))
+* upgrade various dev dependencies ([5183c85](https://github.com/p3ol/react-access/commit/5183c8546b8c45f1e38f8fef7c36e587e7d2f969))
+
 ### [2.0.2](https://github.com/p3ol/react-access/compare/v2.0.1...v2.0.2) (2022-09-05)
 
 
