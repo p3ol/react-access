@@ -96,17 +96,6 @@ export default () => {
 };
 ```
 
-### IE Compatibility
-
-As part of a global effort to deprecate Internet Explorer, we decided not to include IE polyfills by default.
-You can still manually import a version containing all the necessary polyfills for IE >= 11:
-
-```javascript
-import * as PooolReactAccess from '@poool/react-access/dist/ie/esm';
-```
-
-Please note that this build will probably add more than 150kb to your final bundle.
-
 ## Documentation
 
 ### `<AccessContext />`

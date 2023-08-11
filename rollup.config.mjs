@@ -11,9 +11,8 @@ import dts from 'rollup-plugin-dts';
 const __filename = fileURLToPath(import.meta.url);
 globalThis.__filename = globalThis._filename || __filename;
 
-const isForIE = process.env.BABEL_ENV === 'ie';
 const input = './src/index.js';
-const output = `./dist${isForIE ? '/ie' : ''}`;
+const output = './dist';
 const name = 'poool-react-access';
 const formats = ['umd', 'cjs', 'esm'];
 
