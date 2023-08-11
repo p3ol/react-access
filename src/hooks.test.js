@@ -1,26 +1,28 @@
-import puppeteer from 'puppeteer';
 import devServer from 'jest-dev-server';
+
+import { createBrowser } from '~tests-utils';
 
 jest.setTimeout(30000);
 
 describe('hooks.js', () => {
+  let server, browser, page;
 
-  describe('useAccess()', () => {
-    let browser, page;
+  beforeAll(async () => {
+    process.env.TEST_PORT = 63001;
 
-    beforeAll(async () => {
-      process.env.TEST_PORT = 63001;
-      await devServer.setup({
-        command: 'yarn serve',
-        port: 63001,
-        launchTimeout: 30000,
-      });
-
-      browser = await puppeteer.launch();
-      page = await browser.newPage();
-      await page.goto('http://localhost:63001/');
+    server = await devServer.setup({
+      command: 'yarn serve',
+      host: 'localhost',
+      port: 63001,
+      launchTimeout: 30000,
     });
 
+    browser = await createBrowser();
+    page = await browser.newPage();
+    await page.goto('http://localhost:63001/');
+  });
+
+  describe('useAccess()', () => {
     it('should provide the access lib', async () => {
       await page.waitForSelector('#has-access');
       const hasAccess = await page.evaluate(() =>
@@ -74,11 +76,11 @@ describe('hooks.js', () => {
 
       expect(hasTexts).toBe(true);
     });
+  });
 
-    afterAll(async () => {
-      await devServer.teardown();
-      await browser.close();
-    });
-
+  afterAll(async () => {
+    await page.close();
+    await devServer.teardown(server);
+    await browser.close();
   });
 });

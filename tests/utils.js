@@ -1,4 +1,12 @@
+import puppeteer from 'puppeteer';
+
 import { AccessContext, AuditContext } from '../src/contexts';
+
+export const createBrowser = () =>
+  puppeteer.launch({
+    headless: process.env.HEADFULL ? false : 'new',
+    pipe: true,
+  });
 
 export const withAudit = (component, audit = {}) => (
   <AuditContext.Provider
@@ -19,3 +27,5 @@ export const withAccess = (component, access = {}) => (
     { component }
   </AccessContext.Provider>
 );
+
+export const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));

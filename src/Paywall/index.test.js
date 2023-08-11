@@ -1,36 +1,25 @@
 import React from 'react';
-import puppeteer from 'puppeteer';
 import devServer from 'jest-dev-server';
 import { render, waitFor } from '@testing-library/react';
 
-import { withAccess } from '~tests-utils';
+import { withAccess, createBrowser, sleep } from '~tests-utils';
 import Paywall from './index';
 
 describe('<Paywall />', () => {
   jest.setTimeout(30000);
-  let browser;
+  let server, browser;
 
   beforeAll(async () => {
     process.env.TEST_PORT = 63002;
-    await devServer.setup({
+
+    server = await devServer.setup({
       command: 'yarn serve',
+      host: 'localhost',
       port: 63002,
       launchTimeout: 30000,
     });
 
-    browser = await puppeteer.launch({
-      headless: true,
-      dumpio: true,
-      pipe: true,
-      args: [
-        '--enable-logging',
-        '--lang=en-US,en',
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-web-security',
-        '--disable-features=IsolateOrigins,site-per-process',
-      ],
-    });
+    browser = await createBrowser();
   });
 
   it('should create paywall at start', () => {
@@ -192,13 +181,13 @@ describe('<Paywall />', () => {
 
       expect(content).toBe('This sentence should...');
 
-      await new Promise(resolve => setTimeout(resolve, 11));
+      await sleep(11);
 
       await page.evaluate(() =>
         document.querySelector('#consent-button').click()
       );
 
-      await new Promise(resolve => setTimeout(resolve, 11));
+      await sleep(11);
 
       const contentAfterConsent = await page.evaluate(() =>
         document.querySelector('#restricted-content').innerText
@@ -238,7 +227,7 @@ describe('<Paywall />', () => {
   });
 
   afterAll(async () => {
-    await devServer.teardown();
+    await devServer.teardown(server);
     await browser.close();
   });
 });
