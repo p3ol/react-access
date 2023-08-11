@@ -3,16 +3,16 @@ import {
   useState,
   useContext,
   createContext,
-  useMemo,
   useEffect,
+  useCallback,
 } from 'react';
 import { createRoot } from 'react-dom/client';
-import { createBrowserHistory } from 'history';
 import {
   Link,
   Routes,
   Route,
-  unstable_HistoryRouter as HistoryRouter,
+  BrowserRouter,
+  useLocation,
 } from 'react-router-dom';
 import {
   AccessContext,
@@ -204,51 +204,43 @@ const AlternativeHome = () => (
 const AppContext = createContext({});
 
 const App = () => {
-  const [enabled, setEnabled] = useState(!(
-    global.location.pathname === '/consent'
-  ));
-
-  const history_ = useMemo(() => (
-    createBrowserHistory()
-  ), []);
+  const location = useLocation();
+  const [enabled, setEnabled] = useState(location.pathname !== '/consent');
 
   useEffect(() => {
-    history_.listen(location => {
-      const pathname = location?.location?.pathname || location?.pathname;
-      setEnabled(!(pathname === '/consent'));
-    });
-  }, [history_]);
+    setEnabled(location.pathname !== '/consent');
+  }, [location]);
+
+  const getContext = useCallback(() => ({
+    enabled,
+    setEnabled,
+  }), [enabled, setEnabled]);
 
   return (
-    <HistoryRouter history={history_}>
-      <AppContext.Provider value={{ setEnabled }}>
-        <AccessContext
-          appId="155PF-L7Q6Q-EB2GG-04TF8"
-          config={{
-            cookies_enabled: enabled,
-            debug: true,
-            custom_segment: 'react',
-            cookies_domain: 'localhost',
-            audit_load_timeout: 30000,
-          }}
-          texts={{}}
-          styles={{}}
-          withAudit={true}
-        >
-          <Routes>
-            <Route path="/premium" exact={true} element={<Premium />} />
-            <Route path="/consent" exact={true} element={<Consent />} />
-            <Route
-              path="/alt-home"
-              exact={true}
-              element={<AlternativeHome />}
-            />
-            <Route exact={true} path="/" element={<Home />} />
-          </Routes>
-        </AccessContext>
-      </AppContext.Provider>
-    </HistoryRouter>
+    <AppContext.Provider value={getContext()}>
+      <AccessContext
+        appId="155PF-L7Q6Q-EB2GG-04TF8"
+        config={{
+          cookies_enabled: enabled,
+          debug: true,
+          custom_segment: 'react',
+          cookies_domain: 'localhost',
+          audit_load_timeout: 30000,
+        }}
+        styles={{}}
+        texts={{}}
+        withAudit={true}
+      >
+        <Routes>
+          <Route path="/premium" element={<Premium />} />
+          <Route path="/consent" element={<Consent />} />
+          <Route path="/alt-home" element={<AlternativeHome />} />
+          <Route index element={<Home />} />
+        </Routes>
+      </AccessContext>
+    </AppContext.Provider>
   );
 };
 
-createRoot(document.getElementById('app')).render(<App />);
+createRoot(document.getElementById('app'))
+  .render(<BrowserRouter><App /></BrowserRouter>);
