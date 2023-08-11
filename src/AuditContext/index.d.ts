@@ -1,3 +1,4 @@
+import { ComponentPropsWithoutRef } from 'react';
 import { Poool } from 'poool-access';
 
 import { eventCallback } from '../index';
@@ -27,11 +28,10 @@ export declare interface AuditEvents {
    *
    * More infos: https://www.poool.dev/docs/access/javascript/audit/events
    */
-  trackeError?: eventCallback<{error: object}>;
+  trackeError?: eventCallback<{ error: object }>;
 }
 
-declare interface AuditContextProps
-extends React.ComponentPropsWithoutRef<any> {
+declare interface AuditContextProps extends ComponentPropsWithoutRef<any> {
   /**
    * Your Poool App ID
    *
@@ -67,4 +67,5 @@ extends React.ComponentPropsWithoutRef<any> {
  *
  */
 declare function AuditContext(props: AuditContextProps): JSX.Element;
+
 export default AuditContext;

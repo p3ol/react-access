@@ -1,5 +1,5 @@
+import { ComponentPropsWithoutRef } from 'react';
 import { Poool } from 'poool-access';
-import React from 'react';
 
 import { eventCallback } from '../index';
 
@@ -134,8 +134,10 @@ export declare interface AccessEvents {
    *
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
-  error?: (err, event?: {forceRelease?: () => any}) => any |
-    {once: boolean, callback: (err, event?: {forceRelease?: () => any}) => any};
+  error?: (err, event?: { forceRelease?: () => any }) => any |
+    { once: boolean, callback: (err, event?: {
+      forceRelease?: () => any;
+    }) => any };
   /**
    * Triggered if the browser is detected
    * to be too old to run Poool's paywall correctly.
@@ -234,8 +236,7 @@ export declare interface AccessEvents {
   }>
 }
 
-declare interface AccessContextprops extends
-React.ComponentPropsWithoutRef<any> {
+declare interface AccessContextprops extends ComponentPropsWithoutRef<any> {
   /**
    * Your poool app ID
    */
@@ -252,7 +253,7 @@ React.ComponentPropsWithoutRef<any> {
    *
    * More infos: https://www.poool.dev/docs/access/javascript/access/texts
    */
-  texts?: {[key: string]: string;};
+  texts?: { [key: string]: string; };
   /**
    * Your access events
    *
@@ -288,4 +289,5 @@ React.ComponentPropsWithoutRef<any> {
  * Everything should be wrapped inside this component
  */
 declare function AccessContext(props: AccessContextprops): JSX.Element;
+
 export default AccessContext;

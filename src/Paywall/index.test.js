@@ -1,6 +1,5 @@
-import React from 'react';
-import devServer from 'jest-dev-server';
 import { render, waitFor } from '@testing-library/react';
+import devServer from 'jest-dev-server';
 
 import { withAccess, createBrowser, sleep } from '~tests-utils';
 import Paywall from './index';

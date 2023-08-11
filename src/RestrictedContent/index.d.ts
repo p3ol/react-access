@@ -1,5 +1,6 @@
-declare interface RestrictedContentProps
-extends React.ComponentPropsWithRef<any> {
+import { ComponentPropsWithRef, ReactNode } from 'react';
+
+declare interface RestrictedContentProps extends ComponentPropsWithRef<any> {
   /**
    * Way to hide content see
    * [Access configuration]
@@ -15,7 +16,7 @@ extends React.ComponentPropsWithRef<any> {
    *
    * More infos: https://www.poool.dev/docs/access/react
    */
-  children: React.ReactNode | JSX.Element;
+  children: ReactNode | JSX.Element;
   /**
    * The restriction percentage
    *

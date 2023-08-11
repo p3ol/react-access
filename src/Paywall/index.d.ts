@@ -1,9 +1,9 @@
 import { Poool } from 'poool-access';
-import React, { MutableRefObject } from 'react';
+import { MutableRefObject, ComponentPropsWithRef, ReactNode } from 'react';
 
 import { AccessEvents } from '../AccessContext';
 
-declare interface PaywallProps extends React.ComponentPropsWithRef<any> {
+declare interface PaywallProps extends ComponentPropsWithRef<any> {
   /**
    * Ref to the content
    */
@@ -21,7 +21,7 @@ declare interface PaywallProps extends React.ComponentPropsWithRef<any> {
   /**
    * The paywall children
    */
-  children?: React.ReactNode;
+  children?: ReactNode;
   /**
    * The paywall config options
    *
@@ -61,4 +61,5 @@ declare interface PaywallProps extends React.ComponentPropsWithRef<any> {
  * Place our `<Paywall />` component where you want your paywall to be displayed
  */
 declare function Paywall(props: PaywallProps): JSX.Element
+
 export default Paywall;

@@ -1,6 +1,7 @@
+import { ComponentPropsWithoutRef } from 'react';
 import { Poool } from 'poool-access';
 
-declare interface PixelProps extends React.ComponentPropsWithoutRef<any> {
+declare interface PixelProps extends ComponentPropsWithoutRef<any> {
   /**
    * The event type
    *
@@ -52,4 +53,5 @@ declare interface PixelProps extends React.ComponentPropsWithoutRef<any> {
  * More infos: https://www.poool.dev/docs/access/react
  */
 declare function Pixel (props: PixelProps): JSX.Element;
+
 export default Pixel;

@@ -26,7 +26,7 @@ export declare function useAccess(): {
    *
    * More infos: https://www.poool.dev/docs/access/javascript/access/texts
    */
-  texts: {[key: string]: string}
+  texts: { [key: string]: string }
   /**
    * Your poool access styles
    *
@@ -44,7 +44,7 @@ export declare function useAccess(): {
    *
    * More infos: https://www.poool.dev/docs/access/javascript/access/variables
    */
-  variables: {[key: string]: any},
+  variables: { [key: string]: any },
   /**
    * The poool access script url
    *
