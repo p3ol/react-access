@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.1](https://github.com/p3ol/react-access/compare/v3.0.0...v3.0.1) (2023-08-11)
+
+
+### Bug Fixes
+
+* include prop types in package ([ace9617](https://github.com/p3ol/react-access/commit/ace9617e0e6662f2f804258a691898a562ad4a57))
+
 ## [3.0.0](https://github.com/p3ol/react-access/compare/v2.0.2...v3.0.0) (2023-08-11)
 
 
