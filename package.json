@@ -13,6 +13,10 @@
   "types": "dist/poool-react-access.d.ts",
   "esnext": "src",
   "sideEffects": false,
+  "engines": {
+    "node": "16 || 18 || 20",
+    "yarn": "1"
+  },
   "devDependencies": {
     "@babel/core": "7.21.8",
     "@babel/eslint-parser": "7.21.8",
