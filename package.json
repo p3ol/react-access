@@ -79,7 +79,7 @@
     "@babel/runtime-corejs3": "7.22.10",
     "@junipero/core": "3.2.2",
     "@types/poool-access": "5.10.0",
-    "core-js": "3.32.0",
+    "core-js": "3.32.1",
     "prop-types": "15.8.1"
   }
 }
