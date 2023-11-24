@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.2](https://github.com/p3ol/react-access/compare/v3.0.1...v3.0.2) (2023-11-24)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @junipero/core to v3.2.2 ([2abf8bd](https://github.com/p3ol/react-access/commit/2abf8bd9e76e9a539f46a95cb69296c464e73bcf))
+* **deps:** update dependency core-js to v3.32.1 ([50fe369](https://github.com/p3ol/react-access/commit/50fe3693d87cf2d81796f30c639a63d12572320a))
+* **deps:** update dependency core-js to v3.32.2 ([c488e73](https://github.com/p3ol/react-access/commit/c488e7397a15fdd00849436836471669c87dabcd))
+* remove blocking preinstall script ([6c79819](https://github.com/p3ol/react-access/commit/6c79819298ad83623fe63b8428bd9383302610e8))
+* **renovate:** extend p3ol custom Presets ([9cc83de](https://github.com/p3ol/react-access/commit/9cc83de9b1af9268079c9330fc4fa8d8c300d69c))
+
 ### [3.0.1](https://github.com/p3ol/react-access/compare/v3.0.0...v3.0.1) (2023-08-11)
 
 
