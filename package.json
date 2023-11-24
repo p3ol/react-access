@@ -1,6 +1,6 @@
 {
   "name": "@poool/react-access",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "The easiest way to add Poool Access to your React app ✨",
   "main": "dist/poool-react-access.cjs.js",
   "repository": "https://github.com/p3ol/react-access.git",
@@ -65,7 +65,6 @@
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
   },
   "scripts": {
-    "preinstall": "node ./scripts/check-package-manager.js",
     "clean": "rm -rf ./dist || true",
     "prebuild": "npm run clean",
     "build": "./node_modules/.bin/rollup -c",
