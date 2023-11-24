@@ -65,7 +65,6 @@
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
   },
   "scripts": {
-    "preinstall": "node ./scripts/check-package-manager.js",
     "clean": "rm -rf ./dist || true",
     "prebuild": "npm run clean",
     "build": "./node_modules/.bin/rollup -c",
