@@ -76,7 +76,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.22.15",
-    "@junipero/core": "3.2.2",
+    "@junipero/core": "3.4.1",
     "@types/poool-access": "5.14.1",
     "core-js": "3.32.2",
     "prop-types": "15.8.1"
