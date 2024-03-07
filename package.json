@@ -51,7 +51,7 @@
     "puppeteer": "21.6.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-router-dom": "6.20.1",
+    "react-router-dom": "6.22.3",
     "rollup": "3.29.4",
     "rollup-plugin-dts": "6.1.0",
     "sinon": "17.0.1",
