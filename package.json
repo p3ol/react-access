@@ -17,6 +17,9 @@
     "node": "16 || 18 || 20",
     "npm": ">=8"
   },
+  "workspaces": [
+    "examples/*"
+  ],
   "devDependencies": {
     "@babel/core": "7.23.5",
     "@babel/eslint-parser": "7.23.3",
@@ -68,11 +71,12 @@
     "clean": "rm -rf ./dist || true",
     "prebuild": "npm run clean",
     "build": "./node_modules/.bin/rollup -c",
-    "serve": "./node_modules/.bin/webpack serve --config ./webpack.config.js",
     "prepack": "npm run build && npm run lint && npm run test",
     "test": "NODE_ENV='test' ./node_modules/.bin/jest",
     "lint": "./node_modules/.bin/eslint --max-warnings=0 .",
-    "release": "./node_modules/.bin/standard-version && git push --follow-tags"
+    "release": "./node_modules/.bin/standard-version && git push --follow-tags",
+    "example:basic": "webpack serve --config ./examples/basic/webpack.config.js",
+    "example:next": "cd examples/next && npm run dev"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.23.5",
@@ -80,5 +84,6 @@
     "@types/poool-access": "5.14.1",
     "core-js": "3.34.0",
     "prop-types": "15.8.1"
-  }
+  },
+  "packageManager": "yarn@4.1.1"
 }
