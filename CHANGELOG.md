@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/p3ol/react-access/compare/v3.0.2...v3.1.0) (2024-04-16)
+
+
+### Features
+
+* add scriptLoadTimeout option & wait for script to load ([13b8496](https://github.com/p3ol/react-access/commit/13b849684a71c74e461ecdac7a50c8288c4b37c9))
+* **deps:** update dependency @junipero/core to v3.4.1 ([1e5645e](https://github.com/p3ol/react-access/commit/1e5645ef7f886a86d9b38d6339a1ace4ae413403))
+* **deps:** update dependency @types/poool-access to v5.14.1 ([77e919b](https://github.com/p3ol/react-access/commit/77e919b661452d4b77dc7f845b4878da1a36cefe))
+* **deps:** update dependency core-js to v3.34.0 ([94f67b1](https://github.com/p3ol/react-access/commit/94f67b13207ebf629b82427bc19a884d7bae4da5))
+
 ### [3.0.2](https://github.com/p3ol/react-access/compare/v3.0.1...v3.0.2) (2023-11-24)
 
 
