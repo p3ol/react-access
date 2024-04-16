@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    examples: './examples/index.js',
+    example: path.resolve(__dirname, './index.js'),
   },
   devtool: 'inline-source-map',
   mode: 'development',
@@ -21,15 +21,15 @@ module.exports = {
       debug: true,
     }),
     new HtmlWebpackPlugin({
-      template: './examples/index.html',
-      chunks: ['examples'],
+      template: path.resolve(__dirname, './index.html'),
+      chunks: ['example'],
       inject: true,
     }),
   ],
   resolve: {
     extensions: ['.js'],
     alias: {
-      '@poool/react-access': path.resolve('./src'),
+      '@poool/react-access': path.resolve(__dirname, '../../src'),
     },
   },
   module: {
