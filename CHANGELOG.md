@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.1](https://github.com/p3ol/react-access/compare/v3.1.0...v3.1.1) (2024-04-16)
+
+
+### Bug Fixes
+
+* use correct selector ([c14ba9f](https://github.com/p3ol/react-access/commit/c14ba9f281aba3d72f661056e4d9081a8e62842c))
+
 ## [3.1.0](https://github.com/p3ol/react-access/compare/v3.0.2...v3.1.0) (2024-04-16)
 
 
