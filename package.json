@@ -69,12 +69,11 @@
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
-    "prebuild": "npm run clean",
-    "build": "./node_modules/.bin/rollup -c",
-    "prepack": "npm run build && npm run lint && npm run test",
-    "test": "NODE_ENV='test' ./node_modules/.bin/jest",
-    "lint": "./node_modules/.bin/eslint --max-warnings=0 .",
-    "release": "./node_modules/.bin/standard-version && git push --follow-tags",
+    "build": "yarn clean && rollup -c",
+    "prepack": "yarn build && yarn lint && yarn test",
+    "test": "NODE_ENV='test' jest",
+    "lint": "eslint --max-warnings=0 .",
+    "release": "standard-version && git push --follow-tags",
     "example:basic": "webpack serve --config ./examples/basic/webpack.config.js",
     "example:next": "cd examples/next && npm run dev"
   },
