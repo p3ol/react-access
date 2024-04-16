@@ -26,7 +26,7 @@ export const loadScript = (
     return resolve();
   }
 
-  const existing = document.getElementById(`#${id}`);
+  const existing = globalThis.document.getElementById(id);
 
   if (existing) {
     return Promise.race([
