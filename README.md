@@ -109,6 +109,7 @@ export default () => {
 - `events` {`Object`} (optional) Paywall events listeners (see the [events](https://poool.dev/docs/javascript/access/events) documentation).
 - `variables` {`Object`} (optional) Paywall variables (see the [variables](https://poool.dev/docs/javascript/access/variables) documentation).
 - `scriptUrl` {`String`} (optional, default: `'https://assets.poool.fr/access.min.js'`) Default Poool Access SDK url
+- `scriptLoadTimeout` {`Number`} (optional, default: `2000`) Timeout for the script to load
 - `withAudit` {`Boolean`} (optional, default: `false`) Whether to include AuditContext in AccessContext or not
 
 ### `<AuditContext />`
@@ -119,6 +120,7 @@ export default () => {
 - `config` {`Object`} (optional) Default audit config (see the [configuration](https://poool.dev/docs/javascript/audit/configuration) documentation).
 - `events` {`Object`} (optional) Audit events listeners (see the [events](https://poool.dev/docs/javascript/audit/events) documentation).
 - `scriptUrl` {`String`} (optional, default: `'https://assets.poool.fr/audit.min.js'`) Default Poool Audit SDK url
+- `scriptLoadTimeout` {`Number`} (optional, default: `2000`) Timeout for the script to load
 
 ### `<RestrictedContent />`
 

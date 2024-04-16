@@ -16,14 +16,23 @@ export const generateId = () => {
   return id;
 };
 
-export const loadScript = (url, id) => new Promise((resolve, reject) => {
+export const loadScript = (
+  url,
+  id,
+  { timeout } = {}
+) => new Promise((resolve, reject) => {
   /* istanbul ignore else: tested inside puppeteer */
   if (process.env.NODE_ENV === 'test') {
     return resolve();
   }
 
-  if (document.querySelector(`#${id}`)) {
-    return resolve();
+  const existing = document.getElementById(`#${id}`);
+
+  if (existing) {
+    return Promise.race([
+      new Promise(resolve => existing.addEventListener('load', resolve)),
+      new Promise(resolve => setTimeout(resolve, timeout ?? 2000)),
+    ]);
   }
 
   const script = globalThis.document.createElement('script');

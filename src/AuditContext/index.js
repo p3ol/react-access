@@ -10,6 +10,7 @@ const AuditContext = ({
   config,
   events,
   scriptUrl = 'https://assets.poool.fr/audit.min.js',
+  scriptLoadTimeout = 2000,
   ...rest
 }) => {
   const [state, dispatch] = useReducer(mockState, {
@@ -31,7 +32,9 @@ const AuditContext = ({
       !globalThis.PooolAudit ||
       !globalThis.PooolAudit.isPoool
     ) {
-      await loadScript(scriptUrl, 'poool-react-audit-lib');
+      await loadScript(scriptUrl, 'poool-react-audit-lib', {
+        timeout: scriptLoadTimeout,
+      });
     }
 
     const auditRef = globalThis.PooolAudit || globalThis.Audit;
@@ -88,6 +91,7 @@ AuditContext.propTypes = {
   config: PropTypes.object,
   events: PropTypes.object,
   scriptUrl: PropTypes.string,
+  scriptLoadTimeout: PropTypes.number,
 };
 
 export default AuditContext;

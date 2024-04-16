@@ -14,6 +14,7 @@ const AccessContext = ({
   events,
   variables,
   scriptUrl = 'https://assets.poool.fr/access.min.js',
+  scriptLoadTimeout = 2000,
   withAudit = false,
   ...rest
 }) => {
@@ -32,7 +33,9 @@ const AccessContext = ({
       !globalThis.PooolAccess ||
       !globalThis.PooolAccess.isPoool
     ) {
-      await loadScript(scriptUrl, 'poool-react-access-lib');
+      await loadScript(scriptUrl, 'poool-react-access-lib', {
+        timeout: scriptLoadTimeout,
+      });
     }
 
     const accessRef = globalThis.PooolAccess || globalThis.Access;
@@ -113,6 +116,7 @@ AccessContext.propTypes = {
   events: PropTypes.object,
   variables: PropTypes.object,
   scriptUrl: PropTypes.string,
+  scriptLoadTimeout: PropTypes.number,
   withAudit: PropTypes.bool,
 };
 
