@@ -11,7 +11,7 @@ describe('hooks.js', () => {
     process.env.TEST_PORT = 63001;
 
     server = await devServer.setup({
-      command: 'yarn serve',
+      command: 'yarn example:basic',
       host: 'localhost',
       port: 63001,
       launchTimeout: 30000,

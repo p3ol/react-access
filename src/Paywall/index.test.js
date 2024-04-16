@@ -12,7 +12,7 @@ describe('<Paywall />', () => {
     process.env.TEST_PORT = 63002;
 
     server = await devServer.setup({
-      command: 'yarn serve',
+      command: 'yarn example:basic',
       host: 'localhost',
       port: 63002,
       launchTimeout: 30000,
