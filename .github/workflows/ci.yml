@@ -17,8 +17,9 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: npm
+          node-version: 20
+          check-latest: true
+          cache: yarn
       - name: Install deps
         run: yarn install
       - name: Eslint check
@@ -28,14 +29,18 @@ jobs:
     name: Unit tests
     runs-on: ubuntu-22.04
     timeout-minutes: 5
+    strategy:
+      matrix:
+        node-version: [18, 20]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: npm
+          node-version: ${{ matrix.node-version }}
+          check-latest: true
+          cache: yarn
       - name: Install deps
         run: yarn install
       - name: Test
@@ -55,8 +60,9 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: npm
+          node-version: 20
+          check-latest: true
+          cache: yarn
       - name: Install deps
         run: yarn install
       - name: Build
