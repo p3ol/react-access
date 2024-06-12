@@ -81,7 +81,7 @@
     "@babel/runtime-corejs3": "7.23.5",
     "@junipero/core": "3.4.1",
     "@types/poool-access": "5.14.1",
-    "core-js": "3.34.0",
+    "core-js": "3.37.1",
     "prop-types": "15.8.1"
   },
   "packageManager": "yarn@4.1.1"
