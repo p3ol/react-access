@@ -1470,16 +1470,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime-corejs3@npm:7.23.2":
-  version: 7.23.2
-  resolution: "@babel/runtime-corejs3@npm:7.23.2"
-  dependencies:
-    core-js-pure: "npm:^3.30.2"
-    regenerator-runtime: "npm:^0.14.0"
-  checksum: 10c0/1362f04cae16d99175961e4113618e5ae210e17053605d4cd2c7b93b3a0334fcfe6a689601d20c12f8946cd8a472430e25f0bf09b7dcd851f63fd82749fd7503
-  languageName: node
-  linkType: hard
-
 "@babel/runtime-corejs3@npm:7.23.5":
   version: 7.23.5
   resolution: "@babel/runtime-corejs3@npm:7.23.5"
@@ -1959,13 +1949,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@junipero/core@npm:3.4.1":
-  version: 3.4.1
-  resolution: "@junipero/core@npm:3.4.1"
-  dependencies:
-    "@babel/runtime-corejs3": "npm:7.23.2"
-    core-js: "npm:3.33.1"
-  checksum: 10c0/ed1a2417fea01d42cae601c37c0132fb24eef91e7b707e7df9bcebd792528c20efdea4c8ffeab848815588670252916e916cae0dc703ac833ab546909af1c967
+"@junipero/core@npm:3.7.0":
+  version: 3.7.0
+  resolution: "@junipero/core@npm:3.7.0"
+  checksum: 10c0/a57c26bdc104da729eb2935676c249a15e4065773e76eb94cd42c6570e15f2ed3175d4f4ae5d3c01c2ffdb644bb085a08dd0db0de8ff531a7bd807046c71d572
   languageName: node
   linkType: hard
 
@@ -2155,7 +2142,7 @@ __metadata:
   resolution: "@poool/react-access@portal:../../::locator=poool-react-access-next-example%40workspace%3Aexamples%2Fnext"
   dependencies:
     "@babel/runtime-corejs3": "npm:7.23.5"
-    "@junipero/core": "npm:3.4.1"
+    "@junipero/core": "npm:3.7.0"
     "@types/poool-access": "npm:5.14.1"
     core-js: "npm:3.34.0"
     prop-types: "npm:15.8.1"
@@ -2175,7 +2162,7 @@ __metadata:
     "@babel/preset-env": "npm:7.23.5"
     "@babel/preset-react": "npm:7.23.3"
     "@babel/runtime-corejs3": "npm:7.23.5"
-    "@junipero/core": "npm:3.4.1"
+    "@junipero/core": "npm:3.7.0"
     "@poool/eslint-config": "npm:3.0.1"
     "@poool/eslint-config-react": "npm:3.0.1"
     "@poool/eslint-plugin": "npm:3.0.0"
@@ -4641,13 +4628,6 @@ __metadata:
   version: 3.36.1
   resolution: "core-js-pure@npm:3.36.1"
   checksum: 10c0/b964c7aa35665a4ecd513f62d695d99e96bb9e42621f7fcc823a613fab4155525d5c2875e46fcc4e6a3396c1fb7d543aee8f7afd83aa34531261b30af759c3d6
-  languageName: node
-  linkType: hard
-
-"core-js@npm:3.33.1":
-  version: 3.33.1
-  resolution: "core-js@npm:3.33.1"
-  checksum: 10c0/cf84a4fc430778fcc0195a9b47c9121f46e710eb0b5110ad8884aac504c9480ccbbd33d0b0f9c1936d2a6c8325c510cf8b3ec68863c352e7de91d661f1e0860a
   languageName: node
   linkType: hard
 
