@@ -31,7 +31,7 @@ const defaultPlugins = [
       },
     },
   }),
-  commonjs(),
+  commonjs({ include: /node_modules/ }),
   resolve({
     extensions: ['.js', '.ts', '.tsx', '.json', '.node'],
   }),
