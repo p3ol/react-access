@@ -2,7 +2,7 @@
   "name": "poool-react-access-next-example",
   "dependencies": {
     "@poool/react-access": "portal:../../",
-    "next": "14.2.1"
+    "next": "14.2.5"
   },
   "scripts": {
     "dev": "next"
