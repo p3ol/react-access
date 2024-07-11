@@ -14,8 +14,7 @@
   "esnext": "src",
   "sideEffects": false,
   "engines": {
-    "node": "16 || 18 || 20",
-    "npm": ">=8"
+    "node": "16 || 18 || 20 || 22"
   },
   "workspaces": [
     "examples/*"
