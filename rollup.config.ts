@@ -11,9 +11,10 @@ const output = './dist';
 const name = 'poool-react-access';
 const formats: ModuleFormat[] = ['umd', 'cjs', 'esm'];
 
-const defaultExternals = ['react'];
+const defaultExternals = ['react', 'react-dom'];
 const defaultGlobals = {
   react: 'React',
+  'react-dom': 'ReactDOM',
 };
 
 const defaultPlugins = [
@@ -31,7 +32,9 @@ const defaultPlugins = [
     },
   }),
   commonjs(),
-  resolve(),
+  resolve({
+    extensions: ['.js', '.ts', '.tsx', '.json', '.node'],
+  }),
   terser(),
 ];
 

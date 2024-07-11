@@ -2,16 +2,12 @@
   "name": "@poool/react-access",
   "version": "3.1.1",
   "description": "The easiest way to add Poool Access to your React app ✨",
-  "main": "dist/poool-react-access.cjs.js",
   "repository": "https://github.com/p3ol/react-access.git",
   "author": "Ugo Stephant <ugo@poool.fr>",
   "license": "MIT",
-  "unpkg": "dist/poool-react-access.umd.js",
-  "cdn": "dist/poool-react-access.umd.js",
-  "jsnext:main": "dist/esm/index.js",
+  "main": "dist/poool-react-access.cjs.js",
   "module": "dist/esm/index.js",
   "types": "dist/poool-react-access.d.ts",
-  "esnext": "src",
   "sideEffects": false,
   "engines": {
     "node": "16 || 18 || 20 || 22"
@@ -61,7 +57,9 @@
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
-    "build": "yarn clean && rollup --configPlugin @rollup/plugin-swc -c",
+    "build": "yarn clean && yarn build:code && yarn build:types",
+    "build:code": "rollup --configPlugin @rollup/plugin-swc -c",
+    "build:types": "tsc --project ./tsconfig.build.json",
     "prepack": "yarn build && yarn lint && yarn test",
     "test": "NODE_ENV='test' jest",
     "lint": "eslint --max-warnings=0 .",
