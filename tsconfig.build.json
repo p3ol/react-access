@@ -8,5 +8,6 @@
     "outDir": "dist/types",
     "baseUrl": "."
   },
-  "exclude": ["tests", "**/*.test.ts", "rollup.config.ts"]
+  "include": ["src"],
+  "exclude": ["tests", "**/*.test.{ts|tsx|js}", "rollup.config.ts"]
 }

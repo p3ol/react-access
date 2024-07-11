@@ -7,9 +7,11 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
+    "jsx": "react-jsx",
     "noEmit": true,
     "incremental": true,
     "esModuleInterop": true,
+    "types": ["jest", "node"],
     "module": "esnext",
     "lib": ["esnext", "dom"],
     "moduleResolution": "bundler",
@@ -17,5 +19,9 @@
     "resolveJsonModule": true,
     "noImplicitAny": true,
     "allowSyntheticDefaultImports": true
-  }
+  },
+  "exclude": [
+    "**/dist/*",
+    "node_modules/**/*",
+  ]
 }

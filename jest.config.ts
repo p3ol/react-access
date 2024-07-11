@@ -1,6 +1,8 @@
-const path = require('node:path');
+import path from 'node:path';
 
-module.exports = {
+import type { Config } from 'jest';
+
+const config: Config = {
   clearMocks: true,
   collectCoverage: true,
   fakeTimers: {
@@ -13,9 +15,11 @@ module.exports = {
     'index.js',
   ],
   transform: {
-    '^.+\\.js$': 'babel-jest',
+    '^.+\\.[j|t]sx?$': '@swc/jest',
   },
   moduleNameMapper: {
     '^~tests-utils$': path.resolve(__dirname, 'tests/utils.js'),
   },
 };
+
+export default config;

@@ -6,7 +6,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
 import swc from '@rollup/plugin-swc';
 
-const input = './src/index.js';
+const input = './src/index.ts';
 const output = './dist';
 const name = 'poool-react-access';
 const formats: ModuleFormat[] = ['umd', 'cjs', 'esm'];
