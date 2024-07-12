@@ -69,7 +69,7 @@
     "build": "yarn clean && yarn build:code && yarn build:types",
     "build:code": "rollup --configPlugin @rollup/plugin-swc -c",
     "build:types": "tsc --project ./tsconfig.build.json",
-    "prepack": "yarn build && yarn lint && yarn test",
+    "prepack": "yarn build && yarn lint && yarn tsc && yarn test",
     "test": "NODE_ENV='test' jest",
     "lint": "eslint --max-warnings=0 .",
     "release": "commit-and-tag-version && git push --follow-tags",
