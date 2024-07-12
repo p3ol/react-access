@@ -10,7 +10,7 @@
   "types": "dist/poool-react-access.d.ts",
   "sideEffects": false,
   "engines": {
-    "node": "16 || 18 || 20 || 22"
+    "node": "18 || 20 || 22"
   },
   "workspaces": [
     "examples/*"
