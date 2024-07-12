@@ -13,7 +13,19 @@ const config: Config = {
     'index.js',
   ],
   transform: {
-    '^.+\\.[j|t]sx?$': '@swc/jest',
+    '^.+\\.[j|t]sx?$': ['@swc/jest', {
+      jsc: {
+        transform: {
+          react: {
+            runtime: 'automatic',
+          },
+        },
+        parser: {
+          syntax: 'typescript',
+          tsx: true,
+        },
+      },
+    }],
   },
   moduleNameMapper: {
     '^~(.+)': '<rootDir>/$1',
