@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "paths": {
-      "~tests-utils": ["./tests/utils.js"]
+      "~/*": ["./*"]
     },
     "baseUrl": ".",
     "allowJs": true,
@@ -11,7 +11,7 @@
     "noEmit": true,
     "incremental": true,
     "esModuleInterop": true,
-    "types": ["jest", "node"],
+    "types": ["jest", "node", "react", "webpack-dev-server"],
     "module": "esnext",
     "lib": ["esnext", "dom"],
     "moduleResolution": "bundler",

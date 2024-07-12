@@ -1,109 +1,114 @@
-import { Poool } from 'poool-access';
+import type { Poool } from 'poool-access';
+import { createContext } from 'react';
 
-import { AccessEvents } from './AccessContext';
-import { AuditEvents } from './AuditContext';
-/**
- * Can be used to retrieve some properties from the current access context,
- * as well as the Access SDK itself.
- */
-export declare function useAccess(): {
+import type { AccessEvents, AuditEvents } from './types';
+
+export interface AccessContextValue {
   /**
    * Your poool app ID
    *
    * More infos:
    * https://www.poool.dev/docs/access/javascript/access/installation
    */
-  appId: string,
+  appId?: string;
   /**
    * Your poool access config options
    *
    * More infos:
    * https://www.poool.dev/docs/access/javascript/access/configuration
    */
-  config: Poool.AccessConfigOptions,
+  config?: Poool.AccessConfigOptions;
   /**
    * Your poool access texts ati_tag_options
    *
    * More infos: https://www.poool.dev/docs/access/javascript/access/texts
    */
-  texts: { [key: string]: string }
+  texts?: { [key: string]: string };
   /**
    * Your poool access styles
    *
    * More infos: https://www.poool.dev/docs/access/javascript/access/styles
    */
-  styles: Poool.styles,
+  styles?: Poool.styles;
   /**
    * Your poool access events
    *
    * More infos: https://www.poool.dev/docs/access/javascript/access/events
    */
-  events: AccessEvents,
+  events?: { [key in Poool.EventsList]?: AccessEvents[key] };
   /**
    * Your pool access variables
    *
    * More infos: https://www.poool.dev/docs/access/javascript/access/variables
    */
-  variables: { [key: string]: any },
+  variables?: { [key: string]: any };
   /**
    * The poool access script url
    *
    * More infos:
    * https://www.poool.dev/docs/access/javascript/access/installation
    */
-  scriptUrl: string,
+  scriptUrl?: string;
   /**
    * The poool access sdk
    *
    * More infos: https://www.poool.dev/docs/access/react
    */
-  lib: any,
+  lib?: Poool.Access;
   /**
    * Function to trigger a new access init, returns the created access instance,
    * with passed options
    *
    * More infos: https://www.poool.dev/docs/access/react
    */
-  createFactory: () => any;
+  createFactory?: (
+    opts?: Pick<
+      AccessContextValue,
+      'config' | 'texts' | 'styles' | 'variables' | 'events'
+    >
+  ) => Poool.AccessFactory;
   /**
    * Function to delete a factory
    *
    * More infos: https://www.poool.dev/docs/access/react
    */
-  destroyFactory: () => any;
-};
+  destroyFactory?: (factory: Poool.AccessFactory) => void;
+}
 
-export declare function useAudit(): {
+export const AccessContext = createContext<AccessContextValue>({});
+
+export interface AuditContextValue {
   /**
-   * Your poool app ID
+   * Your Poool App ID
    *
    * More infos: https://www.poool.dev/docs/access/javascript/audit/installation
    */
-  appId: string,
+  appId?: string;
   /**
-   * Your poool audit config options
+   * Your pool Audit configuration object
    *
    * More infos:
    * https://www.poool.dev/docs/access/javascript/audit/configuration
    */
-  config: Poool.AuditConfigOptions,
+  config?: Poool.AuditConfigOptions;
   /**
-   * Your poool audit events
+   * Your pool Audit events
    *
-   * More infos:
-   * https://www.poool.dev/docs/access/javascript/audit/configuration
+   * More infos: https://www.poool.dev/docs/access/javascript/audit/events
    */
-  events: AuditEvents,
+  events?: { [key in Poool.EventsList]: AuditEvents[key] };
   /**
    * The poool audit script url
    *
-   * More infos:  https://www.poool.dev/docs/access/javascript/audit/events
+   * More infos: https://www.poool.dev/docs/access/javascript/audit/installation
    */
-  scriptUrl: string,
+  scriptUrl?: string;
   /**
    * The poool audit sdk
    *
    * More infos: https://www.poool.dev/docs/access/react
    */
-  lib: any
-};
+  lib?: Poool.Audit;
+}
+
+export const AuditContext = createContext<AuditContextValue>({});

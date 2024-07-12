@@ -9,5 +9,5 @@
     "baseUrl": "."
   },
   "include": ["src"],
-  "exclude": ["tests", "**/*.test.{ts|tsx|js}", "rollup.config.ts"]
+  "exclude": ["./tests/**", "**/*.test.{ts|tsx|js}", "rollup.config.ts"]
 }

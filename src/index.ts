@@ -5,3 +5,7 @@ export { default as Pixel } from './Pixel';
 export { default as RestrictedContent } from './RestrictedContent';
 
 export { useAccess, useAudit } from './hooks';
+
+export type {
+  EventCallback,
+} from './types';

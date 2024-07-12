@@ -26,7 +26,14 @@
     "@rollup/plugin-terser": "0.4.4",
     "@swc/core": "1.6.13",
     "@swc/jest": "0.2.36",
+    "@testing-library/dom": "10.3.1",
     "@testing-library/react": "16.0.0",
+    "@types/jest": "29.5.12",
+    "@types/node": "20.14.10",
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
+    "@types/webpack": "5.28.5",
+    "@types/webpack-dev-server": "4.7.2",
     "@typescript-eslint/eslint-plugin": "7.16.0",
     "@typescript-eslint/parser": "7.16.0",
     "codecov": "3.8.3",
@@ -48,6 +55,8 @@
     "react-dom": "18.3.1",
     "react-router-dom": "6.24.1",
     "rollup": "4.18.1",
+    "swc-loader": "0.2.6",
+    "ts-node": "10.9.2",
     "typescript": "5.5.3",
     "webpack": "5.92.1",
     "webpack-cli": "5.1.4",
@@ -65,12 +74,12 @@
     "test": "NODE_ENV='test' jest",
     "lint": "eslint --max-warnings=0 .",
     "release": "commit-and-tag-version && git push --follow-tags",
-    "example:basic": "webpack serve --config ./examples/basic/webpack.config.js",
+    "example:basic": "yarn workspace poool-react-access-basic-example serve",
     "example:next": "cd examples/next && npm run dev"
   },
   "dependencies": {
-    "@junipero/core": "3.7.0",
-    "@types/poool-access": "5.14.1"
+    "@junipero/core": "3.7.1",
+    "@types/poool-access": "5.17.0"
   },
   "packageManager": "yarn@4.3.1"
 }

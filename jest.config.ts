@@ -1,5 +1,3 @@
-import path from 'node:path';
-
 import type { Config } from 'jest';
 
 const config: Config = {
@@ -18,7 +16,7 @@ const config: Config = {
     '^.+\\.[j|t]sx?$': '@swc/jest',
   },
   moduleNameMapper: {
-    '^~tests-utils$': path.resolve(__dirname, 'tests/utils.js'),
+    '^~(.+)': '<rootDir>/$1',
   },
 };
 

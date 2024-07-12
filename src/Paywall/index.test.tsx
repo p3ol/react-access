@@ -1,15 +1,21 @@
+import type { SpawndChildProcess } from 'spawnd';
+import type { Browser, Page } from 'puppeteer';
+import type { MutableRefObject } from 'react';
 import { render, waitFor } from '@testing-library/react';
 import devServer from 'jest-dev-server';
 
-import { withAccess, createBrowser, sleep } from '~tests-utils';
+import type { RestrictedContentRef } from '../RestrictedContent';
+import { withAccess, createBrowser, sleep } from '~/tests/utils';
 import Paywall from './index';
 
+jest.setTimeout(30000);
+
 describe('<Paywall />', () => {
-  jest.setTimeout(30000);
-  let server, browser;
+  let server: SpawndChildProcess[];
+  let browser: Browser;
 
   beforeAll(async () => {
-    process.env.TEST_PORT = 63002;
+    process.env.TEST_PORT = '63002';
 
     server = await devServer.setup({
       command: 'yarn example:basic',
@@ -57,11 +63,11 @@ describe('<Paywall />', () => {
   it('should create paywall with given properties', () => {
     const contentRef = {
       current: {
-        contentRef: { current: 'blabla' },
+        contentRef: { current: 'blabla' } as MutableRefObject<any>,
         mode: 'excerpt',
         percent: 96,
       },
-    };
+    } as MutableRefObject<RestrictedContentRef>;
     const createPaywallMock = jest.fn();
     const createFactoryMock = jest.fn().mockReturnValue({
       createPaywall: createPaywallMock,
@@ -110,7 +116,7 @@ describe('<Paywall />', () => {
   });
 
   describe('Premium content', () => {
-    let page;
+    let page: Page;
 
     beforeAll(async () => {
       page = await browser.newPage();
@@ -131,7 +137,7 @@ describe('<Paywall />', () => {
       'siblings', async () => {
       await page.waitForSelector('iframe#p3-paywall');
       const src = await page.evaluate(() =>
-        document.querySelector('iframe#p3-paywall').src
+        document.querySelector<HTMLIFrameElement>('iframe#p3-paywall').src
       );
 
       expect(src).toBe('https://assets.poool.fr/paywall-frame.html');
@@ -140,7 +146,8 @@ describe('<Paywall />', () => {
     it('should fire onIdentityAvailable event handler', async () => {
       await page.waitForSelector('#on-identity-available');
       const identity = await page.evaluate(() =>
-        JSON.parse(document.querySelector('#on-identity-available').innerText)
+        JSON.parse(document
+          .querySelector<HTMLDivElement>('#on-identity-available').innerText)
       );
 
       expect(identity).toBeDefined();
@@ -150,7 +157,8 @@ describe('<Paywall />', () => {
     it('should fire onReady event handler', async () => {
       await page.waitForSelector('#on-ready');
       const ready = await page.evaluate(() =>
-        JSON.parse(document.querySelector('#on-ready').innerText)
+        JSON.parse(document
+          .querySelector<HTMLDivElement>('#on-ready').innerText)
       );
 
       expect(ready).toBe(true);
@@ -162,7 +170,7 @@ describe('<Paywall />', () => {
   });
 
   describe('Consent', () => {
-    let page;
+    let page: Page;
 
     beforeAll(async () => {
       page = await browser.newPage();
@@ -175,7 +183,7 @@ describe('<Paywall />', () => {
 
       await page.waitForSelector('#on-ready');
       const content = await page.evaluate(() =>
-        document.querySelector('#restricted-content').innerText
+        document.querySelector<HTMLDivElement>('#restricted-content').innerText
       );
 
       expect(content).toBe('This sentence should...');
@@ -183,13 +191,13 @@ describe('<Paywall />', () => {
       await sleep(11);
 
       await page.evaluate(() =>
-        document.querySelector('#consent-button').click()
+        document.querySelector<HTMLButtonElement>('#consent-button').click()
       );
 
       await sleep(11);
 
       const contentAfterConsent = await page.evaluate(() =>
-        document.querySelector('#restricted-content').innerText
+        document.querySelector<HTMLDivElement>('#restricted-content').innerText
       );
 
       expect(contentAfterConsent).toBe('This sentence should...');
@@ -201,7 +209,7 @@ describe('<Paywall />', () => {
   });
 
   describe('Routing', () => {
-    let page;
+    let page: Page;
 
     beforeAll(async () => {
       page = await browser.newPage();
@@ -214,7 +222,7 @@ describe('<Paywall />', () => {
 
       await page.waitForSelector('#on-ready');
       const content = await page.evaluate(() =>
-        document.querySelector('#mounted').innerText
+        document.querySelector<HTMLDivElement>('#mounted').innerText
       );
 
       expect(content).toBe('1');

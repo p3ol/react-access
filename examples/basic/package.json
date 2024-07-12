@@ -1,3 +1,9 @@
 {
-  "name": "poool-react-access-basic-example"
+  "name": "poool-react-access-basic-example",
+  "scripts": {
+    "serve": "yarn run -T webpack serve --config ./webpack.config.ts"
+  },
+  "dependencies": {
+    "@poool/react-access": "portal:../../"
+  }
 }
