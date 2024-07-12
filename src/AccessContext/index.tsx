@@ -1,5 +1,10 @@
 import type { Poool } from 'poool-access';
-import { useCallback, useEffect, useReducer } from 'react';
+import {
+  type ComponentPropsWithoutRef,
+  useCallback,
+  useEffect,
+  useReducer,
+} from 'react';
 import { type StateReducer, mockState, mergeDeep } from '@junipero/core';
 
 import type {
@@ -12,7 +17,8 @@ import { type AccessContextValue, AccessContext as Ctx } from '../contexts';
 import { loadScript } from '../utils';
 import AuditContext from '../AuditContext';
 
-export interface AccessContextProps extends AccessContextValue {
+export interface AccessContextProps
+  extends AccessContextValue, ComponentPropsWithoutRef<any> {
   /**
    * Maximum time for the Access script to load
    * @default 2000

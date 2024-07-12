@@ -21,6 +21,11 @@ const defaultPlugins = [
   swc({
     swc: {
       jsc: {
+        transform: {
+          react: {
+            runtime: 'automatic',
+          },
+        },
         parser: {
           syntax: 'typescript',
           tsx: true,

@@ -20,8 +20,12 @@
     "noImplicitAny": true,
     "allowSyntheticDefaultImports": true
   },
+  "include": [
+    "src/**/*"
+  ],
   "exclude": [
     "**/dist/*",
+    "examples/**/*",
     "node_modules/**/*",
   ]
 }
