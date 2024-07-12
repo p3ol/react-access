@@ -1,8 +1,10 @@
-import PropTypes from 'prop-types';
+import type { ComponentPropsWithoutRef } from 'react';
 
 import Providers from './providers';
 
-export default function RootLayout ({ children }) {
+export default function RootLayout ({
+  children,
+}: ComponentPropsWithoutRef<any>) {
   return (
     <html lang="en">
       <body>
@@ -13,10 +15,6 @@ export default function RootLayout ({ children }) {
     </html>
   );
 }
-
-RootLayout.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 export const metadata = {
   title: 'Next.js',
