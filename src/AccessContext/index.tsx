@@ -63,10 +63,8 @@ const AccessContext = ({
   const init = async () => {
     if (
       !globalThis.Access ||
-      // @ts-expect-error - TODO: remove when @types/poool-access is updated
       !globalThis.Access.isPoool ||
       !globalThis.PooolAccess ||
-      // @ts-expect-error - TODO: remove when @types/poool-access is updated
       !globalThis.PooolAccess.isPoool
     ) {
       await loadScript(scriptUrl, 'poool-react-access-lib', {
@@ -148,11 +146,7 @@ const AccessContext = ({
 
   if (withAudit) {
     return (
-      <AuditContext
-        appId={appId}
-        // @ts-expect-error - TODO: remove when @types/poool-access is updated
-        config={config}
-      >
+      <AuditContext appId={appId} config={config}>
         { content }
       </AuditContext>
     );

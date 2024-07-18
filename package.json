@@ -78,7 +78,7 @@
   },
   "dependencies": {
     "@junipero/core": "3.7.1",
-    "@types/poool-access": "5.17.0"
+    "@types/poool-access": "5.18.0"
   },
   "packageManager": "yarn@4.3.1"
 }

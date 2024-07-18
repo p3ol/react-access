@@ -1,6 +1,11 @@
 import type { Poool } from 'poool-access';
-import { useCallback, useEffect, useReducer } from 'react';
-import { mockState, StateReducer } from '@junipero/core';
+import {
+  type ComponentPropsWithoutRef,
+  useCallback,
+  useEffect,
+  useReducer,
+} from 'react';
+import { type StateReducer, mockState } from '@junipero/core';
 
 import type {
   AuditEvents,
@@ -8,10 +13,11 @@ import type {
   EventCallbackFunction,
   EventCallbackObject,
 } from '../types';
-import { AuditContextValue, AuditContext as Ctx } from '../contexts';
+import { type AuditContextValue, AuditContext as Ctx } from '../contexts';
 import { loadScript } from '../utils';
 
-export interface AuditContextProps extends AuditContextValue {
+export interface AuditContextProps
+  extends AuditContextValue, ComponentPropsWithoutRef<any> {
   /**
    * Maximum time for the Audit script to load
    * @default 2000
@@ -48,10 +54,8 @@ const AuditContext = ({
   const init = async () => {
     if (
       !globalThis.Audit ||
-      // @ts-expect-error - TODO: remove when @types/poool-access is updated
       !globalThis.Audit.isPoool ||
       !globalThis.PooolAudit ||
-      // @ts-expect-error - TODO: remove when @types/poool-access is updated
       !globalThis.PooolAudit.isPoool
     ) {
       await loadScript(scriptUrl, 'poool-react-audit-lib', {
