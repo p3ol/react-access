@@ -1,42 +1,20 @@
 import type { Poool } from 'poool-access';
+import type { ForwardedProps } from '@junipero/react';
 import {
   type ComponentPropsWithoutRef,
   type MutableRefObject,
-  type ReactNode,
+  type ReactElement,
   Children,
   cloneElement,
   forwardRef,
   useRef,
   useImperativeHandle,
-  ReactElement,
 } from 'react';
 
-export declare interface RestrictedContentProps
-  extends ComponentPropsWithoutRef<any> {
-  /**
-   * Way to hide content see
-   * [Access configuration]
-   * (https://www.poool.dev/docs/access/javascript/access/configuration#mode)
-   * for more informations.
-   *
-   * More infos:
-   * https://www.poool.dev/docs/access/javascript/access/configuration
-   */
-  mode?: Poool.AccessConfigOptions['mode'];
-  /**
-   * The restricted content children
-   *
-   * More infos: https://www.poool.dev/docs/access/react
-   */
-  children: ReactNode;
-  /**
-   * The restriction percentage
-   *
-   * More infos:
-   * https://www.poool.dev/docs/access/javascript/access/configuration
-   */
-  percent?: Poool.AccessConfigOptions['percent'];
-}
+export declare interface RestrictedContentProps extends Pick<
+  Poool.AccessConfigOptions,
+  'mode' | 'percent'
+>, ComponentPropsWithoutRef<any> {}
 
 export declare interface RestrictedContentRef {
   contentRef: MutableRefObject<HTMLElement>;
@@ -63,7 +41,7 @@ const RestrictedContent = forwardRef<
   return cloneElement(Children.only(children as ReactElement), {
     ref: contentRef,
   });
-});
+}) as ForwardedProps<RestrictedContentRef, RestrictedContentProps>;
 
 RestrictedContent.displayName = 'RestrictedContent';
 

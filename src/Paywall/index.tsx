@@ -1,4 +1,5 @@
 import type { Poool } from 'poool-access';
+import type { ForwardedProps } from '@junipero/react';
 import {
   type ComponentPropsWithoutRef,
   type MutableRefObject,
@@ -16,7 +17,10 @@ import type { RestrictedContentRef } from '../RestrictedContent';
 import { generateId } from '../utils';
 import { useAccess } from '../hooks';
 
-export declare interface PaywallProps extends ComponentPropsWithoutRef<'div'> {
+export declare interface PaywallProps extends Pick<
+  AccessContextValue,
+  'events' | 'config' | 'texts' | 'styles' | 'variables'
+>, ComponentPropsWithoutRef<'div'> {
   /**
    * Ref to the content
    */
@@ -25,37 +29,6 @@ export declare interface PaywallProps extends ComponentPropsWithoutRef<'div'> {
    * Custom wrapper component ID
    */
   id?: string;
-  /**
-   * The paywall events
-   *
-   * More infos: https://www.poool.dev/docs/access/javascript/access/events
-   */
-  events?: AccessContextValue['events'];
-  /**
-   * The paywall config options
-   *
-   * More infos:
-   * https://www.poool.dev/docs/access/javascript/access/configuration
-   */
-  config?: AccessContextValue['config'];
-  /**
-   * The paywall texts options
-   *
-   * More infos: https://www.poool.dev/docs/access/javascript/access/texts
-   */
-  texts?: AccessContextValue['texts'];
-  /**
-   * The paywall styles
-   *
-   * More infos: https://www.poool.dev/docs/access/javascript/access/styles
-   */
-  styles?: AccessContextValue['styles'];
-  /**
-   * The paywall variables
-   *
-   * More infos: https://www.poool.dev/docs/access/javascript/access/variables
-   */
-  variables?: AccessContextValue['variables'];
   /**
    * The current page type
    *
@@ -179,7 +152,7 @@ const Paywall = forwardRef<PaywallRef, PaywallProps>(({
       { children }
     </>
   );
-});
+}) as ForwardedProps<PaywallRef, PaywallProps>;
 
 Paywall.displayName = 'Paywall';
 

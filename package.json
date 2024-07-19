@@ -17,6 +17,7 @@
   ],
   "devDependencies": {
     "@babel/eslint-plugin": "7.24.7",
+    "@junipero/react": "3.7.1",
     "@poool/eslint-config": "3.0.1",
     "@poool/eslint-config-react": "3.0.1",
     "@poool/eslint-plugin": "3.0.0",
