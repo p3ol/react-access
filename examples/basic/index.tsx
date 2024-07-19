@@ -136,7 +136,7 @@ const Consent = () => {
       </RestrictedContent>
       <Paywall
         contentRef={contentRef}
-        events={{ onReady: () => {
+        events={{ ready: () => {
           setReady(true);
           setMounted(old => old + 1);
         } }}
@@ -201,7 +201,12 @@ const AlternativeHome = () => (
   </div>
 );
 
-const AppContext = createContext({});
+export interface AppContextValue {
+  enabled?: boolean;
+  setEnabled?: (enabled: boolean) => void;
+}
+
+const AppContext = createContext<AppContextValue>({});
 
 const App = () => {
   const location = useLocation();

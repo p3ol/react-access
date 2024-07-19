@@ -1,7 +1,7 @@
 import { render, waitFor } from '@testing-library/react';
 
-import { withAudit } from '~tests-utils';
-import Pixel from './index';
+import { withAudit } from '~/tests/utils';
+import Pixel, { type PixelProps } from './index';
 
 describe('<Pixel />', () => {
   it('should immediatly send selected event', async () => {
@@ -18,9 +18,7 @@ describe('<Pixel />', () => {
   it('should not resend event if cookies_enabled change but ' +
   'reuse is false', async () => {
     const sendEventMock = jest.fn();
-    const config = {
-      cookies_enabled: false,
-    };
+    const config = { cookies_enabled: false };
     render(withAudit(<Pixel type="page-view" />, {
       lib: { sendEvent: sendEventMock },
       config,
@@ -50,7 +48,7 @@ describe('<Pixel />', () => {
 
   it('should send page-view with data if its asked for', async () => {
     const sendEventMock = jest.fn();
-    const data = { type: 'premium' };
+    const data: PixelProps['data'] = { type: 'premium' };
 
     render(withAudit(
       <Pixel type="page-view" data={data} />, {

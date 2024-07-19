@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "~/*": ["./*"]
+    },
+    "baseUrl": ".",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "types": ["jest", "node", "react", "webpack-dev-server"],
+    "module": "esnext",
+    "lib": ["esnext", "dom"],
+    "moduleResolution": "bundler",
+    "target": "ES5",
+    "resolveJsonModule": true,
+    "noImplicitAny": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "**/dist/*",
+    "node_modules/**/*",
+  ]
+}

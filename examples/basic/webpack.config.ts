@@ -1,11 +1,11 @@
-const path = require('path');
+import path from 'node:path';
 
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-module.exports = {
+const config: webpack.Configuration = {
   entry: {
-    example: path.resolve(__dirname, './index.js'),
+    example: path.resolve(__dirname, './index.tsx'),
   },
   devtool: 'inline-source-map',
   mode: 'development',
@@ -27,18 +27,33 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.js', '.ts', '.tsx'],
     alias: {
       '@poool/react-access': path.resolve(__dirname, '../../src'),
     },
   },
   module: {
     rules: [{
-      test: /\.js/,
+      test: /\.m?[j|t]sx?/,
       exclude: /node_modules/,
       use: [{
-        loader: 'babel-loader',
+        loader: 'swc-loader',
+        options: {
+          jsc: {
+            transform: {
+              react: {
+                runtime: 'automatic',
+              },
+            },
+            parser: {
+              syntax: 'typescript',
+              tsx: true,
+            },
+          },
+        },
       }],
     }],
   },
 };
+
+export default config;

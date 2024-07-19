@@ -1,14 +1,18 @@
+import type { Browser, Page } from 'puppeteer';
+import type { SpawndChildProcess } from 'spawnd';
 import devServer from 'jest-dev-server';
 
-import { createBrowser } from '~tests-utils';
+import { createBrowser } from '~/tests/utils';
 
 jest.setTimeout(30000);
 
-describe('hooks.js', () => {
-  let server, browser, page;
+describe('hooks.ts', () => {
+  let server: SpawndChildProcess[];
+  let browser: Browser;
+  let page: Page;
 
   beforeAll(async () => {
-    process.env.TEST_PORT = 63001;
+    process.env.TEST_PORT = '63001';
 
     server = await devServer.setup({
       command: 'yarn example:basic',
@@ -26,7 +30,8 @@ describe('hooks.js', () => {
     it('should provide the access lib', async () => {
       await page.waitForSelector('#has-access');
       const hasAccess = await page.evaluate(() =>
-        JSON.parse(document.querySelector('#has-access').innerText)
+        JSON.parse(document
+          .querySelector<HTMLDivElement>('#has-access').innerText)
       );
 
       expect(hasAccess).toBe(true);
@@ -35,7 +40,8 @@ describe('hooks.js', () => {
     it('should provide the audit lib', async () => {
       await page.waitForSelector('#has-audit');
       const hasAudit = await page.evaluate(() =>
-        JSON.parse(document.querySelector('#has-audit').innerText)
+        JSON.parse(document
+          .querySelector<HTMLDivElement>('#has-audit').innerText)
       );
 
       expect(hasAudit).toBe(true);
@@ -44,7 +50,8 @@ describe('hooks.js', () => {
     it('should provide an appId property', async () => {
       await page.waitForSelector('#has-app-id');
       const hasAppId = await page.evaluate(() =>
-        JSON.parse(document.querySelector('#has-app-id').innerText)
+        JSON.parse(document
+          .querySelector<HTMLDivElement>('#has-app-id').innerText)
       );
 
       expect(hasAppId).toBe(true);
@@ -53,7 +60,8 @@ describe('hooks.js', () => {
     it('should provide a config object', async () => {
       await page.waitForSelector('#has-config');
       const hasConfig = await page.evaluate(() =>
-        JSON.parse(document.querySelector('#has-config').innerText)
+        JSON.parse(document
+          .querySelector<HTMLDivElement>('#has-config').innerText)
       );
 
       expect(hasConfig).toBe(true);
@@ -62,7 +70,8 @@ describe('hooks.js', () => {
     it('should provide a styles object', async () => {
       await page.waitForSelector('#has-styles');
       const hasStyles = await page.evaluate(() =>
-        JSON.parse(document.querySelector('#has-styles').innerText)
+        JSON.parse(document
+          .querySelector<HTMLDivElement>('#has-styles').innerText)
       );
 
       expect(hasStyles).toBe(true);
@@ -71,7 +80,8 @@ describe('hooks.js', () => {
     it('should provide a texts object', async () => {
       await page.waitForSelector('#has-texts');
       const hasTexts = await page.evaluate(() =>
-        JSON.parse(document.querySelector('#has-texts').innerText)
+        JSON.parse(document
+          .querySelector<HTMLDivElement>('#has-texts').innerText)
       );
 
       expect(hasTexts).toBe(true);

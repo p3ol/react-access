@@ -1,27 +1,64 @@
+import type { Poool } from 'poool-access';
+import type { ForwardedProps } from '@junipero/react';
 import {
+  type ComponentPropsWithoutRef,
+  type MutableRefObject,
   useEffect,
   useMemo,
   useRef,
   useImperativeHandle,
   forwardRef,
 } from 'react';
-import PropTypes from 'prop-types';
+import { classNames } from '@junipero/core';
 
-import { useAccess } from '../hooks';
+import type { AccessEvents, EventCallbackFunction } from '../types';
+import type { AccessContextValue } from '../contexts';
+import type { RestrictedContentRef } from '../RestrictedContent';
 import { generateId } from '../utils';
+import { useAccess } from '../hooks';
 
-const Paywall = forwardRef(({
+export declare interface PaywallProps extends Pick<
+  AccessContextValue,
+  'events' | 'config' | 'texts' | 'styles' | 'variables'
+>, ComponentPropsWithoutRef<'div'> {
+  /**
+   * Ref to the content
+   */
+  contentRef?: MutableRefObject<RestrictedContentRef>;
+  /**
+   * Custom wrapper component ID
+   */
+  id?: string;
+  /**
+   * The current page type
+   *
+   * More infos:
+   * https://www.poool.dev/docs/access/javascript/access/installation
+   */
+  pageType?: Parameters<Poool.AccessFactory['createPaywall']>[0]['pageType'];
+}
+
+export declare interface PaywallRef {
+  containerRef: MutableRefObject<HTMLDivElement>;
+  recreate: () => void;
+  create: () => void;
+  destroy: (container: HTMLElement) => void;
+}
+
+const Paywall = forwardRef<PaywallRef, PaywallProps>(({
   id,
   events,
   contentRef,
   children,
+  className,
   config,
   texts,
   styles,
   variables,
   pageType = 'premium',
+  ...rest
 }, ref) => {
-  const paywallRef = useRef();
+  const paywallRef = useRef<Poool.AccessFactory>();
   const containerRef = useRef();
   const {
     lib,
@@ -71,7 +108,7 @@ const Paywall = forwardRef(({
     });
   };
 
-  const destroy = async container => {
+  const destroy = async (container: HTMLElement) => {
     if (!paywallRef.current) {
       return;
     }
@@ -87,7 +124,11 @@ const Paywall = forwardRef(({
     create();
   };
 
-  const onIdentityAvailable = e => {
+  const onIdentityAvailable = (
+    e: Parameters<
+      Extract<AccessEvents['identityAvailable'], EventCallbackFunction<any>>
+    >[0]
+  ) => {
     try {
       globalThis.document.dispatchEvent(new CustomEvent('$_poool.onMessage', {
         detail: {
@@ -102,28 +143,17 @@ const Paywall = forwardRef(({
 
   return (
     <>
-      <div id={id || customId} ref={containerRef} className="poool-widget" />
+      <div
+        id={id || customId}
+        ref={containerRef}
+        className={classNames('poool-widget', className)}
+        { ...rest }
+      />
       { children }
     </>
   );
-});
+}) as ForwardedProps<PaywallRef, PaywallProps>;
 
 Paywall.displayName = 'Paywall';
-Paywall.propTypes = {
-  contentRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.object }),
-  ]),
-  children: PropTypes.element,
-  config: PropTypes.object,
-  texts: PropTypes.object,
-  styles: PropTypes.object,
-  events: PropTypes.object,
-  variables: PropTypes.object,
-  id: PropTypes.string,
-  pageType: PropTypes.oneOf([
-    'premium', 'free', 'page', 'subscription', 'registration',
-  ]),
-};
 
 export default Paywall;

@@ -1,12 +1,11 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { type ComponentPropsWithoutRef, useCallback, useState } from 'react';
 import { AccessContext } from '@poool/react-access';
-import PropTypes from 'prop-types';
 
 import { PageContext } from '../contexts';
 
-const Providers = ({ children }) => {
+const Providers = ({ children }: ComponentPropsWithoutRef<any>) => {
   const [cookiesEnabled, setCookiesEnabled] = useState(false);
 
   const getContext = useCallback(() => ({
@@ -33,10 +32,6 @@ const Providers = ({ children }) => {
       </AccessContext>
     </PageContext.Provider>
   );
-};
-
-Providers.propTypes = {
-  children: PropTypes.node.isRequired,
 };
 
 export default Providers;
