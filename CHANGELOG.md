@@ -1,6 +1,25 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+## [4.0.0](https://github.com/p3ol/react-access/compare/v3.1.1...v4.0.0) (2024-07-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* drop node 16 support
+
+### Features
+
+* drop node 16 support ([295def1](https://github.com/p3ol/react-access/commit/295def1b13f35ed3d0f4eca945cf0d6e8e0f10a0))
+
+
+### Bug Fixes
+
+* react jsx build ([398e8a0](https://github.com/p3ol/react-access/commit/398e8a0933a8b3ddeaa2a4f4947acaee62bdba55))
+* update various deps ([86732c7](https://github.com/p3ol/react-access/commit/86732c7c94610cb72ee2ed9af1ab6f9366d68ddf))
+* upgrade various deps ([39391b6](https://github.com/p3ol/react-access/commit/39391b6fe195cffc8a4db3786c5f943ed0687590))
+* various type issues ([c140181](https://github.com/p3ol/react-access/commit/c14018141f9ca4995cdadc0a1b026bbe2b7585be))
 
 ### [3.1.1](https://github.com/p3ol/react-access/compare/v3.1.0...v3.1.1) (2024-04-16)
 
