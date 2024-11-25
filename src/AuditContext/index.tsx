@@ -53,10 +53,8 @@ const AuditContext = ({
 
   const init = async () => {
     if (
-      !globalThis.Audit ||
-      !globalThis.Audit.isPoool ||
-      !globalThis.PooolAudit ||
-      !globalThis.PooolAudit.isPoool
+      (!globalThis.Audit || !globalThis.Audit.isPoool) &&
+      (!globalThis.PooolAudit || !globalThis.PooolAudit.isPoool)
     ) {
       await loadScript(scriptUrl, 'poool-react-audit-lib', {
         timeout: scriptLoadTimeout,
