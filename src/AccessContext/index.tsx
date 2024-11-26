@@ -62,10 +62,8 @@ const AccessContext = ({
 
   const init = async () => {
     if (
-      !globalThis.Access ||
-      !globalThis.Access.isPoool ||
-      !globalThis.PooolAccess ||
-      !globalThis.PooolAccess.isPoool
+      (!globalThis.Access || !globalThis.Access.isPoool) &&
+      (!globalThis.PooolAccess || !globalThis.PooolAccess.isPoool)
     ) {
       await loadScript(scriptUrl, 'poool-react-access-lib', {
         timeout: scriptLoadTimeout,
