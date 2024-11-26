@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.0.1](https://github.com/p3ol/react-access/compare/v4.0.0...v4.0.1) (2024-11-26)
+
+
+### Bug Fixes
+
+* audit not being reloaded correctly ([ce618cb](https://github.com/p3ol/react-access/commit/ce618cb17512bf7c6af2ffca5c92c49b324c555b))
+* multiple paywalls on pre-rendered content ([e739d96](https://github.com/p3ol/react-access/commit/e739d96af54c87006eb2d86bab296bdc656b8e01))
+
 ## [4.0.0](https://github.com/p3ol/react-access/compare/v3.1.1...v4.0.0) (2024-07-19)
 
 
