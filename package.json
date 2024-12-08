@@ -80,5 +80,5 @@
     "@junipero/core": "3.7.1",
     "@types/poool-access": "5.18.0"
   },
-  "packageManager": "yarn@4.3.1"
+  "packageManager": "yarn@4.5.3"
 }
