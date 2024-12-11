@@ -5,7 +5,7 @@ import {
   useEffect,
   useReducer,
 } from 'react';
-import { type StateReducer, mockState, mergeDeep } from '@junipero/core';
+import { mockState, mergeDeep } from '@junipero/core';
 
 import type {
   AccessEvents,
@@ -50,9 +50,7 @@ const AccessContext = ({
   withAudit = false,
   ...rest
 }: AccessContextProps) => {
-  const [state, dispatch] = useReducer<
-    StateReducer<AccessContextState>
-  >(mockState, {
+  const [state, dispatch] = useReducer(mockState<AccessContextState>, {
     lib: null,
   });
 

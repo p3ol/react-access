@@ -1,13 +1,11 @@
 import type { Poool } from 'poool-access';
-import type { ForwardedProps } from '@junipero/react';
 import {
   type ComponentPropsWithoutRef,
-  type MutableRefObject,
+  type RefObject,
   useEffect,
   useMemo,
   useRef,
   useImperativeHandle,
-  forwardRef,
 } from 'react';
 import { classNames } from '@junipero/core';
 
@@ -17,14 +15,25 @@ import type { RestrictedContentRef } from '../RestrictedContent';
 import { generateId } from '../utils';
 import { useAccess } from '../hooks';
 
+export declare interface PaywallRef {
+  containerRef: RefObject<HTMLElement>;
+  recreate: () => void;
+  create: () => void;
+  destroy: (container: HTMLElement) => void;
+}
+
 export declare interface PaywallProps extends Pick<
   AccessContextValue,
   'events' | 'config' | 'texts' | 'styles' | 'variables'
 >, ComponentPropsWithoutRef<'div'> {
   /**
+   * Ref to the paywall
+   */
+  ref?: RefObject<PaywallRef>;
+  /**
    * Ref to the content
    */
-  contentRef?: MutableRefObject<RestrictedContentRef>;
+  contentRef?: RefObject<RestrictedContentRef>;
   /**
    * Custom wrapper component ID
    */
@@ -38,14 +47,8 @@ export declare interface PaywallProps extends Pick<
   pageType?: Parameters<Poool.AccessFactory['createPaywall']>[0]['pageType'];
 }
 
-export declare interface PaywallRef {
-  containerRef: MutableRefObject<HTMLDivElement>;
-  recreate: () => void;
-  create: () => void;
-  destroy: (container: HTMLElement) => void;
-}
-
-const Paywall = forwardRef<PaywallRef, PaywallProps>(({
+const Paywall = ({
+  ref,
   id,
   events,
   contentRef,
@@ -57,9 +60,9 @@ const Paywall = forwardRef<PaywallRef, PaywallProps>(({
   variables,
   pageType = 'premium',
   ...rest
-}, ref) => {
-  const paywallRef = useRef<Poool.AccessFactory>();
-  const containerRef = useRef();
+}: PaywallProps) => {
+  const paywallRef = useRef<Poool.AccessFactory>(undefined);
+  const containerRef = useRef<HTMLDivElement>(undefined);
   const {
     lib,
     createFactory,
@@ -137,7 +140,7 @@ const Paywall = forwardRef<PaywallRef, PaywallProps>(({
           data: e,
         },
       }));
-    } catch (_) {}
+    } catch {}
   };
 
   const customId = useMemo(() => generateId(), []);
@@ -153,7 +156,7 @@ const Paywall = forwardRef<PaywallRef, PaywallProps>(({
       { children }
     </>
   );
-}) as ForwardedProps<PaywallRef, PaywallProps>;
+};
 
 Paywall.displayName = 'Paywall';
 

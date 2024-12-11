@@ -1,6 +1,6 @@
 import type { SpawndChildProcess } from 'spawnd';
 import type { Browser, Page } from 'puppeteer';
-import type { MutableRefObject } from 'react';
+import type { RefObject } from 'react';
 import { render, waitFor } from '@testing-library/react';
 import devServer from 'jest-dev-server';
 
@@ -63,11 +63,11 @@ describe('<Paywall />', () => {
   it('should create paywall with given properties', () => {
     const contentRef = {
       current: {
-        contentRef: { current: 'blabla' } as MutableRefObject<any>,
+        contentRef: { current: 'blabla' } as RefObject<any>,
         mode: 'excerpt',
         percent: 96,
       },
-    } as MutableRefObject<RestrictedContentRef>;
+    } as RefObject<RestrictedContentRef>;
     const createPaywallMock = jest.fn();
     const createFactoryMock = jest.fn().mockReturnValue({
       createPaywall: createPaywallMock,

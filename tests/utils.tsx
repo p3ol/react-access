@@ -1,6 +1,6 @@
 import type { Poool } from 'poool-access';
 import type { ReactNode } from 'react';
-import puppeteer, { type PuppeteerLaunchOptions } from 'puppeteer';
+import puppeteer, { type LaunchOptions } from 'puppeteer';
 
 import {
   type AccessContextValue,
@@ -9,7 +9,7 @@ import {
   AuditContext,
 } from '../src/contexts';
 
-export const createBrowser = (opts?: PuppeteerLaunchOptions) =>
+export const createBrowser = (opts?: LaunchOptions) =>
   puppeteer.launch({
     headless: !process.env.HEADFULL,
     pipe: true,

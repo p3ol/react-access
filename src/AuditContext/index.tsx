@@ -5,7 +5,7 @@ import {
   useEffect,
   useReducer,
 } from 'react';
-import { type StateReducer, mockState } from '@junipero/core';
+import { mockState } from '@junipero/core';
 
 import type {
   AuditEvents,
@@ -37,9 +37,7 @@ const AuditContext = ({
   scriptLoadTimeout = 2000,
   ...rest
 }: AuditContextProps) => {
-  const [state, dispatch] = useReducer<
-    StateReducer<AuditContextState>
-  >(mockState, {
+  const [state, dispatch] = useReducer(mockState<AuditContextState>, {
     lib: null,
   });
 
@@ -118,7 +116,7 @@ const AuditContext = ({
           data: e,
         },
       }));
-    } catch (_) {}
+    } catch {}
   };
 
   const getContext = useCallback(() => ({

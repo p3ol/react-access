@@ -1,36 +1,33 @@
 import type { Poool } from 'poool-access';
-import type { ForwardedProps } from '@junipero/react';
 import {
   type ComponentPropsWithoutRef,
-  type MutableRefObject,
-  type ReactElement,
+  type RefObject,
   Children,
   cloneElement,
-  forwardRef,
   useRef,
   useImperativeHandle,
 } from 'react';
 
+export declare interface RestrictedContentRef {
+  contentRef: RefObject<HTMLElement>;
+  mode: Poool.AccessConfigOptions['mode'];
+  percent: Poool.AccessConfigOptions['percent'];
+}
+
 export declare interface RestrictedContentProps extends Pick<
   Poool.AccessConfigOptions,
   'mode' | 'percent'
->, ComponentPropsWithoutRef<any> {}
-
-export declare interface RestrictedContentRef {
-  contentRef: MutableRefObject<HTMLElement>;
-  mode: RestrictedContentProps['mode'];
-  percent: RestrictedContentProps['percent'];
+>, ComponentPropsWithoutRef<any> {
+  ref?: RefObject<RestrictedContentRef>;
 }
 
-const RestrictedContent = forwardRef<
-  RestrictedContentRef,
-  RestrictedContentProps
->(({
+const RestrictedContent = ({
+  ref,
   mode,
   percent,
   children,
-}, ref) => {
-  const contentRef = useRef<HTMLElement>();
+}: RestrictedContentProps) => {
+  const contentRef = useRef<HTMLDivElement>(undefined);
 
   useImperativeHandle(ref, () => ({
     contentRef,
@@ -38,10 +35,10 @@ const RestrictedContent = forwardRef<
     percent,
   }));
 
-  return cloneElement(Children.only(children as ReactElement), {
+  return cloneElement(Children.only(children), {
     ref: contentRef,
   });
-}) as ForwardedProps<RestrictedContentRef, RestrictedContentProps>;
+};
 
 RestrictedContent.displayName = 'RestrictedContent';
 
