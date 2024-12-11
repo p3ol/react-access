@@ -2,7 +2,10 @@
   "name": "@poool/react-access",
   "version": "4.1.0",
   "description": "The easiest way to add Poool Access to your React app ✨",
-  "repository": "https://github.com/p3ol/react-access.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/p3ol/react-access.git"
+  },
   "author": "Ugo Stephant <ugo@poool.fr>",
   "license": "MIT",
   "main": "dist/poool-react-access.cjs.js",
