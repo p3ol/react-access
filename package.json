@@ -24,7 +24,7 @@
     "@poool/eslint-config-react": "3.0.1",
     "@poool/eslint-plugin": "3.0.0",
     "@rollup/plugin-commonjs": "28.0.1",
-    "@rollup/plugin-node-resolve": "15.3.0",
+    "@rollup/plugin-node-resolve": "15.3.1",
     "@rollup/plugin-swc": "0.4.0",
     "@rollup/plugin-terser": "0.4.4",
     "@swc/core": "1.10.1",
