@@ -6,6 +6,7 @@ import {
   cloneElement,
   useRef,
   useImperativeHandle,
+  forwardRef,
 } from 'react';
 
 export declare interface RestrictedContentRef {
@@ -21,12 +22,14 @@ export declare interface RestrictedContentProps extends Pick<
   ref?: RefObject<RestrictedContentRef>;
 }
 
-const RestrictedContent = ({
-  ref,
+const RestrictedContent = forwardRef<
+  RestrictedContentRef,
+  RestrictedContentProps
+>(({
   mode,
   percent,
   children,
-}: RestrictedContentProps) => {
+}, ref) => {
   const contentRef = useRef<HTMLDivElement>(undefined);
 
   useImperativeHandle(ref, () => ({
@@ -38,7 +41,7 @@ const RestrictedContent = ({
   return cloneElement(Children.only(children), {
     ref: contentRef,
   });
-};
+});
 
 RestrictedContent.displayName = 'RestrictedContent';
 

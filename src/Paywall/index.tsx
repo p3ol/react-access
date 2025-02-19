@@ -6,6 +6,7 @@ import {
   useMemo,
   useRef,
   useImperativeHandle,
+  forwardRef,
 } from 'react';
 import { classNames } from '@junipero/core';
 
@@ -47,8 +48,10 @@ export declare interface PaywallProps extends Pick<
   pageType?: Parameters<Poool.AccessFactory['createPaywall']>[0]['pageType'];
 }
 
-const Paywall = ({
-  ref,
+const Paywall = forwardRef<
+  PaywallRef,
+  PaywallProps
+>(({
   id,
   events,
   contentRef,
@@ -60,7 +63,7 @@ const Paywall = ({
   variables,
   pageType = 'premium',
   ...rest
-}: PaywallProps) => {
+}, ref) => {
   const paywallRef = useRef<Poool.AccessFactory>(undefined);
   const containerRef = useRef<HTMLDivElement>(undefined);
   const {
@@ -156,7 +159,7 @@ const Paywall = ({
       { children }
     </>
   );
-};
+});
 
 Paywall.displayName = 'Paywall';
 
