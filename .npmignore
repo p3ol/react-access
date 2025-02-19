@@ -4,3 +4,4 @@ tests
 scripts
 .github
 .yarn
+*.tsbuildinfo
