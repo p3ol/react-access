@@ -75,7 +75,7 @@
     "example:next": "yarn workspace poool-react-access-next-example dev"
   },
   "dependencies": {
-    "@junipero/core": "3.10.0",
+    "@junipero/core": "3.10.5",
     "@types/poool-access": "5.18.0"
   },
   "packageManager": "yarn@4.5.3"
