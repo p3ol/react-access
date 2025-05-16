@@ -1291,10 +1291,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@junipero/core@npm:3.10.0":
-  version: 3.10.0
-  resolution: "@junipero/core@npm:3.10.0"
-  checksum: 10c0/46d1f2417f6bb5fb7e99a32464090550d61ae5cb9c28d945c5480e9bbcda507f3414a35f7fbbdbd1afcf21faea0c997bbde13a09d5a03952d6c589bc2cd3ba93
+"@junipero/core@npm:3.10.5":
+  version: 3.10.5
+  resolution: "@junipero/core@npm:3.10.5"
+  checksum: 10c0/4158576433032189ce795cc6e48056084218dc6aa3383215ff7688aa88c7f5b5dd783a12b16064a667b901903d1d8ad896662a13b903a2ebe7349093d9774726
   languageName: node
   linkType: hard
 
@@ -1467,7 +1467,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@poool/react-access@portal:../../::locator=poool-react-access-basic-example%40workspace%3Aexamples%2Fbasic"
   dependencies:
-    "@junipero/core": "npm:3.10.0"
+    "@junipero/core": "npm:3.10.5"
     "@types/poool-access": "npm:5.18.0"
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -1478,7 +1478,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@poool/react-access@portal:../../::locator=poool-react-access-next-example%40workspace%3Aexamples%2Fnext"
   dependencies:
-    "@junipero/core": "npm:3.10.0"
+    "@junipero/core": "npm:3.10.5"
     "@types/poool-access": "npm:5.18.0"
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -1490,7 +1490,7 @@ __metadata:
   resolution: "@poool/react-access@workspace:."
   dependencies:
     "@babel/eslint-plugin": "npm:7.25.9"
-    "@junipero/core": "npm:3.10.0"
+    "@junipero/core": "npm:3.10.5"
     "@poool/eslint-config": "npm:3.0.1"
     "@poool/eslint-config-react": "npm:3.0.1"
     "@poool/eslint-plugin": "npm:3.0.0"
