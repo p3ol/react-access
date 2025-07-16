@@ -17,7 +17,7 @@ export interface AccessContextValue {
    * More infos:
    * https://www.poool.dev/docs/access/javascript/access/configuration
    */
-  config?: Poool.AccessConfigOptions;
+  config?: Omit<Poool.AccessConfigOptions, 'widget_container'>;
   /**
    * Your poool access texts ati_tag_options
    *
