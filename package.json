@@ -74,7 +74,7 @@
     "@types/poool-access": "5.18.0"
   },
   "resolutions": {
-    "ws": "8.12.0"
+    "ws": "8.17.1"
   },
   "packageManager": "yarn@4.9.2"
 }
