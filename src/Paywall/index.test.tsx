@@ -186,7 +186,7 @@ describe('<Paywall />', () => {
         document.querySelector<HTMLDivElement>('#restricted-content').innerText
       );
 
-      expect(content).toBe('This sentence should...');
+      expect(content).toBe('This sentence should be almost...');
 
       await sleep(11);
 
@@ -200,7 +200,7 @@ describe('<Paywall />', () => {
         document.querySelector<HTMLDivElement>('#restricted-content').innerText
       );
 
-      expect(contentAfterConsent).toBe('This sentence should...');
+      expect(contentAfterConsent).toBe('This sentence should be almost...');
     });
 
     afterAll(async () => {
