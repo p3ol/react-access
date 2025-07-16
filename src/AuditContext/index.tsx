@@ -47,12 +47,13 @@ const AuditContext = ({
     return () => {
       deinit();
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [config?.cookies_enabled]);
 
   const init = async () => {
     if (
-      (!globalThis.Audit || !globalThis.Audit.isPoool) &&
-      (!globalThis.PooolAudit || !globalThis.PooolAudit.isPoool)
+      (!globalThis.Audit?.isPoool) &&
+      (!globalThis.PooolAudit?.isPoool)
     ) {
       await loadScript(scriptUrl, 'poool-react-audit-lib', {
         timeout: scriptLoadTimeout,
@@ -125,6 +126,7 @@ const AuditContext = ({
     events,
     scriptUrl,
     lib: state.lib,
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }), [state.lib, config?.cookies_enabled]);
 
   return (

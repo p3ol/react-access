@@ -56,12 +56,13 @@ const AccessContext = ({
 
   useEffect(() => {
     init();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const init = async () => {
     if (
-      (!globalThis.Access || !globalThis.Access.isPoool) &&
-      (!globalThis.PooolAccess || !globalThis.PooolAccess.isPoool)
+      (!globalThis.Access?.isPoool) &&
+      (!globalThis.PooolAccess?.isPoool)
     ) {
       await loadScript(scriptUrl, 'poool-react-access-lib', {
         timeout: scriptLoadTimeout,
@@ -134,6 +135,7 @@ const AccessContext = ({
     lib: state.lib,
     createFactory,
     destroyFactory,
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }), [state.lib, config?.cookies_enabled]);
 
   const content = (

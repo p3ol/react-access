@@ -1,18 +1,16 @@
 import type { Poool } from 'poool-access';
 
 export declare type EventCallbackFunction<Props> = (props: Props) => any;
-export declare type EventCallbackObject<Props> = {
+export declare interface EventCallbackObject<Props> {
   once: true;
   callback: EventCallbackFunction<Props>;
-};
+}
 
 export declare type EventCallback<Props> =
   | EventCallbackFunction<Props>
   | EventCallbackObject<Props>;
 
-export declare type BaseEvents = {
-  [key in Poool.EventsList]?: any
-};
+export declare type BaseEvents = Partial<Record<Poool.EventsList, any>>;
 
 export declare interface AccessEvents extends BaseEvents {
   /**
@@ -145,7 +143,7 @@ export declare interface AccessEvents extends BaseEvents {
    *
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
-  error?: (err: Error, event?: { forceRelease?: () => void }) => any |
+  error?: ((err: Error, event?: { forceRelease?: () => void }) => any) |
     { once: boolean, callback: (err: Error, event?: {
       forceRelease?: () => any;
     }) => any };
@@ -179,8 +177,8 @@ export declare interface AccessEvents extends BaseEvents {
    */
   formSubmit?: EventCallback<{
     name: string,
-    fields: { [fieldKey: string]: any },
-    valid: { [fieldKey: string]: boolean}
+    fields: Record<string, any>,
+    valid: Record<string, boolean>
   }>;
   /**
    * Triggered when a user clicks on Sign-in with Facebook inside the paywall,

@@ -1,17 +1,22 @@
 'use client';
 
 import { useRef } from 'react';
-import { Pixel, Paywall, RestrictedContent } from '@poool/react-access';
+import {
+  type RestrictedContentRef,
+  Pixel,
+  Paywall,
+  RestrictedContent,
+} from '@poool/react-access';
 import Link from 'next/link';
 
 const Premium = () => {
-  const contentRef = useRef();
+  const contentRef = useRef<RestrictedContentRef>(null);
 
   return (
     <div className="app">
       <RestrictedContent ref={contentRef}>
         <div className="articleBody">
-          { /* eslint-disable max-len */ }
+          { /* eslint-disable @stylistic/js/max-len,@stylistic/js/indent */ }
           <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tortor leo, sollicitudin quis posuere sed, pharetra cursus mauris. Donec ultricies nibh sit amet quam feugiat, vel bibendum nisl pellentesque. In hac habitasse platea dictumst. Sed varius eget ante ac pulvinar. Suspendisse fringilla, quam ac imperdiet consequat, leo massa molestie mi, eget condimentum ligula enim ut mauris. Aliquam egestas malesuada vestibulum. Etiam ut nibh turpis. Fusce mattis blandit bibendum. Vestibulum sodales laoreet lacus ut sollicitudin. Donec tempus iaculis viverra. In congue felis quis sem porta iaculis.
           </p>
@@ -57,7 +62,7 @@ const Premium = () => {
           <p>
           Ut condimentum justo nec sapien convallis dictum. Pellentesque tempus rhoncus justo quis feugiat. Curabitur in sagittis elit. Nunc justo ligula, mattis ac tortor ut, interdum hendrerit risus. Aenean purus urna, pretium eu purus sit amet, suscipit ornare velit. Phasellus ut euismod nulla, nec tincidunt ex. Aliquam mattis nulla neque, ac dapibus magna fermentum eget. Nulla facilisis viverra odio ac viverra. Mauris cursus velit ex, quis pulvinar elit porttitor non. Vivamus consectetur leo at enim luctus, at convallis mi dapibus. Ut mauris neque, efficitur eu ante ac, scelerisque cursus tortor. Sed sed dolor sit amet velit finibus sodales. Duis tempor felis a sollicitudin pretium. Vestibulum ante eros, egestas a dapibus sit amet, suscipit ut ipsum.
           </p>
-          { /* eslint-enable max-len */ }
+          { /* eslint-enable @stylistic/js/max-len,@stylistic/js/indent */ }
         </div>
       </RestrictedContent>
 
