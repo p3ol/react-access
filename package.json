@@ -71,7 +71,7 @@
   },
   "dependencies": {
     "@junipero/core": "3.10.5",
-    "@types/poool-access": "5.18.0"
+    "@types/poool-access": "5.18.1"
   },
   "resolutions": {
     "ws": "8.12.0"
