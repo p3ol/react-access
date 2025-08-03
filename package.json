@@ -70,7 +70,7 @@
     "example:next": "yarn workspace poool-react-access-next-example dev"
   },
   "dependencies": {
-    "@junipero/core": "3.10.5",
+    "@junipero/core": "3.11.0",
     "@types/poool-access": "5.18.0"
   },
   "resolutions": {
