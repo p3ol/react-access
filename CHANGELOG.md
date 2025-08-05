@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.1.2](https://github.com/p3ol/react-access/compare/v4.1.1...v4.1.2) (2025-08-05)
+
+
+### Bug Fixes
+
+* bad types ([992966f](https://github.com/p3ol/react-access/commit/992966f93a7d69f65a610faa6a64139e09e7cc61))
+* **react:** remove widget_container from usable config ([eb433e5](https://github.com/p3ol/react-access/commit/eb433e55467d7f4ca48d7ce7e847a13cafebadf5))
+* upgrade react to 19.1.0 ([30ad060](https://github.com/p3ol/react-access/commit/30ad06051ef2b081e97c63b3204dc5a146019c24))
+* upgrade various dependencies ([a0302a8](https://github.com/p3ol/react-access/commit/a0302a8f4596a87f7567ce48e43e1efeae70864c))
+* upgrade various deps ([78ac5b7](https://github.com/p3ol/react-access/commit/78ac5b7f1686b1839af74c45eeb138d408807cf7))
+
 ## [4.1.1](https://github.com/p3ol/react-access/compare/v4.1.0...v4.1.1) (2025-02-19)
 
 
