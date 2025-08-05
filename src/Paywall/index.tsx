@@ -34,7 +34,7 @@ export declare interface PaywallProps extends Pick<
   /**
    * Ref to the content
    */
-  contentRef?: RefObject<RestrictedContentRef>;
+  contentRef?: RefObject<RestrictedContentRef | null>;
   /**
    * Custom wrapper component ID
    */
