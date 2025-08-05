@@ -2,9 +2,9 @@
   "name": "poool-react-access-next-example",
   "dependencies": {
     "@poool/react-access": "portal:../../",
-    "next": "15.4.1",
-    "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "next": "15.4.5",
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
   },
   "scripts": {
     "dev": "next"
