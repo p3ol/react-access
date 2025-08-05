@@ -14,6 +14,7 @@ export const createBrowser = (opts?: LaunchOptions) =>
     headless: !process.env.HEADFULL,
     dumpio: true,
     ...opts,
+    args: ['--no-sandbox', ...opts?.args || []],
   });
 
 export const withAudit = (
