@@ -88,6 +88,7 @@ const Paywall = forwardRef<
     return () => {
       destroy(container);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lib, globalConfig?.cookies_enabled]);
 
   const create = () => {

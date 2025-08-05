@@ -1,6 +1,7 @@
 import { render, waitFor } from '@testing-library/react';
 
 import { withAudit } from '~/tests/utils';
+
 import Pixel, { type PixelProps } from './index';
 
 describe('<Pixel />', () => {

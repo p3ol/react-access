@@ -59,10 +59,6 @@ const Pixel = ({
   const { lib: Audit_, config: auditConfig } = useAudit();
   const [used, setUsed] = useState(false);
 
-  useEffect(() => {
-    send();
-  }, [Audit_, auditConfig?.cookies_enabled]);
-
   const send = useCallback(async () => {
     if (!Audit_ || (used && !reuse)) {
       return;
@@ -71,7 +67,12 @@ const Pixel = ({
     await Audit_.config(config || {}).sendEvent(type, data, options);
     setUsed(true);
     onDone?.();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Audit_, used]);
+
+  useEffect(() => {
+    send();
+  }, [Audit_, auditConfig?.cookies_enabled, send]);
 
   return null;
 };

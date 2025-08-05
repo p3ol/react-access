@@ -21,7 +21,8 @@
     "allowSyntheticDefaultImports": true
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "./*.ts"
   ],
   "exclude": [
     "**/dist/*",

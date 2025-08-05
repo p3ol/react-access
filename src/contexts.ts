@@ -23,7 +23,7 @@ export interface AccessContextValue {
    *
    * More infos: https://www.poool.dev/docs/access/javascript/access/texts
    */
-  texts?: { [key: string]: string };
+  texts?: Record<string, string>;
   /**
    * Your poool access styles
    *
@@ -41,7 +41,7 @@ export interface AccessContextValue {
    *
    * More infos: https://www.poool.dev/docs/access/javascript/access/variables
    */
-  variables?: { [key: string]: any };
+  variables?: Record<string, any>;
   /**
    * The poool access script url
    *
@@ -72,7 +72,7 @@ export interface AccessContextValue {
    *
    * More infos: https://www.poool.dev/docs/access/react
    */
-  destroyFactory?: (factory: Poool.AccessFactory) => void;
+  destroyFactory?: (factory: Poool.AccessFactory) => Promise<void>;
 }
 
 export const AccessContext = createContext<AccessContextValue>({});

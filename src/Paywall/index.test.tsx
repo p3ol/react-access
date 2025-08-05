@@ -4,8 +4,9 @@ import type { RefObject } from 'react';
 import { render, waitFor } from '@testing-library/react';
 import devServer from 'jest-dev-server';
 
-import type { RestrictedContentRef } from '../RestrictedContent';
 import { withAccess, createBrowser, sleep } from '~/tests/utils';
+
+import type { RestrictedContentRef } from '../RestrictedContent';
 import Paywall from './index';
 
 jest.setTimeout(30000);

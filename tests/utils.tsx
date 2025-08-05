@@ -12,7 +12,7 @@ import {
 export const createBrowser = (opts?: LaunchOptions) =>
   puppeteer.launch({
     headless: !process.env.HEADFULL,
-    pipe: true,
+    dumpio: true,
     ...opts,
   });
 
