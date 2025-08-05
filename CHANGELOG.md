@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.1.5](https://github.com/p3ol/react-access/compare/v4.1.4...v4.1.5) (2025-08-05)
+
+
+### Bug Fixes
+
+* bad type ([7a8767e](https://github.com/p3ol/react-access/commit/7a8767e16e0c311c67495f5a3f8fa20c8eebba5d))
+
 ## [4.1.4](https://github.com/p3ol/react-access/compare/v4.1.3...v4.1.4) (2025-08-05)
 
 
