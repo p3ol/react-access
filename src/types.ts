@@ -12,25 +12,125 @@ export declare type EventCallback<Props> =
 
 export declare type BaseEvents = Partial<Record<Poool.EventsList, any>>;
 
+export declare interface AccessIdentityAvailableEvent {
+  userId: string;
+  contextName: string;
+  contextType: string;
+  contextValue: string;
+  groupSlug: string;
+  scenarioName: string;
+  widget: string;
+  actionName: string;
+  trigger: string;
+  triggerType: string;
+  triggerValue: string;
+}
+
+export declare interface AccessReadyEvent {
+  widget: string;
+  actionName: string;
+  trigger: string;
+  triggerType: string;
+  triggerValue: string;
+}
+
+export declare interface AccessPaywallSeenEvent {
+  widget: string;
+  actionName: string;
+  trigger: string;
+  triggerType: string;
+  triggerValue: string;
+}
+
+export declare interface AccessReleaseEvent {
+  widget: string;
+  actionName: string;
+  trigger: string;
+  triggerType: string;
+  triggerValue: string;
+}
+
+export declare interface AccessRegisterEvent {
+  email: string;
+  newsletterId: string;
+  passId: string;
+}
+
+export declare interface AccessSubscribeClickEvent {
+  widget: string;
+  actionName: string;
+  button: string;
+  originalEvent: MouseEvent;
+  url: string;
+}
+
+export declare interface AccessLoginClickEvent {
+  widget: string;
+  actionName: string;
+  button: string;
+  originalEvent: MouseEvent;
+  url: string;
+}
+
+export declare interface AccessDiscoveryLinkClickEvent {
+  widget: string;
+  actionName: string;
+  button: string;
+  originalEvent: MouseEvent;
+  url: string;
+}
+
+export declare interface AccessAlternativeClickEvent {
+  widget: string;
+  actionName: string;
+  button: string;
+  originalEvent: MouseEvent;
+}
+
+export declare interface AccessDataPolicyClickEvent {
+  widget: string;
+  actionName: string;
+  button: string;
+  originalEvent: MouseEvent;
+  url: string;
+}
+
+export declare interface AccessFormSubmitEvent {
+  name: string;
+  fields: Record<string, any>;
+  valid: Record<string, boolean>;
+}
+
+export declare interface AccessFacebookLoginClickEvent {
+  widget: string;
+  actionName: string;
+  originalEvent: MouseEvent;
+}
+
+export declare interface AccessGoogleLoginClickEvent {
+  widget: string;
+  actionName: string;
+  originalEvent: MouseEvent;
+}
+
+export declare interface AccessAnswerEvent {
+  questionId: string;
+  answer: string;
+}
+
+export declare interface AccessCustomButtonClickEvent {
+  name?: string;
+  url?: string;
+  buttonId: string;
+}
+
 export declare interface AccessEvents extends BaseEvents {
   /**
    * Triggered after the first tracking request, when the user ID is available.
    *
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
-  identityAvailable: EventCallback<{
-    userId: string;
-    contextName: string;
-    contextType: string;
-    contextValue: string;
-    groupSlug: string;
-    scenarioName: string;
-    widget: string;
-    actionName: string;
-    trigger: string;
-    triggerType: string;
-    triggerValue: string;
-  }>;
+  identityAvailable: EventCallback<AccessIdentityAvailableEvent>;
   /**
    * Triggered when the paywall locks the current article.
    */
@@ -40,38 +140,20 @@ export declare interface AccessEvents extends BaseEvents {
    *
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
-  ready: EventCallback<{
-    widget: string;
-    actionName: string;
-    trigger: string;
-    triggerType: string;
-    triggerValue: string;
-  }>;
+  ready: EventCallback<AccessReadyEvent>;
   /**
    * Triggered when the paywall has been seen by the user
    * (when it has entered the browser's viewport).
    *
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
-  paywallSeen: EventCallback<{
-    widget: string;
-    actionName: string;
-    trigger: string;
-    triggerType: string;
-    triggerValue: string;
-  }>;
+  paywallSeen: EventCallback<AccessPaywallSeenEvent>;
   /**
    * Triggered when the paywall unlocks the current article.
    *
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
-  release: EventCallback<{
-    widget: string;
-    actionName: string;
-    trigger: string;
-    triggerType: string;
-    triggerValue: string;
-  }>
+  release: EventCallback<AccessReleaseEvent>
   /**
    * Triggered when a user registers to your newsletter using
    * the newsletter widget or the pass widget.
@@ -81,49 +163,27 @@ export declare interface AccessEvents extends BaseEvents {
    *
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
-  register: EventCallback<{
-    email: string;
-    newsletterId: string;
-    passId: string;
-  }>;
+  register: EventCallback<AccessRegisterEvent>;
   /**
    * Triggered when a user has
    * clicked a subscribe button/link inside the paywall.
    *
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
-  subscribeClick: EventCallback<{
-    widget: string;
-    actionName: string;
-    button: string;
-    originalEvent: MouseEvent;
-    url: string;
-  }>;
+  subscribeClick: EventCallback<AccessSubscribeClickEvent>;
   /**
    * Triggered when a user has clicked a signin button/link inside the paywall.
    *
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
-  loginClick: EventCallback<{
-    widget: string;
-    actionName: string;
-    button: string;
-    originalEvent: MouseEvent;
-    url: string;
-  }>;
+  loginClick: EventCallback<AccessLoginClickEvent>;
   /**
    * Triggered when a user has clicked the Link Discovery widget's button
    * inside the paywall.
    *
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
-  discoveryLinkClick: EventCallback<{
-    widget: string;
-    actionName: string;
-    button: string;
-    originalEvent: MouseEvent;
-    url: string;
-  }>;
+  discoveryLinkClick: EventCallback<AccessDiscoveryLinkClickEvent>;
   /**
    * Triggered when a user has clicked the 'No thanks' link in the widget.
    * Initialy loaded action will be replaced by an alternative one,
@@ -131,12 +191,7 @@ export declare interface AccessEvents extends BaseEvents {
    *
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
-  alternativeClick: EventCallback<{
-    widget: string;
-    actionName: string;
-    button: string;
-    originalEvent: MouseEvent;
-  }>;
+  alternativeClick: EventCallback<AccessAlternativeClickEvent>;
   /**
    * Triggered if an unknown/unexpected error
    * has appeared when loading the paywall.
@@ -160,13 +215,7 @@ export declare interface AccessEvents extends BaseEvents {
    *
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
-  dataPolicyClick: EventCallback<{
-    widget: string;
-    actionName: string;
-    button: string;
-    originalEvent: MouseEvent;
-    url: string;
-  }>;
+  dataPolicyClick: EventCallback<AccessDataPolicyClickEvent>;
   /**
    * Triggered when a user registers through a form using the Form widget.
    *
@@ -175,11 +224,7 @@ export declare interface AccessEvents extends BaseEvents {
    *
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
-  formSubmit: EventCallback<{
-    name: string;
-    fields: Record<string, any>;
-    valid: Record<string, boolean>;
-  }>;
+  formSubmit: EventCallback<AccessFormSubmitEvent>;
   /**
    * Triggered when a user clicks on Sign-in with Facebook inside the paywall,
    * enabled using `facebook_login_enabled` option.
@@ -188,11 +233,7 @@ export declare interface AccessEvents extends BaseEvents {
    *
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
-  facebookLoginClick: EventCallback<{
-    widget: string;
-    actionName: string;
-    originalEvent: MouseEvent;
-  }>;
+  facebookLoginClick: EventCallback<AccessFacebookLoginClickEvent>;
   /**
    * Triggered when a user clicks on Sign-in with Google inside the paywall,
    * enabled using `google_login_enabled` option.
@@ -201,20 +242,13 @@ export declare interface AccessEvents extends BaseEvents {
    *
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
-  googleLoginClick: EventCallback<{
-    widget: string;
-    actionName: string;
-    originalEvent: MouseEvent;
-  }>;
+  googleLoginClick: EventCallback<AccessGoogleLoginClickEvent>;
   /**
    * Triggered after an answer is chosen in the question widget.
    *
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
-  answer: EventCallback<{
-    questionId: string;
-    answer: string;
-  }>;
+  answer: EventCallback<AccessAnswerEvent>;
   /**
    * Triggered after a click on the consent button.
    * It is then possible to set up your own consent logic.
@@ -225,7 +259,7 @@ export declare interface AccessEvents extends BaseEvents {
    *
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
-  consent: EventCallback<any>;
+  consent: EventCallback<undefined>;
   /**
    * Triggered after a click on a button component,
    * used in an advanced appearance or a form.
@@ -238,11 +272,20 @@ export declare interface AccessEvents extends BaseEvents {
    *
    * more infos:https://www.poool.dev/docs/access/javascript/access/events
    */
-  customButtonClick: EventCallback<{
-    name?: string;
-    url?: string;
-    buttonId: string;
-  }>
+  customButtonClick: EventCallback<AccessCustomButtonClickEvent>;
+}
+
+export declare interface AuditIdentityAvailableEvent {
+  userId: string;
+  contextName: string;
+  contextType: string;
+  contextValue: string;
+  groupSlug: string;
+  journeyName: string;
+}
+
+export declare interface AuditTrackErrorEvent {
+  error: Error;
 }
 
 export declare interface AuditEvents extends BaseEvents {
@@ -251,14 +294,7 @@ export declare interface AuditEvents extends BaseEvents {
    *
    * More infos: https://www.poool.dev/docs/access/javascript/audit/events
    */
-  identityAvailable: EventCallback<{
-    userId: string;
-    contextName: string;
-    contextType: string;
-    contextValue: string;
-    groupSlug: string;
-    journeyName: string;
-  }>;
+  identityAvailable: EventCallback<AuditIdentityAvailableEvent>;
   /**
    * Triggered when the user ID isnt available (ex: disabled cookies).
    *
@@ -270,5 +306,5 @@ export declare interface AuditEvents extends BaseEvents {
    *
    * More infos: https://www.poool.dev/docs/access/javascript/audit/events
    */
-  trackError: EventCallback<{ error: Error }>;
+  trackError: EventCallback<AuditTrackErrorEvent>;
 }
