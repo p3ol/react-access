@@ -72,7 +72,7 @@ export interface AccessContextValue {
    *
    * More infos: https://www.poool.dev/docs/access/react
    */
-  destroyFactory?: (factory: Poool.AccessFactory) => void;
+  destroyFactory?: (factory: Poool.AccessFactory) => Promise<void>;
 }
 
 export const AccessContext = createContext<AccessContextValue>({});

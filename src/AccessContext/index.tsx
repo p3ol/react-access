@@ -112,7 +112,7 @@ const AccessContext = ({
     return factory;
   };
 
-  const destroyFactory = (factory: Poool.AccessFactory) => {
+  const destroyFactory = (factory: Poool.AccessFactory): Promise<void> => {
     if (!factory) {
       return;
     }
