@@ -75,5 +75,5 @@
   "resolutions": {
     "ws": "8.12.0"
   },
-  "packageManager": "yarn@4.9.2"
+  "packageManager": "yarn@4.10.3"
 }
