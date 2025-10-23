@@ -1,8 +1,8 @@
-import tseslint from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
 import pooolint from '@poool/eslint-config-react';
 import globals from 'globals';
 
-export default tseslint.config(
+export default defineConfig(
   { ignores: [
     'dist',
     '**/dist',
@@ -20,6 +20,11 @@ export default tseslint.config(
       parserOptions: {
         projectService: true,
         tsconfigRootDir: import.meta.dirname,
+      },
+    },
+    settings: {
+      react: {
+        version: 'detect',
       },
     },
   },
