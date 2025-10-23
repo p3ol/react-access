@@ -24,8 +24,12 @@ export {
 export {
   default as RestrictedContent,
   type RestrictedContentProps,
-  type RestrictedContentRef,
 } from './RestrictedContent';
+
+export {
+  default as Snippet,
+  type SnippetProps,
+} from './Snippet';
 
 export {
   useAccess,

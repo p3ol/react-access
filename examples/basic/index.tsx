@@ -1,5 +1,4 @@
 import {
-  useRef,
   useState,
   useContext,
   createContext,
@@ -15,24 +14,31 @@ import {
   useLocation,
 } from 'react-router-dom';
 import {
-  type RestrictedContentRef,
   AccessContext,
   Paywall,
   Pixel,
   RestrictedContent,
+  Snippet,
   useAccess,
   useAudit,
 } from '@poool/react-access';
 
 const Premium = () => {
-  const contentRef = useRef<RestrictedContentRef>(null);
   const [identity, setIdentity] = useState(null);
   const [ready, setReady] = useState(null);
   const [mounted, setMounted] = useState(0);
 
   return (
     <div className="app">
-      <RestrictedContent ref={contentRef}>
+      <Snippet>
+        <div className="articleBody">
+          { /* eslint-disable @stylistic/max-len */ }
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tortor leo, sollicitudin quis posuere sed, pharetra cursus mauris. Donec ultricies nibh sit amet quam feugiat, vel bibendum nisl pellentesque. In hac habitasse platea dictumst. Sed varius eget ante ac pulvinar. Suspendisse fringilla, quam ac imperdiet consequat, leo massa molestie mi, eget condimentum ligula enim ut mauris. Aliquam egestas malesuada vestibulum. Etiam ut nibh turpis. Fusce mattis blandit bibendum. Vestibulum sodales laoreet lacus ut sollicitudin. Donec tempus iaculis viverra. In congue felis quis sem porta iaculis.
+          </p>
+        </div>
+      </Snippet>
+      <RestrictedContent>
         <div className="articleBody">
           { /* eslint-disable @stylistic/max-len */ }
           <p>
@@ -85,14 +91,13 @@ const Premium = () => {
       </RestrictedContent>
 
       <Paywall
-        contentRef={contentRef}
-        events={{
-          ready: () => {
-            setReady(true);
-            setMounted(old => old + 1);
-          },
-          identityAvailable: e => setIdentity(e),
-        }}
+        // events={{
+        //   ready: () => {
+        //     setReady(true);
+        //     setMounted(old => old + 1);
+        //   },
+        //   identityAvailable: e => setIdentity(e),
+        // }}
       />
       <Pixel type="page-view" data={{ type: 'premium' }} />
 
@@ -114,7 +119,6 @@ const Premium = () => {
 };
 
 const Consent = () => {
-  const contentRef = useRef<RestrictedContentRef>(null);
   const { setEnabled } = useContext(AppContext);
   const [ready, setReady] = useState(null);
   const [mounted, setMounted] = useState(0);
@@ -128,7 +132,12 @@ const Consent = () => {
       >
         Give consent
       </button>
-      <RestrictedContent ref={contentRef}>
+      <Snippet>
+        <div id="restricted-content">
+          This sentence should be almost complete.
+        </div>
+      </Snippet>
+      <RestrictedContent>
         <div id="restricted-content">
           This sentence should be almost complete.
           This one should be entirely troncated, and if there&apos;s a rerender,
@@ -136,7 +145,6 @@ const Consent = () => {
         </div>
       </RestrictedContent>
       <Paywall
-        contentRef={contentRef}
         events={{ ready: () => {
           setReady(true);
           setMounted(old => old + 1);

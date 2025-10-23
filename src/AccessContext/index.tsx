@@ -3,22 +3,18 @@ import {
   type ComponentPropsWithoutRef,
   useCallback,
   useEffect,
+  useEffectEvent,
   useReducer,
 } from 'react';
-import { mockState, mergeDeep } from '@junipero/core';
+import { mockState } from '@junipero/core';
 
-import type {
-  AccessEvents,
-  EventCallback,
-  EventCallbackFunction,
-  EventCallbackObject,
-} from '../types';
-import { type AccessContextValue, AccessContext as Ctx } from '../contexts';
+import { type AccessContextValue, AuditContextValue, AccessContext as Ctx } from '../contexts';
 import { loadScript } from '../utils';
 import AuditContext from '../AuditContext';
 
 export interface AccessContextProps
-  extends AccessContextValue, ComponentPropsWithoutRef<any> {
+  extends Omit<AccessContextValue, '_released' | '_releaseContent'>,
+  ComponentPropsWithoutRef<any> {
   /**
    * Maximum time for the Access script to load
    * @default 2000
@@ -32,10 +28,18 @@ export interface AccessContextProps
    * https://www.poool.dev/docs/access/javascript/access/installation
    */
   withAudit?: boolean;
+  /**
+   * Your pool Audit context props
+   *
+   * More infos:
+   * https://www.poool.dev/docs/access/javascript/audit/installation
+   */
+  auditProps?: Omit<AuditContextValue, 'lib'>;
 }
 
 export interface AccessContextState {
   lib?: Poool.Access;
+  released: (string | boolean)[];
 }
 
 const AccessContext = ({
@@ -43,23 +47,35 @@ const AccessContext = ({
   config,
   texts,
   styles,
-  events,
   variables,
+  auditProps,
   scriptUrl = 'https://assets.poool.fr/access.min.js',
   scriptLoadTimeout = 2000,
   withAudit = false,
+  onIdentityAvailable,
+  onLock,
+  onReady,
+  onRelease,
+  onPaywallSeen,
+  onRegister,
+  onFormSubmit,
+  onSubscribeClick,
+  onLoginClick,
+  onDiscoveryLinkClick,
+  onCustomButtonClick,
+  onDataPolicyClick,
+  onAlternativeClick,
+  onAnswer,
+  onResize,
+  onError,
   ...rest
 }: AccessContextProps) => {
   const [state, dispatch] = useReducer(mockState<AccessContextState>, {
     lib: null,
+    released: [],
   });
 
-  useEffect(() => {
-    init();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const init = async () => {
+  const init = useEffectEvent(async () => {
     if (
       (!globalThis.Access?.isPoool) &&
       (!globalThis.PooolAccess?.isPoool)
@@ -72,71 +88,105 @@ const AccessContext = ({
     const accessRef = globalThis.PooolAccess || globalThis.Access;
     const lib = accessRef.noConflict();
     dispatch({ lib });
-  };
+  });
 
-  const createFactory = (
-    opts: Pick<
-      AccessContextValue,
-      'config' | 'texts' | 'styles' | 'variables' | 'events'
-    > = {}
-  ) => {
-    if (!state.lib) {
-      return;
-    }
+  useEffect(() => {
+    init();
+  }, []);
 
-    const factory = state.lib
-      .init(appId)
-      .config(mergeDeep({}, config, opts.config))
-      .texts(mergeDeep({}, texts, opts.texts))
-      .styles(mergeDeep({}, styles, opts.styles))
-      .variables(mergeDeep({}, variables, opts.variables));
+  const releaseContent = useCallback((id: string | boolean) => {
+    dispatch(s => ({ released: [...(s.released || []), id] }));
+  }, []);
 
-    Object
-      .entries(events || {})
-      .concat(Object.entries(opts.events || {}))
-      .forEach(([
-        event,
-        callback,
-      ]: [
-        Poool.EventsList,
-        EventCallback<typeof events[keyof typeof events]>,
-      ]) => {
-        if ((callback as EventCallbackObject<typeof event>).once) {
-          factory.once(event,
-            (callback as EventCallbackObject<typeof event>).callback);
-        } else {
-          factory.on(event, callback as EventCallbackFunction<typeof event>);
-        }
-      });
+  // const createFactory = useCallback((
+  //   opts: Pick<
+  //     AccessContextValue,
+  //     'config' | 'texts' | 'styles' | 'variables' | 'events'
+  //   > = {}
+  // ) => {
+  //   if (!state.lib) {
+  //     return;
+  //   }
 
-    return factory;
-  };
+  //   const factory = state.lib
+  //     .init(appId)
+  //     .config(mergeDeep({}, config, opts.config))
+  //     .texts(mergeDeep({}, texts, opts.texts))
+  //     .styles(mergeDeep({}, styles, opts.styles))
+  //     .variables(mergeDeep({}, variables, opts.variables));
 
-  const destroyFactory = (factory: Poool.AccessFactory): Promise<void> => {
-    if (!factory) {
-      return;
-    }
+  //   Object
+  //     .entries(events || {})
+  //     .concat(Object.entries(opts.events || {}))
+  //     .forEach(([
+  //       event,
+  //       callback,
+  //     ]: [
+  //       Poool.EventsList,
+  //       EventCallback<typeof events[keyof typeof events]>,
+  //     ]) => {
+  //       if ((callback as EventCallbackObject<typeof event>).once) {
+  //         factory.once(event,
+  //           (callback as EventCallbackObject<typeof event>).callback);
+  //       } else {
+  //         factory.on(event, callback as EventCallbackFunction<typeof event>);
+  //       }
+  //     });
 
-    Object.keys(events || {}).forEach((event: keyof AccessEvents) => {
-      factory?.off(event, events[event].callback || events[event]);
-    });
+  //   return factory;
+  // }, [appId, config, texts, styles, variables, events, state.lib]);
 
-    return factory.destroy();
-  };
+  // const destroyFactory = useCallback((
+  //   factory: Poool.AccessFactory
+  // ): Promise<void> => {
+  //   if (!factory) {
+  //     return;
+  //   }
+
+  //   Object.keys(events || {}).forEach((event: keyof AccessEvents) => {
+  //     factory?.off(event, events[event].callback || events[event]);
+  //   });
+
+  //   return factory.destroy();
+  // }, [events]);
 
   const getContext = useCallback(() => ({
     appId,
     config,
     texts,
     styles,
-    events,
     variables,
     scriptUrl,
     lib: state.lib,
-    createFactory,
-    destroyFactory,
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }), [state.lib, config?.cookies_enabled]);
+    onIdentityAvailable,
+    onLock,
+    onReady,
+    onRelease,
+    onPaywallSeen,
+    onRegister,
+    onFormSubmit,
+    onSubscribeClick,
+    onLoginClick,
+    onDiscoveryLinkClick,
+    onCustomButtonClick,
+    onDataPolicyClick,
+    onAlternativeClick,
+    onAnswer,
+    onResize,
+    onError,
+    // Internals
+    _released: state.released,
+    _releaseContent: releaseContent,
+  }), [
+    state.lib,
+    appId, config, texts, styles, variables, scriptUrl,
+    state.released,
+    releaseContent,
+    onIdentityAvailable, onLock, onReady, onRelease, onPaywallSeen,
+    onRegister, onFormSubmit, onSubscribeClick, onLoginClick,
+    onDiscoveryLinkClick, onCustomButtonClick, onDataPolicyClick,
+    onAlternativeClick, onAnswer, onResize, onError,
+  ]);
 
   const content = (
     <Ctx.Provider value={getContext()} { ...rest } />
@@ -144,7 +194,7 @@ const AccessContext = ({
 
   if (withAudit) {
     return (
-      <AuditContext appId={appId} config={config}>
+      <AuditContext appId={appId} config={config} { ...auditProps }>
         { content }
       </AuditContext>
     );

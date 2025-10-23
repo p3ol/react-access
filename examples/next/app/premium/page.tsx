@@ -1,21 +1,29 @@
 'use client';
 
-import { useId, useRef } from 'react';
+import { useId } from 'react';
 import {
-  type RestrictedContentRef,
   Pixel,
   Paywall,
   RestrictedContent,
+  Snippet,
 } from '@poool/react-access';
 import Link from 'next/link';
 
 const Premium = () => {
-  const contentRef = useRef<RestrictedContentRef>(null);
   const id = useId();
 
   return (
     <div className="app">
-      <RestrictedContent ref={contentRef}>
+      <Snippet id={id}>
+        <div className="articleBody">
+          { /* eslint-disable @stylistic/max-len */ }
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tortor leo, sollicitudin quis posuere sed, pharetra cursus mauris. Donec ultricies nibh sit amet quam feugiat, vel bibendum nisl pellentesque. In hac habitasse platea dictumst. Sed varius eget ante ac pulvinar. Suspendisse fringilla, quam ac imperdiet consequat, leo massa molestie mi, eget condimentum ligula enim ut mauris. Aliquam egestas malesuada vestibulum. Etiam ut nibh turpis. Fusce mattis blandit bibendum. Vestibulum sodales laoreet lacus ut sollicitudin. Donec tempus iaculis viverra. In congue felis quis sem porta iaculis.
+          </p>
+          { /* eslint-enable @stylistic/max-len */ }
+        </div>
+      </Snippet>
+      <RestrictedContent id={id}>
         <div className="articleBody">
           { /* eslint-disable @stylistic/max-len */ }
           <p>
@@ -67,7 +75,7 @@ const Premium = () => {
         </div>
       </RestrictedContent>
 
-      <Paywall id={id} contentRef={contentRef} />
+      <Paywall id={id} />
       <Pixel type="page-view" data={{ type: 'premium' }} />
 
       <Link href="/">Return to home</Link>

@@ -1,47 +1,25 @@
-import type { Poool } from 'poool-access';
-import {
-  type ComponentPropsWithoutRef,
-  type RefObject,
-  Children,
-  cloneElement,
-  useRef,
-  useImperativeHandle,
-  forwardRef,
-} from 'react';
+import { type ComponentPropsWithoutRef, useContext } from 'react';
 
-export declare interface RestrictedContentRef {
-  contentRef: RefObject<HTMLElement>;
-  mode: Poool.AccessConfigOptions['mode'];
-  percent: Poool.AccessConfigOptions['percent'];
+import { AccessContext } from '../contexts';
+
+export interface RestrictedContentProps extends ComponentPropsWithoutRef<any> {
+  /**
+   * Optional unique paywall id. When released, the restricted content with the
+   * corresponding id will be displayed.
+   */
+  id?: string;
 }
 
-export declare interface RestrictedContentProps extends Pick<
-  Poool.AccessConfigOptions,
-  'mode' | 'percent'
->, ComponentPropsWithoutRef<any> {
-  ref?: RefObject<RestrictedContentRef>;
-}
+const RestrictedContent = ({ id, children }: RestrictedContentProps) => {
+  const { _released } = useContext(AccessContext);
 
-const RestrictedContent = forwardRef<
-  RestrictedContentRef,
-  RestrictedContentProps
->(({
-  mode,
-  percent,
-  children,
-}, ref) => {
-  const contentRef = useRef<HTMLDivElement>(undefined);
-
-  useImperativeHandle(ref, () => ({
-    contentRef,
-    mode,
-    percent,
-  }));
-
-  return cloneElement(Children.only(children), {
-    ref: contentRef,
-  });
-});
+  if (
+    (!id && _released?.includes(true)) ||
+    _released?.includes(id || 'unknown')
+  ) {
+    return children;
+  }
+};
 
 RestrictedContent.displayName = 'RestrictedContent';
 

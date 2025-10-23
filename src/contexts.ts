@@ -1,7 +1,7 @@
 import type { Poool } from 'poool-access';
 import { createContext } from 'react';
 
-import type { AccessEvents, AuditEvents } from './types';
+import type { AccessEvents, AuditEvents, EventCallback } from './types';
 
 export interface AccessContextValue {
   /**
@@ -31,12 +31,6 @@ export interface AccessContextValue {
    */
   styles?: Poool.styles;
   /**
-   * Your poool access events
-   *
-   * More infos: https://www.poool.dev/docs/access/javascript/access/events
-   */
-  events?: { [key in Poool.EventsList]?: AccessEvents[key] };
-  /**
    * Your pool access variables
    *
    * More infos: https://www.poool.dev/docs/access/javascript/access/variables
@@ -61,21 +55,68 @@ export interface AccessContextValue {
    *
    * More infos: https://www.poool.dev/docs/access/react
    */
-  createFactory?: (
-    opts?: Pick<
-      AccessContextValue,
-      'config' | 'texts' | 'styles' | 'variables' | 'events'
-    >
-  ) => Poool.AccessFactory;
+  // createFactory?: (
+  //   opts?: Pick<
+  //     AccessContextValue,
+  //     'config' | 'texts' | 'styles' | 'variables' | 'events'
+  //   >
+  // ) => Poool.AccessFactory;
   /**
    * Function to delete a factory
    *
    * More infos: https://www.poool.dev/docs/access/react
    */
-  destroyFactory?: (factory: Poool.AccessFactory) => Promise<void>;
+  // destroyFactory?: (factory: Poool.AccessFactory) => Promise<void>;
+
+  // Events
+  onIdentityAvailable?: EventCallback<AccessEvents['identityAvailable']>;
+  onLock?: EventCallback<AccessEvents['lock']>;
+  onReady?: EventCallback<AccessEvents['ready']>;
+  onRelease?: EventCallback<AccessEvents['release']>;
+  onPaywallSeen?: EventCallback<AccessEvents['paywallSeen']>;
+  onRegister?: EventCallback<
+    AccessEvents['register'],
+    | string[]
+    | { fieldKey: string; message: string; }[]
+    | void
+    | Promise<
+      | string[]
+      | { fieldKey: string; message: string; }[]
+      | void
+      >
+  >;
+  onFormSubmit?: EventCallback<
+    AccessEvents['formSubmit'],
+    | string[]
+    | { fieldKey: string; message: string; }[]
+    | void
+    | Promise<
+      | string[]
+      | { fieldKey: string; message: string; }[]
+      | void
+      >
+  >;
+  onSubscribeClick?: EventCallback<AccessEvents['subscribeClick']>;
+  onLoginClick?: EventCallback<AccessEvents['loginClick']>;
+  onDiscoveryLinkClick?: EventCallback<AccessEvents['discoveryLinkClick']>;
+  onCustomButtonClick?: EventCallback<AccessEvents['customButtonClick']>;
+  onDataPolicyClick?: EventCallback<AccessEvents['dataPolicyClick']>;
+  onAlternativeClick?: EventCallback<AccessEvents['alternativeClick']>;
+  onAnswer?: EventCallback<AccessEvents['answer']>;
+  onError?: EventCallback<AccessEvents['error']>;
+  onResize?: EventCallback<AccessEvents['resize']>;
+
+  /**
+   * Internals
+   */
+  _released: (string | boolean)[];
+  _releaseContent: (id: string | boolean) => void;
 }
 
-export const AccessContext = createContext<AccessContextValue>({});
+export const AccessContext = createContext<AccessContextValue>({
+  _released: [],
+  _releaseContent: () => {},
+});
 
 export interface AuditContextValue {
   /**
@@ -109,6 +150,11 @@ export interface AuditContextValue {
    * More infos: https://www.poool.dev/docs/access/react
    */
   lib?: Poool.Audit;
+
+  // Events
+  onIdentityAvailable?: EventCallback<AuditEvents['identityAvailable']>;
+  onIdentityUnknown?: EventCallback<AuditEvents['identityUnknown']>;
+  onTrackError?: EventCallback<AuditEvents['trackError']>;
 }
 
 export const AuditContext = createContext<AuditContextValue>({});
