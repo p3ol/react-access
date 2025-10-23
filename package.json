@@ -81,7 +81,7 @@
     "example:next": "yarn workspace poool-react-access-next-example dev"
   },
   "resolutions": {
-    "ws": "8.12.0"
+    "ws": "8.17.1"
   },
   "targets": [
     "chrome109",
