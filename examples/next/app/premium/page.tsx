@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useId, useRef } from 'react';
 import {
   type RestrictedContentRef,
   Pixel,
@@ -11,6 +11,7 @@ import Link from 'next/link';
 
 const Premium = () => {
   const contentRef = useRef<RestrictedContentRef>(null);
+  const id = useId();
 
   return (
     <div className="app">
@@ -66,7 +67,7 @@ const Premium = () => {
         </div>
       </RestrictedContent>
 
-      <Paywall contentRef={contentRef} />
+      <Paywall id={id} contentRef={contentRef} />
       <Pixel type="page-view" data={{ type: 'premium' }} />
 
       <Link href="/">Return to home</Link>

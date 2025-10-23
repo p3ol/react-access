@@ -10,6 +10,7 @@ export default defineConfig(
     '.yarn',
     'node_modules',
     'examples/next/.next/**',
+    'examples/next/next-env.d.ts',
   ] },
   {
     languageOptions: {
