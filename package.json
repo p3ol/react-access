@@ -57,7 +57,7 @@
     "puppeteer": "24.26.1",
     "react": "19.2.0",
     "react-dom": "19.2.0",
-    "react-router-dom": "7.9.4",
+    "react-router-dom": "7.9.6",
     "swc-loader": "0.2.6",
     "ts-node": "10.9.2",
     "tsdown": "0.15.9",
