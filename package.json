@@ -36,7 +36,7 @@
   "devDependencies": {
     "@poool/eslint-config": "5.0.7",
     "@poool/eslint-config-react": "5.0.9",
-    "@swc/core": "1.13.20",
+    "@swc/core": "1.15.3",
     "@swc/jest": "0.2.39",
     "@testing-library/dom": "10.4.1",
     "@testing-library/react": "16.3.0",
