@@ -60,7 +60,7 @@
     "react-router-dom": "7.9.4",
     "swc-loader": "0.2.6",
     "ts-node": "10.9.2",
-    "tsdown": "0.15.9",
+    "tsdown": "0.16.6",
     "typescript": "5.9.3",
     "typescript-eslint": "8.46.2",
     "webpack": "5.102.1",
