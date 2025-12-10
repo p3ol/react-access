@@ -96,6 +96,18 @@ export default () => {
 };
 ```
 
+### Usage with Next
+
+⚠️ If you encounter any rendering (or hydratation) issue and you are using next's app router, please import the `<Paywall />` component using next's `dynamic` helper and **explicitly disable server side rendering** (enabled by default even for client components):
+
+```ts
+import dynamic from 'next/dynamic';
+
+const { Paywall } = dynamic(() => import('@poool/react-access'), { ssr: false });
+```
+
+See https://nextjs.org/docs/app/guides/lazy-loading for more information on how to use it.
+
 ## Documentation
 
 ### `<AccessContext />`
