@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.1.6](https://github.com/p3ol/react-access/compare/v4.1.5...v4.1.6) (2025-12-18)
+
+
+### Bug Fixes
+
+* move to esm by default ([4655a35](https://github.com/p3ol/react-access/commit/4655a3544ab70303dc08e37aac95395d72cc22bd))
+* upgrade various deps ([e9ec6e1](https://github.com/p3ol/react-access/commit/e9ec6e1370dd1c36f73699e19c8673dfbc7f5399))
+* upgrade various deps ([87364c0](https://github.com/p3ol/react-access/commit/87364c0f5fc3221ffb5bc1fa2a1c458eeaaac771))
+
 ## [4.1.5](https://github.com/p3ol/react-access/compare/v4.1.4...v4.1.5) (2025-08-05)
 
 
