@@ -1,3 +1,5 @@
+import { TextDecoder, TextEncoder } from 'node:util';
+
 import type { Poool } from 'poool-access';
 import type { ReactNode } from 'react';
 import puppeteer, { type LaunchOptions } from 'puppeteer';
@@ -8,6 +10,9 @@ import {
   AccessContext,
   AuditContext,
 } from '../src/contexts';
+
+globalThis.TextDecoder = TextDecoder;
+globalThis.TextEncoder = TextEncoder;
 
 export const createBrowser = (opts?: LaunchOptions) =>
   puppeteer.launch({
