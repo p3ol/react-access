@@ -38,7 +38,13 @@ const RestrictedContent = forwardRef<
     percent,
   }));
 
-  return cloneElement(Children.only(children), {
+  const child = Children.only(children);
+
+  if (child?.type === Symbol.for('react.fragment')) {
+    throw new Error('RestrictedContent cannot accept a Fragment as a child.');
+  }
+
+  return cloneElement(child, {
     ref: contentRef,
   });
 });
