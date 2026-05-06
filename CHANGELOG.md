@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+### [4.1.6](https://github.com/p3ol/react-access/compare/v4.1.5...v4.1.6) (2026-05-06)
+
+
+### Bug Fixes
+
+* explicitly throw error when RestrictedContent child is a fragment ([9ebab38](https://github.com/p3ol/react-access/commit/9ebab38))
+* move to esm by default ([4655a35](https://github.com/p3ol/react-access/commit/4655a35))
+* update various deps ([e6d60e5](https://github.com/p3ol/react-access/commit/e6d60e5))
+* upgrade various deps ([87364c0](https://github.com/p3ol/react-access/commit/87364c0))
+* upgrade various deps ([e9ec6e1](https://github.com/p3ol/react-access/commit/e9ec6e1))
+
+
 ## [4.1.5](https://github.com/p3ol/react-access/compare/v4.1.4...v4.1.5) (2025-08-05)
 
 
