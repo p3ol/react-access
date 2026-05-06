@@ -6,6 +6,7 @@ export default defineConfig([
   {
     entry: ['./src/index.ts'],
     outDir: 'dist',
+    platform: 'neutral',
     target: pkg.targets,
     format: ['cjs', 'esm'],
     deps: {
