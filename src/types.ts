@@ -44,6 +44,7 @@ export declare interface AccessPaywallSeenEvent {
 
 export declare interface AccessReleaseEvent {
   widget: string;
+  releaseSignature?: string;
   actionName: string;
   trigger: string;
   triggerType: string;
