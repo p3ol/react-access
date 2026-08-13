@@ -27,6 +27,9 @@ const Providers = ({ children }: ComponentPropsWithoutRef<any>) => {
         styles={{}}
         texts={{}}
         withAudit={true}
+        events={{
+          consent: () => true,
+        }}
       >
         { children }
       </AccessContext>
