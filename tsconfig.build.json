@@ -13,6 +13,6 @@
     "**/*.test.ts",
     "**/*.test.tsx",
     "tsdown.config.ts",
-    "jest.config.ts",
+    "vitest.config.ts",
   ]
 }
