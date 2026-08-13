@@ -1,6 +1,6 @@
-import { useContext } from 'react';
+import { use } from 'react';
 
 import { AccessContext, AuditContext } from './contexts';
 
-export const useAccess = () => useContext(AccessContext);
-export const useAudit = () => useContext(AuditContext);
+export const useAccess = () => use(AccessContext);
+export const useAudit = () => use(AuditContext);

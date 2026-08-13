@@ -1,10 +1,10 @@
 import {
   useRef,
   useState,
-  useContext,
-  createContext,
   useEffect,
   useCallback,
+  use,
+  createContext,
 } from 'react';
 import { createRoot } from 'react-dom/client';
 import {
@@ -115,7 +115,7 @@ const Premium = () => {
 
 const Consent = () => {
   const contentRef = useRef<RestrictedContentRef>(null);
-  const { setEnabled } = useContext(AppContext);
+  const { setEnabled } = use(AppContext);
   const [ready, setReady] = useState(null);
   const [mounted, setMounted] = useState(0);
 
@@ -223,7 +223,7 @@ const App = () => {
   }), [enabled, setEnabled]);
 
   return (
-    <AppContext.Provider value={getContext()}>
+    <AppContext value={getContext()}>
       <AccessContext
         appId="155PF-L7Q6Q-EB2GG-04TF8"
         config={{
@@ -244,7 +244,7 @@ const App = () => {
           <Route index element={<Home />} />
         </Routes>
       </AccessContext>
-    </AppContext.Provider>
+    </AppContext>
   );
 };
 

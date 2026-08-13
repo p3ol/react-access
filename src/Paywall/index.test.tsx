@@ -44,7 +44,7 @@ describe('<Paywall />', () => {
     expect(createPaywallMock).toHaveBeenCalled();
   });
 
-  it('should set listener on identityAvailable event ', () => {
+  it('should set listener on identityAvailable event', () => {
     const onceMock = jest.fn();
     const createFactoryMock = jest.fn().mockReturnValue({
       createPaywall: jest.fn(),

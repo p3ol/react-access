@@ -1,9 +1,8 @@
-import { defineConfig } from 'eslint/config';
+import { defineConfig, globalIgnores } from 'eslint/config';
 import pooolint from '@poool/eslint-config-react';
-import globals from 'globals';
 
 export default defineConfig(
-  { ignores: [
+  globalIgnores([
     'dist',
     '**/dist',
     'coverage',
@@ -11,11 +10,10 @@ export default defineConfig(
     'node_modules',
     'examples/next/.next/**',
     'examples/next/next-env.d.ts',
-  ] },
+  ]),
   {
     languageOptions: {
       globals: {
-        ...globals.browser,
         globalThis: 'readonly',
       },
       parserOptions: {
@@ -29,5 +27,5 @@ export default defineConfig(
       },
     },
   },
-  ...pooolint.configs.recommended,
+  pooolint.configs.recommended,
 );

@@ -1,13 +1,13 @@
 'use client';
 
-import { useRef, useContext, useId } from 'react';
-import { RestrictedContent, Paywall, Pixel } from '@poool/react-access';
+import { useRef, useId, use } from 'react';
+import { type RestrictedContentRef, RestrictedContent, Paywall, Pixel } from '@poool/react-access';
 
 import { PageContext } from '../../contexts';
 
 const Consent = () => {
-  const contentRef = useRef();
-  const { setCookiesEnabled } = useContext(PageContext);
+  const contentRef = useRef<RestrictedContentRef>(null);
+  const { setCookiesEnabled } = use(PageContext);
   const paywallId = useId();
 
   return (

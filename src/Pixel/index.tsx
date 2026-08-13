@@ -67,7 +67,7 @@ const Pixel = ({
     await Audit_.config(config || {}).sendEvent(type, data, options);
     setUsed(true);
     onDone?.();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps,@eslint-react/exhaustive-deps
   }, [Audit_, used]);
 
   useEffect(() => {

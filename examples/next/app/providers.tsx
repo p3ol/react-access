@@ -14,7 +14,7 @@ const Providers = ({ children }: ComponentPropsWithoutRef<any>) => {
   }), [cookiesEnabled, setCookiesEnabled]);
 
   return (
-    <PageContext.Provider value={getContext()}>
+    <PageContext value={getContext()}>
       <AccessContext
         appId="155PF-L7Q6Q-EB2GG-04TF8"
         config={{
@@ -30,7 +30,7 @@ const Providers = ({ children }: ComponentPropsWithoutRef<any>) => {
       >
         { children }
       </AccessContext>
-    </PageContext.Provider>
+    </PageContext>
   );
 };
 
