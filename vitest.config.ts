@@ -21,7 +21,7 @@ export default defineConfig({
         exclude: ['node_modules', 'src/**/*.e2e.test.ts', 'src/**/*.e2e.test.tsx'],
         environment: 'jsdom',
       },
-    }]
+    }],
   },
   resolve: {
     alias: {
