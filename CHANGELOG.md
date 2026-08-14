@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [5.0.0](https://github.com/p3ol/react-access/compare/v4.1.6...v5.0.0) (2026-08-14)
+
+### ⚠ BREAKING CHANGES
+
+* bump minimum node version to 22
+* drop es5 support
+* drop react 16 & 17 compat
+* lib is now explicitly client only
+
+### Refactors
+
+* bump minimum node version to 22 ([c09fcec](https://github.com/p3ol/react-access/commit/c09fcec))
+* drop es5 support ([06ba587](https://github.com/p3ol/react-access/commit/06ba587))
+* drop react 16 & 17 compat ([a9b6968](https://github.com/p3ol/react-access/commit/a9b6968))
+
+### Features
+
+* lib is now explicitly client only ([54f9112](https://github.com/p3ol/react-access/commit/54f9112))
+
+### Bug Fixes
+
+* react 18 compat ([457b166](https://github.com/p3ol/react-access/commit/457b166))
+* upgrade various deps ([5f0edb0](https://github.com/p3ol/react-access/commit/5f0edb0))
+
+
 ### [4.1.6](https://github.com/p3ol/react-access/compare/v4.1.5...v4.1.6) (2026-05-06)
 
 
