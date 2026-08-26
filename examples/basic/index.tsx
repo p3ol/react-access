@@ -1,10 +1,10 @@
 import {
   useRef,
   useState,
-  useContext,
-  createContext,
   useEffect,
   useCallback,
+  useContext,
+  createContext,
 } from 'react';
 import { createRoot } from 'react-dom/client';
 import {
@@ -137,10 +137,15 @@ const Consent = () => {
       </RestrictedContent>
       <Paywall
         contentRef={contentRef}
-        events={{ ready: () => {
-          setReady(true);
-          setMounted(old => old + 1);
-        } }}
+        events={{
+          ready: () => {
+            setReady(true);
+            setMounted(old => old + 1);
+          },
+          consent: () => {
+            return true;
+          },
+        }}
       />
       <Pixel reuse={true} type="page-view" data={{ type: 'premium' }} />
 

@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "node_modules/@poool/oxlint-config/lib/recommended.json",
+    "node_modules/@poool/oxlint-config/lib/react/recommended.json",
+    "node_modules/@poool/oxlint-config/lib/next/recommended.json"
+  ],
+  "ignorePatterns": [
+    "next-env.d.ts"
+  ]
+}

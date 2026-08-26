@@ -1,3 +1,5 @@
+'use client';
+
 export {
   default as AccessContext,
   type AccessContextProps,

@@ -28,7 +28,7 @@ export const withAudit = (
     lib?: Partial<Poool.Audit>;
   } = {}
 ) => (
-  <AuditContext.Provider
+  <AuditContext
     value={{
       ...audit,
       lib: {
@@ -38,16 +38,16 @@ export const withAudit = (
     } as AuditContextValue}
   >
     { children }
-  </AuditContext.Provider>
+  </AuditContext>
 );
 
 export const withAccess = (
   children: ReactNode,
   access: AccessContextValue = {}
 ) => (
-  <AccessContext.Provider value={{ ...access }}>
+  <AccessContext value={{ ...access }}>
     { children }
-  </AccessContext.Provider>
+  </AccessContext>
 );
 
 export const sleep = (ms: number) =>

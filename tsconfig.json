@@ -3,7 +3,6 @@
     "paths": {
       "~/*": ["./*"]
     },
-    "baseUrl": ".",
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -11,11 +10,11 @@
     "noEmit": true,
     "incremental": true,
     "esModuleInterop": true,
-    "types": ["jest", "node", "react", "webpack-dev-server"],
+    "types": ["vitest/globals", "node", "react", "react-dom", "webpack-dev-server"],
     "module": "esnext",
     "lib": ["esnext", "dom"],
     "moduleResolution": "bundler",
-    "target": "ES5",
+    "target": "es2015",
     "resolveJsonModule": true,
     "noImplicitAny": true,
     "allowSyntheticDefaultImports": true

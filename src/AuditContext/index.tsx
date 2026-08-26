@@ -47,7 +47,7 @@ const AuditContext = ({
     return () => {
       deinit();
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps,@eslint-react/exhaustive-deps
   }, [config?.cookies_enabled]);
 
   const init = async () => {
@@ -126,7 +126,7 @@ const AuditContext = ({
     events,
     scriptUrl,
     lib: state.lib,
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps,@eslint-react/exhaustive-deps
   }), [state.lib, config?.cookies_enabled]);
 
   return (

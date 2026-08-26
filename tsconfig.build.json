@@ -5,14 +5,15 @@
     "declarationMap": true,
     "noEmit": false,
     "emitDeclarationOnly": true,
+    "rootDir": "src",
     "outDir": "dist/types",
-    "baseUrl": "."
   },
   "exclude": [
     "tests",
     "**/*.test.ts",
     "**/*.test.tsx",
     "tsdown.config.ts",
-    "jest.config.ts",
+    "vitest.config.ts",
+    "commitlint.config.ts",
   ]
 }

@@ -56,7 +56,7 @@ const AccessContext = ({
 
   useEffect(() => {
     init();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps,@eslint-react/exhaustive-deps
   }, []);
 
   const init = async () => {
@@ -135,7 +135,7 @@ const AccessContext = ({
     lib: state.lib,
     createFactory,
     destroyFactory,
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps,@eslint-react/exhaustive-deps
   }), [state.lib, config?.cookies_enabled]);
 
   const content = (

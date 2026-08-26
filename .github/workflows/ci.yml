@@ -17,7 +17,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
           check-latest: true
           cache: yarn
       - name: Install deps
@@ -37,17 +37,13 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
           check-latest: true
           cache: yarn
       - name: Install deps
         run: yarn install
       - name: Test
         run: yarn test
-      - name: Codecov upload
-        uses: codecov/codecov-action@v5.5.2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
 
   build:
     name: Building
@@ -59,7 +55,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
           check-latest: true
           cache: yarn
       - name: Install deps

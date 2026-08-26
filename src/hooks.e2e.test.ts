@@ -4,8 +4,6 @@ import devServer from 'jest-dev-server';
 
 import { createBrowser } from '~/tests/utils';
 
-jest.setTimeout(30000);
-
 describe('hooks.ts', () => {
   let server: SpawndChildProcess[];
   let browser: Browser;

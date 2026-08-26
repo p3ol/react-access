@@ -1,4 +1,5 @@
 import { render, waitFor } from '@testing-library/react';
+import { vi } from 'vitest';
 
 import { withAudit } from '~/tests/utils';
 
@@ -6,7 +7,7 @@ import Pixel, { type PixelProps } from './index';
 
 describe('<Pixel />', () => {
   it('should immediatly send selected event', async () => {
-    const sendEventMock = jest.fn();
+    const sendEventMock = vi.fn();
 
     render(withAudit(<Pixel type="page-view" />, {
       lib: {
@@ -18,7 +19,7 @@ describe('<Pixel />', () => {
 
   it('should not resend event if cookies_enabled change but ' +
   'reuse is false', async () => {
-    const sendEventMock = jest.fn();
+    const sendEventMock = vi.fn();
     const config = { cookies_enabled: false };
     render(withAudit(<Pixel type="page-view" />, {
       lib: { sendEvent: sendEventMock },
@@ -33,7 +34,7 @@ describe('<Pixel />', () => {
 
   it('should resend event if cookies_enabled change and ' +
   'reuse is truthy', async () => {
-    const sendEventMock = jest.fn();
+    const sendEventMock = vi.fn();
     const config = {
       cookies_enabled: false,
     };
@@ -48,7 +49,7 @@ describe('<Pixel />', () => {
   });
 
   it('should send page-view with data if its asked for', async () => {
-    const sendEventMock = jest.fn();
+    const sendEventMock = vi.fn();
     const data: PixelProps['data'] = { type: 'premium' };
 
     render(withAudit(
@@ -62,7 +63,7 @@ describe('<Pixel />', () => {
   });
 
   it('should send options if its asked for', async () => {
-    const sendEventMock = jest.fn();
+    const sendEventMock = vi.fn();
     const options = { beacon: true };
     render(withAudit(
       <Pixel type="page-view" options={options} />, {
