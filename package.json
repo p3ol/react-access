@@ -1,6 +1,6 @@
 {
   "name": "@poool/react-access",
-  "version": "4.1.6",
+  "version": "5.0.0",
   "description": "The easiest way to add Poool Access to your React app ✨",
   "type": "module",
   "repository": {
