@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+### [5.0.1](https://github.com/p3ol/react-access/compare/v5.0.0...v5.0.1) (2026-10-02)
+
+
+### Bug Fixes
+
+* upgrade various deps ([57970b6](https://github.com/p3ol/react-access/commit/57970b6))
+
+
 ## [5.0.0](https://github.com/p3ol/react-access/compare/v4.1.6...v5.0.0) (2026-10-01)
 
 ### ⚠ BREAKING CHANGES
