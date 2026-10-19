@@ -117,11 +117,17 @@ const Paywall = forwardRef<PaywallRef, PaywallProps>(({
       return;
     }
 
-    container.innerHTML = '';
     const factory = paywallRef.current;
     factory.off('identityAvailable', onIdentityAvailable);
     paywallRef.current = null;
-    await destroyFactory?.(factory);
+
+    try {
+      await destroyFactory?.(factory);
+    } catch {}
+
+    if (container) {
+      container.innerHTML = '';
+    }
   };
 
   const recreate = async () => {
