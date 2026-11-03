@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+### [5.0.1](https://github.com/p3ol/react-access/compare/v5.0.0...v5.0.1) (2026-11-03)
+
+
+### Bug Fixes
+
+* destroy factory before setting container.innerHTML to '' ([7f231e5](https://github.com/p3ol/react-access/commit/7f231e5))
+* update events body for new access render ([55f99c7](https://github.com/p3ol/react-access/commit/55f99c7))
+* upgrade various deps ([57970b6](https://github.com/p3ol/react-access/commit/57970b6))
+* upgrade various deps ([63a610e](https://github.com/p3ol/react-access/commit/63a610e))
+
+
 ## [5.0.0](https://github.com/p3ol/react-access/compare/v4.1.6...v5.0.0) (2026-10-01)
 
 ### ⚠ BREAKING CHANGES
