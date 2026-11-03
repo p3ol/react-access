@@ -1918,7 +1918,7 @@ __metadata:
   resolution: "@poool/react-access@portal:../../::locator=poool-react-access-basic-example%40workspace%3Aexamples%2Fbasic"
   dependencies:
     "@junipero/core": "npm:3.14.1"
-    "@types/poool-access": "npm:5.18.1"
+    "@types/poool-access": "npm:5.19.0"
   peerDependencies:
     react: ^18.0.0 || ^19.0.0
   languageName: node
@@ -1929,7 +1929,7 @@ __metadata:
   resolution: "@poool/react-access@portal:../../::locator=poool-react-access-next-example%40workspace%3Aexamples%2Fnext"
   dependencies:
     "@junipero/core": "npm:3.14.1"
-    "@types/poool-access": "npm:5.18.1"
+    "@types/poool-access": "npm:5.19.0"
   peerDependencies:
     react: ^18.0.0 || ^19.0.0
   languageName: node
@@ -2548,13 +2548,6 @@ __metadata:
   dependencies:
     undici-types: "npm:~8.9.0"
   checksum: 10c0/5cb63f644f6e85a257a9cd2403cbcbe196760e2a35fd3ec9fb8b5cff663e14cc832b198cc17b53f870a2e30900ed45a1fb3f53e6589aba26b8e8c484aa672053
-  languageName: node
-  linkType: hard
-
-"@types/poool-access@npm:5.18.1":
-  version: 5.18.1
-  resolution: "@types/poool-access@npm:5.18.1"
-  checksum: 10c0/3b0b5b61e3fc329f53da4ab1727926048c1abef38c03e59265a966d7b213271bebc50b814cc30615ca88d9a5b7f8dc7ebcc1791c08f5c3beb6e27ff90a022fe2
   languageName: node
   linkType: hard
 
