@@ -23,15 +23,26 @@ export declare interface AccessIdentityAvailableEvent {
   actionName: string;
   trigger: string;
   triggerType: string;
+  triggerPageType: string;
   triggerValue: string;
+  remaining?: number;
+  consumed?: number;
+  customReaderId?: string;
 }
 
 export declare interface AccessReadyEvent {
   widget: string;
   actionName: string;
+  target: string;
   trigger: string;
   triggerType: string;
+  triggerPageType?: string;
   triggerValue: string;
+  // Only sent by the new paywall render
+  contextName?: string;
+  groupName?: string;
+  scenarioName?: string;
+  action?: string;
 }
 
 export declare interface AccessPaywallSeenEvent {
@@ -39,7 +50,17 @@ export declare interface AccessPaywallSeenEvent {
   actionName: string;
   trigger: string;
   triggerType: string;
+  triggerPageType: string;
   triggerValue: string;
+  // Only sent by the new paywall render
+  contextName?: string;
+  groupName?: string;
+  scenarioName?: string;
+  action?: string;
+  // Only sent by the legacy paywall render
+  context?: string;
+  segment?: string;
+  journey?: string;
 }
 
 export declare interface AccessReleaseEvent {
@@ -48,6 +69,7 @@ export declare interface AccessReleaseEvent {
   actionName: string;
   trigger: string;
   triggerType: string;
+  triggerPageType: string;
   triggerValue: string;
 }
 
